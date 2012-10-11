@@ -1,4 +1,7 @@
 MedialOperations::Application.routes.draw do
+  root to: 'courses#index'
+
+  resources :courses, only: [:index, :show]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

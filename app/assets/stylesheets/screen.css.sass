@@ -1,0 +1,294 @@
+// Imports -------------------------------------------------------------------
+
+@import base
+@import "compass"
+@import "compass/reset"
+@import "compass/utilities"
+
+// Layout ------------------------------------------------------------------
+
+// General
+
+.page
+  // +susy-grid-background
+  +container($total-columns)
+  +establish-baseline
+  +accentize($red)
+  width: 100%
+  font-family: $sans-serif
+  font-style: normal
+  font-weight: 300
+  text-align: justify
+  h1, h2, h3, h4, h5, h6
+    text-align: left
+    font-family: $slab-serif
+
+// Header
+
+#page_header
+  margin: 0 0 - $grid-padding
+
+  // Navigation 
+
+  #main_nav
+    +padding-trailer
+    +adjust-font-size-to(12px)
+    +adjust-leading-to(2)
+    +border-radius(0 0 0 0.5em)
+    font-weight: 700
+    background-color: $base01
+    ul
+      li
+        text-align: left
+        &:nth-child(2n)
+          background-color: $base1
+        a
+          +unstyled-link
+          padding: 0 $grid-padding
+          color: $base03
+        &:hover
+          background-color: $base3
+          a 
+            color: $red
+
+  // Logo
+
+  #logo
+    // +single-box-shadow(inset, black, 0em, -0.1em, 0.2em)
+    +leader(0)
+    +trailer(0.5)
+    +span-columns(2 omega)
+    +border-radius(0 0 0.5em 0.5em)
+    +adjust-font-size-to(16px)
+    float: right
+    padding: 0.25em 0em 0.25em 0em
+    background-color: $base01
+    font-family: $slab-serif
+    letter-spacing: -0.05em
+    font-weight: 500
+    text-align: center
+    a      
+      +unstyled-link
+      span#medial
+        color: $base3
+        vertical-align: 30%
+      span#slash
+        +adjust-font-size-to(22px)
+        color: $red
+        margin: 0 -0.3em 0 -0.2em
+      span#operations
+        color: $base3
+        vertical-align: -5%
+    &:hover
+      span#medial
+        color: $red
+      span#slash
+        color: $base3
+      span#operations
+        color: $red
+
+// Content
+
+.content
+  clear: both
+  +padding-leader(1)
+
+  p
+    +adjust-font-size-to(14px)
+    +hyphenation
+
+  sup
+    +adjust-font-size-to(12px)
+    vertical-align: baseline
+    position: relative
+    top: -0.5em
+    padding-left: 0.1em
+    padding-right: 0.1em
+    a, a:active, a:visited, code.url
+      +unstyled-link
+      color: $red
+    &:hover
+      background-color: $red
+      a
+        color: $base1
+  
+  ol
+    +border-styles($default-border-style)
+    +adjust-font-size-to(12px)
+    list-style-type: decimal
+    padding-left: 2 * $grid-padding
+
+  em
+    font-style: italic
+  
+  hgroup
+    +background-block(0.5, 0.5, 1, 1)
+    div.course_prefix
+      color: $red
+      +trailer(-0.5)
+      +adjust-font-size-to(11px)
+
+  h1
+    +trailer(0.5)
+    +adjust-font-size-to(18px)
+    letter-spacing: 0em
+    font-weight: 700
+    color: $yellow
+    a, a:active, a:visited, code.url
+      +unstyled-link
+      color: $yellow
+
+  ul.info
+    +border-styles($default-border-style, $default-border-style)
+    li
+      +adjust-font-size-to(12px)
+      color: $base2
+
+  h2
+    +adjust-font-size-to(16px)
+    +leader(1.5)
+    +trailer(0.5)
+    &:first-child
+      +leader(-1)
+
+  blockquote
+    +border-styles($default-border-style, $default-border-style)
+    font-family: $slab-serif
+
+    blockquote
+      +margin-leader(0)
+      +padding-leader(0)
+      +padding-trailer(0)
+      +margin-trailer(0)
+      border: none
+      text-align: right
+    p 
+      +adjust-font-size-to(11px)
+      color: $base2
+
+  section.article
+    h1
+      +background-block(0.5, 0.5, 0, 0)
+    h1 + p
+      +background-block(0, 0, 2, -1)
+      color: $red
+      +leader(-0.5)
+      +adjust-font-size-to(12px)
+
+    blockquote blockquote
+      +padding-leader(0.5)
+
+  section.sections
+    h1
+      +leader(1)
+      +adjust-font-size-to(14px)
+      font-weight: 500
+      +background-block(2,0.5,1.5,1)
+      a
+        color: $red
+        &:hover
+          color: $red 
+          border-bottom: 1px solid $red
+      p
+        color: $base2
+    a
+      +unstyled-link
+      color: $base03
+      &:hover
+        color: $base02
+
+  section.meetings
+    h1
+      +border-styles($yellow-border-style, $yellow-border-style, 1.8, 0.2, 0.2, 0.8)
+      +adjust-font-size-to(12px)
+      color: $yellow
+      text-align: center
+      font-weight: 700
+      background-color: $base03
+      a, a:active, a:visited, code.url
+        +unstyled-link
+        color: $yellow
+      &:hover
+        background-color: $yellow
+        a
+          color: $base03
+          border: none
+    
+    ul.info
+      +padding-leader(0)
+      border-top: none
+      li
+        +adjust-font-size-to(10px)
+        color: $base2
+        width: 100%
+        text-align: left
+        font-weight: 500          
+        span
+          color: $base01
+          float: left
+          &:last-child
+            float: right
+            text-align: right
+        &:last-child
+          +padding-trailer(0)
+
+    p
+      +adjust-font-size-to(12px)
+
+  section.bibliography
+    +margin-leader(0.5)
+    +padding-leader(0)
+    +border-styles($default-border-style)
+    text-align: left
+
+    h1
+      +margin-leader(0.5)
+      +padding-leader(0)
+      +margin-trailer(0)
+      +padding-trailer(0)
+      +adjust-font-size-to(10px)
+      text-align: left
+      border: none
+      font-weight: 700
+      color: $base01
+      background-color: $base03
+
+    ul
+      li
+        +adjust-font-size-to(10px)
+        color: $base01
+        text-indent: -0.7em
+        padding-left: 0.7em
+        a
+          +unstyled-link
+        em
+          color: $base01
+          font-style: italic
+        &:last-child
+          border: none
+
+// Footer
+
+#page_footer
+  +leader(1)
+  +adjust-font-size-to(12px)
+  font-weight: 500
+  margin-right: 0 - $grid-padding
+  margin-left: 0 - $grid-padding
+  border-top: 0.1em solid $base01
+  
+  ul
+    +horizontal-list
+    float: left
+    margin-left: $grid-padding
+    li
+      margin-right: $grid-padding
+      a 
+        +unstyled-link
+        color: $base3
+        &:hover
+          color: $red
+  p
+    float: right
+    text-align: right
+    margin-right: $grid-padding

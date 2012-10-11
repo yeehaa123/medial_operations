@@ -1,0 +1,99 @@
+// Imports -------------------------------------------------------------------
+
+@import susy
+
+// Grid ----------------------------------------------------------------------
+
+$total-columns: 3
+$column-width: 5em
+$gutter-width: 1em
+$grid-padding: $gutter-width
+
+$container-style: magic
+
+// Fonts ---------------------------------------------------------------------
+
+$slab-serif: "museo-slab-1","museo-slab-2",serif
+$sans-serif: "museo-sans-1","museo-sans-2",sans-serif
+
+// Vertical Rhythm -----------------------------------------------------------
+
+$base-line-height           : 20px
+$base-font-size             : 16px
+$round-to-nearest-half-line : true
+
+// Colors --------------------------------------------------------------------
+
+$base03:    #002b36
+$base02:    #073642
+$base01:    #586e75
+$base00:    #657b83
+$base0:     #839496
+$base1:     #93a1a1
+$base2:     #eee8d5
+$base3:     #fdf6e3
+$yellow:    #b58900
+$orange:    #cb4b16
+$red:       #dc322f
+$magenta:   #d33682
+$violet:    #6c71c4
+$blue:      #268bd2
+$cyan:      #2aa198
+$green:     #859900
+
+=rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) 
+  background-color: $rebase03
+  color: $rebase0
+  *
+    color: $rebase0
+  h1,h2,h3,h4,h5,h6
+    color: $rebase1
+    border-color: $rebase0
+  a, a:active, a:visited
+    color: $rebase1
+
+=accentize($accent)
+  a, a:active, a:visited, code.url
+    color: $accent
+  h1,h2,h3,h4,h5,h6
+    color: $accent
+
+/* light is default mode, so pair with general html definition */
+.light
+  +rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)
+html, .dark
+  +rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)
+html *
+  color-profile: sRGB
+  rendering-intent: auto
+
+// Mixins --------------------------------------------------------------------
+
+@mixin border-styles($top: none, $bottom: none, $ml: 0.5, $pl: 0.5, $pt: 0.5, $mt: 0.5)
+  +margin-leader($ml)
+  +padding-leader($pl)
+  +margin-trailer($mt)
+  +padding-trailer($pt)
+  margin-right: 0 - $grid-padding
+  margin-left: 0 - $grid-padding
+  padding-right: $grid-padding
+  padding-left: $grid-padding
+  border-top: $top
+  border-bottom: $bottom
+
+@mixin background-block($ml: 0.5, $pl: 0.5, $pt: 0.5, $mt: 0.5)
+  +margin-leader($ml)
+  +padding-leader($pl)
+  +margin-trailer($mt)
+  +padding-trailer($pt)
+  margin-right:   -$grid-padding * 2
+  margin-left:    -$grid-padding * 2
+  padding-right:  $grid-padding * 2
+  padding-left:   $grid-padding * 2
+  background-color: $base02
+
+// Variables
+
+$default-border-style: 0.1em solid $base02
+$yellow-border-style: 0.1em solid $yellow
+$red-border-style: 0.1em solid $red

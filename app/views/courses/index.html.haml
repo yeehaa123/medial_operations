@@ -1,0 +1,5 @@
+%h1 List of Courses
+%ul
+  - @courses.each do |course|
+    - present course do |course_presenter|
+      %li= link_to course_presenter.heading, course_path(course)
