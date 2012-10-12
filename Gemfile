@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
 gem 'mongoid'
 gem 'haml-rails'
 gem 'kramdown'
 gem 'mongoid_slug'
-gem 'sass-rails',   '~> 3.2.3'
-gem 'compass-rails'
 
 group :development do
   gem 'rails_best_practices'
@@ -21,6 +20,8 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'compass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'susy'
   gem 'uglifier', '>= 1.0.3'
