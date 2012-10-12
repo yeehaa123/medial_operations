@@ -213,7 +213,6 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
-  compass
   compass-rails
   database_cleaner
   email_spec
