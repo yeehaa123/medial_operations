@@ -1,60 +1,67 @@
 # COURSE ----------------------------------------------------------------------
 
 course_description = <<END
-- such as sensors, transistors, and servo motors - they are inextricably 
-linked our spaces and bodies. It has therefore become almost impossible to 
-analyze cultural objects independent of their technological apparatus. 
-Nevertheless, scholars in the humanities are reluctant to learn about the hard-, 
+Nowadays, computers are literally everywhere. Through heterogeneous interfaces
+- such as sensors, transistors, and servo motors - they are inextricably
+linked our spaces and bodies. It has therefore become almost impossible to
+analyze cultural objects independent of their technological apparatus.
+Nevertheless, scholars in the humanities are reluctant to learn about the hard-,
 wet-, and software of art, literature, culture, and politics.
 
-In this course we will modestly attempt to compensate for our discipline's 
+In this course we will modestly attempt to compensate for our discipline's
 technological illiteracy and research the following question:
 
-> What kind of approaches, methods and techniques are needed to analyze the 
+> What kind of approaches, methods and techniques are needed to analyze the
 technical dimension of contemporary cultural objects?
 
+Rather than approaching this question from a purely theoretical perspective, we
+will learn to code ourselves. Programming, however, is not a goal in
+itself but only a means to an end. We treat code as a particular form of
+knowledge organization. Our goal is not to become full-time programmers, but to
+gain an extra tool to pursue our research.
 END
 
+
 Course.create(title_prefix: "Art, Science, and Technology",
-              title: "Medial Operations", 
+              title: "Medial Operations",
               description: course_description)
 
 
 # SECTIONS --------------------------------------------------------------------
 
 section_1_description = <<END
-In this course we will modestly attempt to compensate for our discipline's 
+In this course we will modestly attempt to compensate for our discipline's
 technological illiteracy and research the following question:
 
-> What kind of approaches, methods and techniques are needed to analyze the 
+> What kind of approaches, methods and techniques are needed to analyze the
 technical dimension of contemporary cultural objects?
 
-Nowadays, computers are literally everywhere. Through heterogeneous interfaces 
-- such as sensors, transistors, and servo motors - they are inextricably 
+Nowadays, computers are literally everywhere. Through heterogeneous interfaces
+- such as sensors, transistors, and servo motors - they are inextricably
 linked our spaces and bodies.
 END
 
 section_2_description = <<END
-In this course we will modestly attempt to compensate for our discipline's 
+In this course we will modestly attempt to compensate for our discipline's
 technological illiteracy and research the following question:
 
-> What kind of approaches, methods and techniques are needed to analyze the 
+> What kind of approaches, methods and techniques are needed to analyze the
 technical dimension of contemporary cultural objects?
 
-Nowadays, computers are literally everywhere. Through heterogeneous interfaces 
-- such as sensors, transistors, and servo motors - they are inextricably 
+Nowadays, computers are literally everywhere. Through heterogeneous interfaces
+- such as sensors, transistors, and servo motors - they are inextricably
 linked our spaces and bodies.
 END
 
 section_3_description = <<END
-In this course we will modestly attempt to compensate for our discipline's 
+In this course we will modestly attempt to compensate for our discipline's
 technological illiteracy and research the following question:
 
-> What kind of approaches, methods and techniques are needed to analyze the 
+> What kind of approaches, methods and techniques are needed to analyze the
 technical dimension of contemporary cultural objects?
 
-Nowadays, computers are literally everywhere. Through heterogeneous interfaces 
-- such as sensors, transistors, and servo motors - they are inextricably 
+Nowadays, computers are literally everywhere. Through heterogeneous interfaces
+- such as sensors, transistors, and servo motors - they are inextricably
 linked our spaces and bodies.
 END
 
@@ -75,8 +82,8 @@ Section.create(title: "The Eternal Recurrence of Body Snatchers",
 # SESSIONS --------------------------------------------------------------------
 
 session_description = <<END
-Nowadays, computers are literally everywhere. Through heterogeneous interfaces 
-- such as sensors, transistors, and servo motors - they are inextricably 
+Nowadays, computers are literally everywhere. Through heterogeneous interfaces
+- such as sensors, transistors, and servo motors - they are inextricably
 linked our spaces and bodies.
 END
 

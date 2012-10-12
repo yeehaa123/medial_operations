@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'mongoid'
 gem 'haml-rails'
 gem 'kramdown'
+gem 'mongoid_slug'
 
 group :development do
   gem 'rails_best_practices'

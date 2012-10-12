@@ -7,8 +7,8 @@ class Session
   field :description, type: String
   field :location, type: String
 
-  attr_accessible :title, :course, :description
-  
+  attr_accessible :title, :course, :description, :section
+
   belongs_to :course
   belongs_to :section
 

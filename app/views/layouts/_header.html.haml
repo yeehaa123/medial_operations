@@ -1,0 +1,12 @@
+%header#page_header{role: "banner"}
+  %nav#main_nav{role: "navigation"}
+    %ul
+      %li= link_to "home", root_path
+      %li= link_to "courses", courses_path
+      %li= link_to "projects", "#"
+      %li= link_to "articles", "#"
+  %em#logo
+    = link_to "#" do
+      %span#medial medial
+      %span#slash /
+      %span#operations operations

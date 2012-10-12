@@ -1,0 +1,9 @@
+- present @course do |course_presenter|
+  %hgroup.course_title
+    %div.course_prefix= @course.title_prefix
+    %h1= course_presenter.heading
+
+  %section.course_description
+    = course_presenter.description
+  
+  = render @sections

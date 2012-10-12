@@ -9,9 +9,9 @@
     = csrf_meta_tags
     = render 'layouts/typekit'
   .page
-    / # = render 'layouts/header'
+    = render 'layouts/header'
     .content
       %p.notice= notice
       %p.alert= alert
       = yield
-    / # = render 'layouts/footer'
+    = render 'layouts/footer'
