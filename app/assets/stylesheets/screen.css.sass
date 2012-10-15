@@ -123,6 +123,9 @@
   
   hgroup
     +background-block(0.5, 0.5, 1, 1)
+    // +background(url('/assets/typewriter-keys.jpg'))
+    // background-size: 100% auto
+    
     div.course_prefix
       color: $red
       +trailer(-0.5)
@@ -177,39 +180,46 @@
 
     blockquote blockquote
       +padding-leader(0.5)
+  
+  section.course_program
+    h1
+      +background-block(2,0.5,1.5,1)
+      +adjust-font-size-to(14px)
+      color: $red
 
-  section.sections
+  section.section
     h1
       +leader(1)
-      +adjust-font-size-to(14px)
+      +adjust-font-size-to(12px)
       font-weight: 500
       +background-block(2,0.5,1.5,1)
       a
-        color: $red
+        color: $yellow
         &:hover
-          color: $red 
+          color: $yellow 
           border-bottom: 1px solid $red
-      p
-        color: $base2
+    p
+      +adjust-font-size-to(12px)
+
     a
       +unstyled-link
       color: $base03
       &:hover
         color: $base02
 
-  section.meetings
+  section.session
     h1
-      +border-styles($yellow-border-style, $yellow-border-style, 1.8, 0.2, 0.2, 0.8)
+      +border-styles($lighter-border-style, $lighter-border-style, 1.8, 0.2, 0.2, 0.8)
       +adjust-font-size-to(12px)
-      color: $yellow
+      color: $base1
       text-align: center
       font-weight: 700
       background-color: $base03
       a, a:active, a:visited, code.url
         +unstyled-link
-        color: $yellow
+        color: $base1
       &:hover
-        background-color: $yellow
+        background-color: $base1
         a
           color: $base03
           border: none

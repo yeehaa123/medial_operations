@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe "CoursePages" do
   let(:base_title)  { "Medial Operations" }
-  let(:course)      { create(:course) }
-  let(:sections)    { build_list(:section, 3)}
-  # let(:sessions)  { create(:course_with_meetings) }      
+  let(:course)      { create(:defined_course) }
 
   subject { page }
 
@@ -18,25 +16,41 @@ describe "CoursePages" do
     it { should have_selector('section.course_description') }
     it { should_not have_selector('section.sections') }
     it { should_not have_selector('section.meetings') }
+  end
 
-    describe "course with sections" do
-      before do
-        course.sections = sections
-        visit syllabus_course_path(course)
-      end
+  context "syllabus" do
+      
+    before { visit syllabus_course_path(course) }
 
-      it { should have_selector('section.sections', count: 3) }
-    end
+    it { should have_selector('title', text: "#{ base_title }") }
+    it { should show_menu }
+    it { should have_selector('hgroup.course_title') }
+    it { should have_selector('section.course_description') }
 
-    # describe "course with sessions" do
-    #     it { should have_selector('section.meetings', count: 10) }
-    # end
+    it { should have_selector('section.section', count: 3) }
 
-    # describe "course with meetings and sections" do
-    #     let(:course)  { create(:course_with_meetings_and_sections) }
+    it { should have_selector('section.session', count: 9) }
+    # it { save_and_open_page }
+  end
 
-    #     it { should have_selector('section.sections', count: 3) }      
-    #     it { should have_selector('section.meetings', count: 9) }
-    # end
+  context "course section pages" do
+    let(:section) { course.sections.first }
+
+    before { visit course_section_path(course, section) }
+
+    it { should have_selector('title', text: "#{ base_title }") }
+    it { should show_menu }
+    it { should have_selector('section.section', count: 1) }
+    it { should have_selector('section.session', count: 3) }
+  end
+
+  context "course section pages" do
+    let(:session) { course.sessions.first }
+
+    before { visit course_session_path(course, session) }
+
+    it { should have_selector('title', text: "#{ base_title }") }
+    it { should show_menu }
+    it { should have_selector('section.session', count: 1) }
   end
 end

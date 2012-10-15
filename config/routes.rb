@@ -1,12 +1,16 @@
 MedialOperations::Application.routes.draw do
-  root to: 'courses#index'
+  root to: 'courses#show', id: "medial-operations"
 
-  resources :courses, only: [:index, :show] do
-    resources :sections, only: [:index, :show]
+  resources :courses, only: [:show] do
+    resources :sections, only: [:show]
+    resources :sessions, only: [:show]
     member do
      get 'syllabus'
    end
   end
+
+  match 'syllabus' => 'courses#syllabus', id: "medial-operations"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

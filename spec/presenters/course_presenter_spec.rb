@@ -6,9 +6,11 @@ describe CoursePresenter do
   
   subject { presenter }
   
+  # it { CoursePresenter.presents(:course == course }
+
   it { should respond_to(:heading) }
   it { should respond_to(:description) }
 
   its(:heading)     { should == "New Course" }
-  its(:description) { should == "<p>Hello <em>World</em></p>" }
+  its(:description) { should == "<p>Hello <em>World</em></p>\n" }
 end

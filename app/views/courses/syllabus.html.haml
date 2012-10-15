@@ -6,4 +6,11 @@
   %section.course_description
     = course_presenter.description
   
-  = render @sections
+%section.course_program
+  %h1 Course Program
+  - if @sessions.size > 0 && @sessions.first.section == nil
+    = render @sessions.first
+  - if @sections.size > 0
+    = render @sections
+  - else
+    = render @sessions

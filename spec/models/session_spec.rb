@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Session do
-  let(:session) { build(:session) }
+  let(:session) { build(:session, number: 1) }
 
   subject { session }
 
@@ -15,6 +15,7 @@ describe Session do
   it { should validate_presence_of(:course) }
 
   describe "only assign sections belonging to right course" do
+    let(:session) { build(:session_with_section) }
     let(:other_course) { Course.new }
     
     before do 
@@ -25,5 +26,22 @@ describe Session do
     it { should have(1).error_on(:section) }
   end
 
-  its(:to_s) { should == session.title.titleize }
+  its(:to_s) { should == "#{ session.number } - #{ session.title.titleize }" }
+
+  describe "order sessions" do
+    let(:course)   { create(:defined_course) }
+    let(:sessions) { course.sessions }
+    let(:session)  { sessions.find_by(title: "Introduction").reload }
+    
+    its(:number) { should == 1 }
+
+    it "after updating datetime should change number" do
+      session.datetime = Time.new(2030)
+      session.save
+      session.reload.number.should == 10
+      session.datetime = Time.now
+      session.save
+      session.reload.number.should == 1
+    end
+  end
 end
