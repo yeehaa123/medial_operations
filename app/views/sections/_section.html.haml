@@ -1,6 +1,6 @@
 - present section do |section_presenter|
-  %section.section
-    %h1= link_to section_presenter.heading, course_section_path(@course, section)
+  = content_tag_for(:section, section) do
+    %h1= link_to section_presenter.heading, course_section_path(course, section)
     = section_presenter.description
 
     - if section.sessions.size > 0

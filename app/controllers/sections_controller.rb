@@ -1,9 +1,9 @@
-class SectionsController < ApplicationController  
+class SectionsController < ApplicationController
+  expose(:section)
+  expose(:course)  { section.course }
+  expose(:sessions) { section.sessions }
   
   def show
-    @section = Section.find(params[:id])
-    @course  = @section.course
-    @sessions = @section.sessions
   end
 
 end

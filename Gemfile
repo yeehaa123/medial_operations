@@ -9,6 +9,7 @@ gem 'kramdown'
 gem 'mongoid_slug'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'compass-rails'
+gem 'decent_exposure'
 
 group :development do
   gem 'rails_best_practices'

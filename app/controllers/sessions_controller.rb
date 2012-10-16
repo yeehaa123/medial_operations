@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
+  expose(:session)
+  expose(:course)  { session.course }
+  expose(:section) { session.section }
   
   def show
-    @session = Session.find(params[:id])
-    @course  = @session.course
-    @section = @session.section
   end
 
 end

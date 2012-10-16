@@ -191,13 +191,18 @@
     h1
       +leader(1)
       +adjust-font-size-to(12px)
-      font-weight: 500
       +background-block(2,0.5,1.5,1)
+      font-weight: 500
       a
         color: $yellow
-        &:hover
-          color: $yellow 
-          border-bottom: 1px solid $red
+      &:hover
+        background: $yellow
+        a
+          color: $base03
+          &:hover
+            color: $base03 
+            border-bottom: 1px solid $base03
+            
     p
       +adjust-font-size-to(12px)
 

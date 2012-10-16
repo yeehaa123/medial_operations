@@ -25,10 +25,10 @@ FactoryGirl.define do
   end  
   
   factory :session do
-    sequence(:title)  { |n| "New Session #{n}" }
-    description       "Hello *World*"    
-    sequence(:datetime) { |n| Time.zone.local(2013,"jan", n ,10,00) }
-    location  "Bungehuis 4.01"
+    title         "New Session"
+    description   "Hello *World*"
+    location      "Bungehuis 4.01"    
+    datetime      Time.zone.local(2013,"jan", 3,10,00)
     course
 
     factory :session_with_section do

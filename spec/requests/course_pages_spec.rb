@@ -29,8 +29,7 @@ describe "CoursePages" do
 
     it { should have_selector('section.section', count: 3) }
 
-    it { should have_selector('section.session', count: 9) }
-    # it { save_and_open_page }
+    it { should have_selector('section.session', count: 10) }
   end
 
   context "course section pages" do
@@ -52,5 +51,6 @@ describe "CoursePages" do
     it { should have_selector('title', text: "#{ base_title }") }
     it { should show_menu }
     it { should have_selector('section.session', count: 1) }
+    it { save_and_open_page }
   end
 end

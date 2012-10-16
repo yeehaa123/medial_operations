@@ -1,6 +1,6 @@
 - present session do |session_presenter|
-  %section.session
-    %h1= link_to session_presenter.heading, course_session_path(@course, session)
+  = content_tag_for(:section, session) do
+    %h1= link_to session_presenter.heading, course_session_path(course, session)
     %ul.info
       %li.date= session_presenter.date
       %li.time= session_presenter.time
