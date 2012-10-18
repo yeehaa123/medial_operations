@@ -6,7 +6,7 @@ class Section
   field :title, type: String
   field :description, type: String
   field :number, type: Integer
-  
+
   slug :to_s
 
   attr_accessible :title, :course, :description, :number

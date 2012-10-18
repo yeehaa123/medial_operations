@@ -10,6 +10,7 @@ describe Session do
   it { should respond_to(:course) }
   it { should respond_to(:datetime) }
   it { should respond_to(:section) }
+  it { should respond_to(:references)}
 
   it { should be_valid }
   it { should validate_presence_of(:course) }

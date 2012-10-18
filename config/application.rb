@@ -78,6 +78,6 @@ module MedialOperations
     config.compass.require "susy"
 
     # YEEHAA: Setting the correct timezones
-    config.time_zone = "Europe/Amsterdam" 
+    config.time_zone = "Europe/Amsterdam"
   end
 end

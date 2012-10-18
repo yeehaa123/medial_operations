@@ -8,7 +8,7 @@ class Course
   field :description, type: String
 
   slug  :title
-  
+
   attr_accessible :title, :title_prefix, :description
 
   has_many    :sections

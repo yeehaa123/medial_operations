@@ -1,0 +1,2 @@
+class IndividualReference < Reference
+end

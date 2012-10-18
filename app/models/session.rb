@@ -15,7 +15,9 @@ class Session
 
   belongs_to  :course
   belongs_to  :section
-  
+
+  has_and_belongs_to_many :references
+
   after_save :order_sessions
 
   default_scope asc(:datetime)

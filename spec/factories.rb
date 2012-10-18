@@ -36,4 +36,45 @@ FactoryGirl.define do
       course { section.course }
     end
   end
+
+  factory :reference do
+    sequence(:title) { |n| "new article #{n}" }
+    # date    Time.new(1979)
+    # medium  "print"
+    # pages   "100-200"
+    # after(:build) do |reference|
+    #   reference.authors = build_list(:author, 1)
+    #   reference.translators = build_list(:author, 2)
+    #   reference.editors = build_list(:author, 2)
+    #   reference.meetings = build_list(:meeting, 3)
+    #   reference.site_articles << build_list(:article, 4)
+    # end
+  end
+
+  factory :monograph do
+    sequence(:title) { |n| "new monograph #{n}" }
+    publication_date    Time.new(1979)
+    medium  "print"
+    after(:build) do |reference|
+      reference.authors = build_list(:author, 1)
+    #   reference.translators = build_list(:author, 2)
+    #   reference.editors = build_list(:author, 2)
+    #   reference.meetings = build_list(:meeting, 3)
+    #   reference.site_articles << build_list(:article, 4)
+    end
+  end
+
+  factory :chapter do
+    sequence(:title) { |n| "new chapter #{n}" }
+    publication_date    Time.new(1971)
+    monograph
+  end
+
+  factory :author do
+    first_name  "Jane"
+    # middle_name "H."
+    sequence(:last_name) { |n| "#{n}-Doe" }
+  end
 end
+
+
