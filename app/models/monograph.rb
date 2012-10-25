@@ -5,5 +5,4 @@ class Monograph < CollectionReference
   has_many    :chapters
 
   validates_presence_of :authors
-
 end

@@ -1,0 +1,2 @@
+class MagazineArticlePresenter < ReferencePresenter
+end

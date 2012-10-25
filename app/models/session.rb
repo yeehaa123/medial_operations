@@ -11,7 +11,8 @@ class Session
 
   slug :to_s
 
-  attr_accessible :title, :course, :description, :section, :datetime, :location
+  attr_accessible :title, :course, :description, :section, :datetime, 
+                  :location, :references
 
   belongs_to  :course
   belongs_to  :section

@@ -3,7 +3,7 @@ class Reference
   include Mongoid::Timestamps
   include Mongoid::Slug
 
-  field   :title, type: String
+  field   :title, as: :name, type: String
   field   :publication_date, type: DateTime
   field   :author_list, type: String
 
@@ -30,5 +30,9 @@ class Reference
       end
     end
     self.author_list = al
+  end
+
+  def to_s
+    title.titleize
   end
 end

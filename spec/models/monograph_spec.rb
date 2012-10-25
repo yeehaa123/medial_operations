@@ -12,11 +12,6 @@ describe Monograph do
   it { should respond_to(:publication_date) }
   it { should respond_to(:medium) }
   it { should respond_to(:chapters) }
-  # it { should respond_to(:site_articles) }
-  # it { should respond_to(:courses) }
-  # it { should respond_to(:meetings) }
-  # it { should respond_to(:pages) }
-
   it { should respond_to(:sessions) }
 
   it { should validate_presence_of(:authors) }
@@ -25,12 +20,32 @@ describe Monograph do
   it { should be_valid }
     
   it { should have(1).authors }
-  # it { should have(2).translators }
-  # it { should have(2).editors }
-  # it { should have(3).meetings }  
-  # it { should have(4).site_articles }
+  it { should have(2).translators }
+  it { should have(3).editors }
+  it { should have(4).sessions }  
 
   # its(:to_s) do
   #   should == "#{ reference.authors.first } - #{ reference.title }"
   # end
+  
+  describe "author_list" do
+    let(:author) { monograph.authors.first }
+    before do
+      author.save
+      monograph.save
+    end
+
+    its(:author_list) { should == "#{ author }. " }
+
+    describe "with more authors" do
+      let(:coauthor) { create(:author) }
+
+      before do
+        monograph.authors << coauthor
+        monograph.save
+      end
+
+      its(:author_list) { should == "#{ author }. #{ coauthor }. " }
+    end
+  end
 end

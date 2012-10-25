@@ -9,4 +9,23 @@ module ApplicationHelper
   def markdown(text)
     Kramdown::Document.new(text).to_html.html_safe
   end
+
+  def works_cited(references, title = "Works Cited")
+    haml_tag :section, class: "bibliography" do
+      haml_tag :h1, title
+      haml_tag :ul do
+        a = []
+        references.each do |ref|
+          present ref do |r|
+            if a == r.authors && a != []
+              r.to_link(true)
+            else
+              r.to_link
+            end
+            a = r.authors
+          end
+        end
+      end
+    end
+  end
 end

@@ -29,7 +29,11 @@ describe Reference do
   # it { should have(3).meetings }  
   # it { should have(4).site_articles }
 
-  # its(:to_s) do
-  #   should == "#{ reference.authors.first } - #{ reference.title }"
-  # end
+  its(:to_s) do
+    should == "#{ reference.title.titleize }"
+  end
+
+  its(:author_list) do 
+    should be_nil
+  end
 end

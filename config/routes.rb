@@ -9,6 +9,8 @@ MedialOperations::Application.routes.draw do
    end
   end
 
+  resources :references, only: [:show]
+
   match 'syllabus' => 'courses#syllabus', id: "medial-operations"
 
   # The priority is based upon order of creation:

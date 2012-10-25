@@ -1,0 +1,2 @@
+class JournalArticlePresenter < ReferencePresenter
+end

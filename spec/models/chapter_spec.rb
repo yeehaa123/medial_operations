@@ -13,14 +13,10 @@ describe Chapter do
   it { should respond_to(:editors) }
   it { should respond_to(:publication_date) }
   it { should respond_to(:medium) }
-  # it { should respond_to(:site_articles) }
-  # it { should respond_to(:courses) }
-  # it { should respond_to(:meetings) }
   it { should respond_to(:pages) }
 
   it { should respond_to(:sessions) }
 
-  # it { should validate_presence_of(:authors) }
   it { should validate_presence_of(:title) }
 end
   

@@ -45,8 +45,8 @@ Publisher.create(name: "Annoying", location: "Amsterdam")
 
 Monograph.create(title: "One-Way Street",
                  authors: [Author.find_by(last_name: "Benjamin")],
-                 # editors: [Author.find_by(last_name: "Bullock"),
-                 #           Author.find_by(last_name: "Jennings")],
+                 editors: [Author.find_by(last_name: "Bullock"),
+                           Author.find_by(last_name: "Jennings")],
                  publication_date: Date.new(1996),
                  medium: "print",
                  publisher: Publisher.find_by(location: "Cambridge, MA"))
@@ -58,40 +58,52 @@ Monograph.create(title: "The Practice of Everyday Life",
                  publisher: Publisher.find_by(location: "Berkeley"))
 
 Monograph.create(title: "A Thousand Plateaus",
-                          authors: [Author.find_by(last_name: "Deleuze"),
-                                    Author.find_by(last_name: "Guattari")],
-                          publisher: Publisher.find_by(location: "Minneapolis"),
-                          publication_date: Time.new(1987),
-                          medium: "print")
+                 authors: [Author.find_by(last_name: "Deleuze"),
+                           Author.find_by(last_name: "Guattari")],
+                 publisher: Publisher.find_by(location: "Minneapolis"),
+                 publication_date: Time.new(1987),
+                medium: "print")
 
 Monograph.create(title: "The Question Concerning Technology",
-                          authors: [Author.find_by(last_name: "Heidegger")],
-                          translators: [Author.find_by(last_name: "Lovitt")],
-                          publication_date: Time.new(1977),
-                          medium: "print",
-                          publisher: Publisher.find_by(location: "Cambridge"))
+                 authors: [Author.find_by(last_name: "Heidegger")],
+                 translators: [Author.find_by(last_name: "Lovitt")],
+                 publication_date: Time.new(1977),
+                 medium: "print",
+                 publisher: Publisher.find_by(location: "Cambridge"))
 
 Monograph.create(title: "The Gay Science",
-                          authors: [Author.find_by(last_name: "Nietzsche")],
-                          # editors: [Author.find_by(last_name: "Williams")],
-                          translators: [Author.find_by(last_name: "Nauckhoff"),
-                                        Author.find_by(last_name: "Del Caro")],
-                          publication_date: Time.new(2001),
-                          medium: "print",
-                          publisher: Publisher.find_by(location: "Cambridge"))
+                 authors: [Author.find_by(last_name: "Nietzsche")],
+                 editors: [Author.find_by(last_name: "Williams")],
+                 translators: [Author.find_by(last_name: "Nauckhoff"),
+                               Author.find_by(last_name: "Del Caro")],
+                 publication_date: Time.new(2001),
+                 medium: "print",
+                 publisher: Publisher.find_by(location: "Cambridge"))
 
 Monograph.create(title: "Human, All Too Human",
-                          authors: [Author.find_by(last_name: "Nietzsche")],
-                          translators: [Author.find_by(last_name: "Hollingdale")],
-                          publication_date: Time.new(1996),
-                          medium: "print",
-                          publisher: Publisher.find_by(location: "Cambridge"))
+                 authors: [Author.find_by(last_name: "Nietzsche")],
+                 translators: [Author.find_by(last_name: "Hollingdale")],
+                 publication_date: Time.new(1996),
+                 medium: "print",
+                 publisher: Publisher.find_by(location: "Cambridge"))
 
 Monograph.create(title: "Everything Ever Written",
-                          authors: [Author.find_by(last_name: "Versal")],
-                          publication_date: Time.new(2012),
-                          medium: "print",
-                          publisher: Publisher.find_by(name: "Annoying"))
+                 authors: [Author.find_by(last_name: "Versal")],
+                 publication_date: Time.new(2012),
+                 medium: "print",
+                 publisher: Publisher.find_by(name: "Annoying"))
+
+
+# Journals
+
+Journal.create(name: "Critical Inquiry",
+               publisher: Publisher.find_by(location: "Chicago"),
+               medium: "print")
+
+# Magazines
+
+Magazine.create(name: "Wired", medium: "print")
+
 
 # Chapters
 
@@ -157,6 +169,51 @@ Chapter.create(title: "Kafka. Towards a Minor Literature",
                         publisher: Publisher.first,
                         publication_date: Time.new(1974),
                         medium: "Print")
+
+# Magazine Articles
+
+MagazineArticle.create(title: "How Google's Algorithm Rules the Web",
+                                authors: [Author.find_by(last_name: "Levy")],
+                                magazine: Magazine.find_by(name: "Wired"),
+                                url: "http://www.wired.com/magazine/2010/02/ff_google_algorithm/",
+                                volume: 16,
+                                issue:  07,
+                                date: Time.new(2010, 2, 22))
+
+MagazineArticle.create(title: "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete",
+                                authors: [Author.find_by(last_name: "Anderson")],
+                                magazine: Magazine.find_by(name: "Wired"),
+                                url: "http://www.wired.com/science/discoveries/magazine/16-07/pb_intro",
+                                volume: 17,
+                                issue:  12,
+                                date: Time.new(2008, 8, 23))
+
+MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
+                                authors: [Author.find_by(last_name: "Koolhaas")],
+                                magazine: Magazine.find_by(name: "Wired"),
+                                url: "http://www.wired.com/wired/archive/11.06/newworld.html",
+                                volume: 11,
+                                issue:  06,
+                                date: Time.new(2003, 6))
+
+MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
+                                magazine: Magazine.find_by(name: "Wired"),
+                                url: "http://www.wired.com/magazine/2010/09/ff_wiredu/all/1",
+                                volume: 18,
+                                issue:  10,
+                                date: Time.new(2003, 9, 27))
+
+# Journal Articles
+
+JournalArticle.create(title: "Universities: Wet, Hard, Soft, and Harder",
+                               authors: [Author.find_by(last_name: "Kittler")],
+                               journal: Journal.find_by(name: "Critical Inquiry"),
+                               url: "http://www.jstor.org/stable/10.1086/427310",
+                               pages: "244-255",
+                               volume: 31,
+                               issue: 1,
+                               date: Time.new(2004))
+
 
 
 # COURSE ----------------------------------------------------------------------
@@ -251,31 +308,31 @@ END
 Session.create(title: "Introduction", 
                course: Course.first,
                description: session_description,
-               # references: [Reference.find_by(title: "To the Planetarium"),
-               #              Reference.find_by(title: "Future of Science")],
-               publication_datetime: Time.now,
+               references: [Reference.find_by(title: "To the Planetarium"),
+                            Reference.find_by(title: "Future of Science")],
+               datetime: Time.now,
                location: "Bungehuis 4.01")
 
 Session.create!(title: "Lecture", 
                 section: Section.find_by(title: "Mapping The Humanities"),
                 course: Course.first,
                 description: session_description,
-                # references: [Reference.find_by(title: "The Age of the World Picture"),
-                #              Reference.find_by(title: "Universities: Wet, Hard, Soft, and Harder"),
-                #              Reference.find_by(title: "How Google's Algorithm Rules the Web"),
-                #              Reference.find_by(title: "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete")],
-                publication_datetime: Time.now + 1.weeks,
+                references: [Reference.find_by(title: "The Age of the World Picture"),
+                             Reference.find_by(title: "Universities: Wet, Hard, Soft, and Harder"),
+                             Reference.find_by(title: "How Google's Algorithm Rules the Web"),
+                             Reference.find_by(title: "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete")],
+                datetime: Time.now + 1.weeks,
                 location: "Bungehuis 4.01")
 
 Session.create(title: "Lecture", 
                section: Section.find_by(title: "Mapping The Humanities"),
                course: Course.first,
                description: session_description,
-               # references: [Reference.find_by(title: "Preface to the Second Edition"),
-               #              Reference.find_by(title: "Spatial Stories"),
-               #              Reference.find_by(title: "Rhizome"),
-               #              Reference.find_by(title: "7 Essential Skills You Didn't Learn in College")],
-               publication_datetime: Time.now + 2.weeks,
+               references: [Reference.find_by(title: "Preface to the Second Edition"),
+                            Reference.find_by(title: "Spatial Stories"),
+                            Reference.find_by(title: "Rhizome"),
+                            Reference.find_by(title: "7 Essential Skills You Didn't Learn in College")],
+               datetime: Time.now + 2.weeks,
                location: "Bungehuis 4.01")
 
 
@@ -287,14 +344,14 @@ Session.create(title: "Lecture",
                    section: Section.find_by(title: "F(r)ictions and/or (Fr)Actions of the Imaginary"),
                    course: Course.first,
                    description: session_description,
-                   publication_datetime: Time.now + c.weeks,
+                   datetime: Time.now + c.weeks,
                    location: "Bungehuis 4.01")
   when 9..12
     Session.create(title: "Test #{ c }", 
                    section: Section.find_by(title: "The Eternal Recurrence of Body Snatchers"), 
                    course: Course.first,
                    description: session_description,
-                   publication_datetime: Time.now + c.weeks,
+                   datetime: Time.now + c.weeks,
                    location: "Bungehuis 4.01")
   end
 end
