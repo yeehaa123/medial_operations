@@ -1,2 +1,0 @@
-class MagazineArticlePresenter < ReferencePresenter
-end

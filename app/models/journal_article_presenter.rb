@@ -1,2 +1,0 @@
-class JournalArticlePresenter < ReferencePresenter
-end
