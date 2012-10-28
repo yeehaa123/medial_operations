@@ -5,4 +5,6 @@ class MagazineArticle < PeriodicalReference
 
   belongs_to  :magazine
   delegate    :medium, to: :magazine
+
+  validates_presence_of   :magazine
 end

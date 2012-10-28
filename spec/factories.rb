@@ -86,14 +86,20 @@ FactoryGirl.define do
   end
 
   factory :journal do
-    sequence(:name) { |n| "new journal #{n}" }
+    name "Critical Inquiry"
     medium  "print"
-    publisher
+    after(:build) do |reference|
+      reference.publisher = build(:chicago_university_press)
+      reference.sessions = build_list(:session, 4)
+    end  
   end
 
   factory :magazine do
-    sequence(:name) { |n| "new magazine #{n}" }
+    name "Wired"
     medium  "print"
+    after(:build) do |reference|
+      reference.sessions = build_list(:session, 4)
+    end  
   end
 
   factory :chapter do
@@ -119,24 +125,44 @@ FactoryGirl.define do
   end
 
   factory :journal_article do
-    sequence(:title) { |n| "new journal article #{n}" }
-    publication_date    Time.new(1971)
+    title "Universities: Wet, Hard, Soft, and Harder"
+    publication_date    Time.new(2004)
     journal
-    pages "100-200"
+    pages "244-255"
+    volume 31
+    issue 1
+    after(:build) do |reference|
+      reference.authors = [build(:kittler)]
+      reference.sessions = build_list(:session, 4)
+    end
   end
 
   factory :magazine_article do
-    sequence(:title) { |n| "new magazine article #{n}" }
-    publication_date    Time.new(1991)
+    title "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete"
+    publication_date    Time.new(2008, 8, 23)
+    volume  17
+    issue   12
     magazine
-    pages "100-200"
+    after(:build) do |reference|
+      reference.authors = [build(:anderson)]
+      reference.sessions = build_list(:session, 4)
+    end
+
+    factory :magazine_article_with_pages do
+      pages "100-200"
+    end
   end
 
   factory :author do
     first_name  "Jane"
     # middle_name "H."
     sequence(:last_name) { |n| "#{n}-Doe" }
-
+    
+    factory :anderson do
+      first_name "Chris"
+      last_name "Anderson"
+    end
+    
     factory :nietzsche do
       first_name "Friedrich"
       last_name "Nietzsche"
@@ -150,6 +176,11 @@ FactoryGirl.define do
     factory :guattari do
       first_name "Felix"
       last_name "Guattari"
+    end
+
+    factory :kittler do
+      first_name "Friedrich"
+      last_name "Kittler"
     end
 
     factory :nauckhoff do
@@ -180,6 +211,12 @@ FactoryGirl.define do
     factory :minneapolis_university_press do
       name  "Minneapolis University Press"
       location "Minneapolis"
+    end
+    
+
+    factory :chicago_university_press do
+      name  "Chicago University Press"
+      location "Chicago"
     end
   end
 end

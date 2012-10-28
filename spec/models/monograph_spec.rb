@@ -24,9 +24,6 @@ describe Monograph do
   it { should have(3).editors }
   it { should have(4).sessions }  
 
-  # its(:to_s) do
-  #   should == "#{ reference.authors.first } - #{ reference.title }"
-  # end
   
   describe "author_list" do
     let(:author) { monograph.authors.first }

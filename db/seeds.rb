@@ -178,7 +178,7 @@ MagazineArticle.create(title: "How Google's Algorithm Rules the Web",
                                 url: "http://www.wired.com/magazine/2010/02/ff_google_algorithm/",
                                 volume: 16,
                                 issue:  07,
-                                date: Time.new(2010, 2, 22))
+                                publication_date: Time.new(2010, 2, 22))
 
 MagazineArticle.create(title: "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete",
                                 authors: [Author.find_by(last_name: "Anderson")],
@@ -186,7 +186,7 @@ MagazineArticle.create(title: "The End of Theory: The Data Deluge Makes the Scie
                                 url: "http://www.wired.com/science/discoveries/magazine/16-07/pb_intro",
                                 volume: 17,
                                 issue:  12,
-                                date: Time.new(2008, 8, 23))
+                                publication_date: Time.new(2008, 8, 23))
 
 MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
                                 authors: [Author.find_by(last_name: "Koolhaas")],
@@ -194,14 +194,14 @@ MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
                                 url: "http://www.wired.com/wired/archive/11.06/newworld.html",
                                 volume: 11,
                                 issue:  06,
-                                date: Time.new(2003, 6))
+                                publication_date: Time.new(2003, 6))
 
 MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
                                 magazine: Magazine.find_by(name: "Wired"),
                                 url: "http://www.wired.com/magazine/2010/09/ff_wiredu/all/1",
                                 volume: 18,
                                 issue:  10,
-                                date: Time.new(2003, 9, 27))
+                                publication_date: Time.new(2003, 9, 27))
 
 # Journal Articles
 
@@ -212,7 +212,7 @@ JournalArticle.create(title: "Universities: Wet, Hard, Soft, and Harder",
                                pages: "244-255",
                                volume: 31,
                                issue: 1,
-                               date: Time.new(2004))
+                               publication_date: Time.new(2004))
 
 
 

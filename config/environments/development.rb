@@ -28,4 +28,11 @@ MedialOperations::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # YEEHAA: FOR PUSHER
+  # require 'pusher'
+
+  # Pusher.app_id = '30510'
+  # Pusher.key    = 'd883123a8693acec1aa4'
+  # Pusher.secret = '6602427c2f3939bd7a62'
 end

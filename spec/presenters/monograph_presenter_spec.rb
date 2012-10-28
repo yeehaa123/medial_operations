@@ -11,7 +11,7 @@ describe MonographPresenter do
     its(:to_s) do
       s = "Deleuze, Gilles and Felix Guattari. "
       s += "<em>A Thousand Plateaus</em>. "
-      s += "Cambridge: Cambridge University Press, 1987. "
+      s += "Cambridge: Cambridge University Press, 1987. "  
       s += "Print."    
       should == s
     end

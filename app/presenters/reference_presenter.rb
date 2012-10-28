@@ -24,11 +24,6 @@ class ReferencePresenter < BasePresenter
   
   def title
     t = "\"#{ reference }.\" "
-    if reference.respond_to?(:journal)
-      t += content_tag :em, "#{ reference.journal }"
-    elsif reference.respond_to?(:magazine)
-      t += content_tag :em, "#{ reference.magazine }"
-    end
     t += ". " unless t == ""
   end
 
@@ -73,32 +68,19 @@ class ReferencePresenter < BasePresenter
 
 
   def publication_date
-    if reference.respond_to?(:magazine)
-      if reference.publication_date
-        "#{ reference.publication_date.strftime("%e %b. %Y") }: "
-      end
-    else
-      if reference.publication_date
-        "#{ reference.publication_date.strftime("%Y") }. "
-      end
+    if reference.publication_date
+      "#{ reference.publication_date.strftime("%Y") }. "
     end
   end
 
   def medium
-    if reference.respond_to?(:monograph)
-      "#{ reference.monograph.medium.capitalize }." if reference.monograph.medium
-    elsif reference.respond_to?(:journal)
-      "#{ reference.journal.medium.capitalize }." if reference.journal.medium
-    else
-      "#{ reference.medium.capitalize }." if reference.medium
-    end
+    "#{ reference.medium.capitalize }." if reference.medium
   end
 
   def to_mla(dup = false)
     s = ""
     s += authors(dup) if authors
     s += title if title
-    # s += volume_issue if volume_issue
     s += editors if editors
     s += translators if translators
     s += publisher if publisher
