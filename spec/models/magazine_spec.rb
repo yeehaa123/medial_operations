@@ -8,14 +8,11 @@ describe Magazine do
   it { should respond_to(:name) }
   it { should respond_to(:medium) }
   it { should respond_to(:articles) }
-  it { should respond_to(:sessions) }
 
   it { should validate_presence_of(:name) }
 
   it { should be_valid }
-    
-  it { should have(4).sessions }  
-
+  
   its(:to_s) do
     should == "#{ magazine.name.titleize }"
   end

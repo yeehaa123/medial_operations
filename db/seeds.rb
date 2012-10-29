@@ -197,11 +197,11 @@ MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
                                 publication_date: Time.new(2003, 6))
 
 MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
-                                magazine: Magazine.find_by(name: "Wired"),
-                                url: "http://www.wired.com/magazine/2010/09/ff_wiredu/all/1",
-                                volume: 18,
-                                issue:  10,
-                                publication_date: Time.new(2003, 9, 27))
+                       magazine: Magazine.find_by(name: "Wired"),
+                       url: "http://www.wired.com/magazine/2010/09/ff_wiredu/all/1",
+                       volume: 18,
+                       issue:  10,
+                       publication_date: Time.new(2003, 9, 27))
 
 # Journal Articles
 

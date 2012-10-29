@@ -1,12 +1,6 @@
 class ChapterPresenter < ReferencePresenter
   presents :chapter
 
-  def title
-    t = "\"#{ chapter }.\" "
-    t += content_tag :em, "#{ chapter.monograph }"
-    t += ". " unless t == ""
-  end
-  
   def to_mla(dup = false)
     s = ""
     s += authors(dup) if authors
@@ -19,4 +13,11 @@ class ChapterPresenter < ReferencePresenter
     s += medium if medium
   end
   alias_method :to_s, :to_mla
+
+  private
+    def title
+      t = "\"#{ reference }.\" "
+      t += content_tag :em, "#{ reference.monograph }"
+      t += ". " unless t == ""
+    end
 end

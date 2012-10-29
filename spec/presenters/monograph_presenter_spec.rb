@@ -4,7 +4,7 @@ describe MonographPresenter do
   let(:presenter)   { MonographPresenter.new(reference, view) }
   
   subject { presenter }
-  
+
   describe "monograph with two authors" do
     let(:reference)   { build(:a_thousand_plateaus) }
 

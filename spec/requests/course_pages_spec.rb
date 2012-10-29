@@ -51,6 +51,5 @@ describe "CoursePages" do
     it { should have_selector('title', text: "#{ base_title }") }
     it { should show_menu }
     it { should have_selector('section.session', count: 1) }
-    it { save_and_open_page }
   end
 end

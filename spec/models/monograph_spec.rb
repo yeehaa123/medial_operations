@@ -13,6 +13,7 @@ describe Monograph do
   it { should respond_to(:medium) }
   it { should respond_to(:chapters) }
   it { should respond_to(:sessions) }
+  it { should respond_to(:publisher) }
 
   it { should validate_presence_of(:authors) }
   it { should validate_presence_of(:title) }

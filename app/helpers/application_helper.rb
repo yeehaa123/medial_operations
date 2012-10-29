@@ -17,12 +17,12 @@ module ApplicationHelper
         a = []
         references.each do |ref|
           present ref do |r|
-            if a == r.authors && a != []
+            if a == ref.author_list && a != []
               r.to_link(true)
             else
-              r.to_link
+              r.to_link(false)
             end
-            a = r.authors
+            a = ref.author_list
           end
         end
       end

@@ -6,7 +6,8 @@ class Publisher
   field    :name, type: String
   field    :location, type: String
 
-  has_many :references
+  has_many :monographs
+  has_many :journals
 
   validates_presence_of :name
   validates_presence_of :location

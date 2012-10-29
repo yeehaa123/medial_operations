@@ -10,6 +10,7 @@ class MonographPresenter < CollectionReferencePresenter
     s += publisher if publisher
     s += publication_date if publication_date
     s += medium if medium
+    return s
   end
   alias_method :to_s, :to_mla
 

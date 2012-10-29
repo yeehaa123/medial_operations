@@ -3,18 +3,17 @@ class Reference
   include Mongoid::Timestamps
   include Mongoid::Slug
 
-  field   :title, as: :name, type: String
+  field   :title, type: String
   field   :publication_date, type: DateTime
   field   :author_list, type: String
 
   attr_accessible :sessions, :title, :authors, :translators, :editors, 
-                  :sessions, :publisher, :publication_date
+                  :publisher, :publication_date
 
   has_and_belongs_to_many   :authors
   has_and_belongs_to_many   :translators, class_name: "Author"
   has_and_belongs_to_many   :editors, class_name: "Author"
   has_and_belongs_to_many   :sessions
-  belongs_to                :publisher
 
   validates_presence_of :title
 

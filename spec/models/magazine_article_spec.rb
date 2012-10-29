@@ -12,8 +12,10 @@ describe MagazineArticle do
   it { should respond_to(:medium) }
   it { should respond_to(:magazine) }
   it { should respond_to(:volume) }
-  it { should respond_to(:issue)}
+  it { should respond_to(:issue) }
+  it { should respond_to(:pages) }
   it { should respond_to(:sessions) }
+  it { should respond_to(:publisher) }
 
   it { should validate_presence_of(:title) }
   it { should respond_to(:magazine) }

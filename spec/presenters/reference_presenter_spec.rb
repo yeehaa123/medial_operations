@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ReferencePresenter do
-  let(:reference)   { build(:monograph) }
+  let(:reference)   { build(:reference) }
   let(:presenter)   { ReferencePresenter.new(reference, view) }
   
   subject { presenter }
@@ -9,7 +9,7 @@ describe ReferencePresenter do
   context "authors" do
 
     it "with same author as previous reference" do
-      presenter.authors(true).should == "---. "
+      presenter.send(:authors, true).should == "---. "
     end
 
     describe "with one author" do
@@ -39,43 +39,6 @@ describe ReferencePresenter do
           end
         end
         should == "#{ a1 }, #{ a2.full_name }, and #{ a3.full_name }. "
-      end
-    end
-  end
-    
-  context "title" do
-
-    describe "if reference is a collection" do
-      its(:title) { should == "<em>#{ reference.title.titleize }</em>. " }
-    end
-    
-    describe "if reference is a chapter" do
-      let(:reference) { build(:chapter) }
-      
-      it "should include monograph in reference" do
-        chapter_title = "\"#{ reference.title.titleize }.\" "
-        monograph_title = "<em>#{reference.monograph.title.titleize }</em>. "
-        presenter.title.should == chapter_title + monograph_title
-      end
-    end
-
-    describe "if reference is a journal article" do
-      let(:reference) { build(:journal_article) }
-      
-      it "should include journal in reference" do
-        article_title = "\"#{ reference.title.titleize }.\" "
-        journal_title = "<em>#{reference.journal.name.titleize }</em>. "
-        presenter.title.should == article_title + journal_title
-      end
-    end
-
-    describe "if reference is a magazine article" do
-      let(:reference) { build(:magazine_article) }
-      
-      it "should include magazine in reference" do
-        article_title = "\"#{ reference.title.titleize }.\" "
-        magazine_title = "<em>#{reference.magazine.name.titleize }</em>. "
-        presenter.title.should == article_title + magazine_title
       end
     end
   end
@@ -119,84 +82,6 @@ describe ReferencePresenter do
         second_translator = reference.translators.last.full_name
         should == "Trans. #{ first_translator } and #{ second_translator }. "
       end
-    end
-  end
-    
-  context "publisher" do
-    describe "if reference is a chapter" do
-      let(:reference) { build(:chapter) }
-
-      its(:publisher) { should == "#{ reference.monograph.publisher }, " }
-    end
-
-    describe "if reference is an journal article" do
-      let(:reference) { build(:journal_article) }
-
-      its(:publisher) { should == "#{ reference.journal.publisher }, " }
-    end
-  end
-
-  context "pages" do
-    its(:pages)     { should be_nil }
-
-    describe "if object is an individual reference" do
-      let(:reference) { build(:chapter) }
-
-      its(:pages)       { should == "#{ reference.pages }. " }
-    end
-  end
-
-  context "publication_date" do
-    its(:publication_date) do
-      should == "#{ reference.publication_date.strftime("%Y") }. "
-    end
-
-    describe "if object is a magazine article" do
-      let(:reference) { build(:magazine_article)}
-
-      its(:publication_date) do
-        should == "#{ reference.publication_date.strftime("%e %b. %Y") }: "
-      end
-    end
-  end
-
-  context "medium" do
-    its(:medium)      { should == "#{ reference.medium.capitalize }." }
-
-    describe "if reference is a chapter" do
-      let(:reference) { build(:chapter) }
-
-      its(:medium) { should == "#{ reference.monograph.medium.capitalize }." }
-    end
-
-    describe "if reference is an article" do
-      let(:reference) { build(:journal_article) }
-
-      its(:medium) { should == "#{ reference.journal.medium.capitalize }." }
-    end
-  end
-  
-  context "formatted chapter reference" do
-    let(:reference) { build(:chapter) }
-    
-    it "should output a correct mla reference" do 
-      s =  "#{ presenter.authors }"
-      s += "#{ presenter.title }"
-      s += "#{ presenter.publisher }"
-      s += "#{ presenter.publication_date }" 
-      s += "#{ presenter.pages }"
-      s += "#{ presenter.medium }"
-      presenter.to_mla.should == s
-    end
-      
-    it "should output --- when author is same" do
-      s =  "---. "
-      s += "#{ presenter.title }"
-      s += "#{ presenter.publisher }"
-      s += "#{ presenter.publication_date }"
-      s += "#{ presenter.pages }"
-      s += "#{ presenter.medium }"
-      presenter.to_mla(true).should == s
     end
   end
 end
