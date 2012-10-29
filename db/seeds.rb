@@ -142,31 +142,26 @@ Chapter.create(title: "Preface to the Second Edition",
 
 Chapter.create(title: "What is Metaphyics?",
                         monograph: Monograph.last,
-                        publisher: Publisher.first,
                         publication_date: Time.new(1929),
                         medium: "Print")
 
 Chapter.create(title: "On Revolution",
                         monograph: Monograph.last,
-                        publisher: Publisher.first,
                         publication_date: Time.new(1970),
                         medium: "Print")
 
 Chapter.create(title: "Vita Activa",
                         monograph: Monograph.last,
-                        publisher: Publisher.first,
                         publication_date: Time.new(1950),
                         medium: "Print")
 
 Chapter.create(title: "Grammophone, Film, Typewriter",
                         monograph: Monograph.last,
-                        publisher: Publisher.first,
                         publication_date: Time.new(1984),
                         medium: "Print")
 
 Chapter.create(title: "Kafka. Towards a Minor Literature",
                         monograph: Monograph.last,
-                        publisher: Publisher.first,
                         publication_date: Time.new(1974),
                         medium: "Print")
 

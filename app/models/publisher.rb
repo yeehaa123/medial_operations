@@ -1,7 +1,7 @@
 class Publisher
   include Mongoid::Document
   
-  attr_accessible :location, :name, :magazines, :publications, :references
+  attr_accessible :location, :name, :magazines, :publications, :monographs
 
   field    :name, type: String
   field    :location, type: String
@@ -17,4 +17,3 @@ class Publisher
     "#{ location.titleize }: #{ name.titleize }"
   end
 end
-
