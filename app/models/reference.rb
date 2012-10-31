@@ -44,8 +44,8 @@ class Reference
 
   def self.search(params)
     if params[:query].present?
-      tire.search(load: true, type: nil) do
-        query { string params[:query] } 
+      tire.search(load: true, per_page: 50, type: nil) do
+        query { string params[:query], default_operator: "AND" }
       end
     else
       self.all

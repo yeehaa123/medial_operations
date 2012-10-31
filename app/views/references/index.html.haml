@@ -1,10 +1,10 @@
 %section.bibliography
-  %h1 References
   = form_tag references_path, method: :get do
     %p
       = text_field_tag :query, params[:query]
       = submit_tag "Search", name: nil
   %ul
-    - references.each do |ref|
-      - present ref do |reference_presenter|
-        %li= raw reference_presenter.to_mla
+    - works_cited(references)
+    / - references.each do |ref|
+    /   - present ref do |reference_presenter|
+    /     %li= raw reference_presenter.to_mla

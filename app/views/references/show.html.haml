@@ -1,2 +1,3 @@
-%h1 References#show
-%p Find me in app/views/references/show.html.haml
+%h1= reference.title
+- present reference do |reference_presenter|
+  %li= raw reference_presenter.to_mla
