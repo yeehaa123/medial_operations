@@ -26,6 +26,7 @@ class Reference
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  index_name INDEX_NAME
 
   def to_indexed_json
     self.to_json
@@ -41,11 +42,11 @@ class Reference
     self.author_list = al
   end
 
-  def self.search(params)
-    tire.search(load: true, type: nil) do
-      query { string params[:query] } if params[:query].present?
-    end
-  end
+  # def self.search(params)
+  #   tire.search(load: true, type: nil) do
+  #     query { string params[:query] } if params[:query].present?
+  #   end
+  # end
 
   def to_s
     title.titleize
