@@ -10,7 +10,7 @@ gem 'mongoid_slug'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'compass-rails'
 gem 'decent_exposure'
-# gem 'tire'
+gem 'tire'
 gem 'kaminari'
 
 
