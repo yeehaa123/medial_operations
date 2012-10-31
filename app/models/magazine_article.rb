@@ -1,6 +1,6 @@
 class MagazineArticle < PeriodicalReference 
 
-  attr_accessible :pages, :magazine, :date,
+  attr_accessible :magazine, :date,
                   :medium
 
   belongs_to  :magazine

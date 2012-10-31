@@ -1,5 +1,4 @@
 class JournalArticle < PeriodicalReference 
-
   attr_accessible :journal, :date, :medium
 
   belongs_to  :journal
