@@ -6,7 +6,7 @@ class ReferencesController < ApplicationController
   #     Reference.all
   #   end
   # end
-  expose(:references) { Reference.search(params) }
+  # expose(:references) { Reference.search(params) }
   expose(:references) { Reference.all }
   expose(:reference)
 
