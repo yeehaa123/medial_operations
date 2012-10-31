@@ -67,6 +67,4 @@ test:
       options:
         consistency: :strong
 production:
-  sessions:
-    default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+  uri: <%= ENV['MONGOLAB_URI'] %>
