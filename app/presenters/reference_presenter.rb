@@ -65,8 +65,10 @@ class ReferencePresenter < BasePresenter
     end
 
     def pages
-      if reference.respond_to?(:pages)
-        "#{ reference.pages }. " if reference.pages
+      if reference.respond_to?(:startpage)
+        if reference.startpage && reference.endpage
+          "#{ reference.startpage }-#{ reference.endpage }. "
+        end
       end
     end
 

@@ -1,3 +1,6 @@
 class IndividualReference < Reference
-    field   :pages, type: String
+  attr_accessible :startpage, :endpage
+
+  field   :startpage, type: Integer
+  field   :endpage, type: Integer
 end

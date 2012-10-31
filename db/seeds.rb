@@ -110,35 +110,40 @@ Magazine.create(name: "Wired", medium: "print")
 Chapter.create(title: "The Age of the World Picture",
                         monograph: Monograph.find_by(title: "The Question Concerning Technology"),
                         publication_date: Time.new(1938),
-                        pages: "115-155")
+                        startpage: 115,
+                        endpage: 155)
 
 Chapter.create(title: "To the Planetarium",
                         monograph: Monograph.find_by(title: "One-Way Street"),
                         publication_date: Time.new(1928),
-                        pages: "486-487")
+                        startpage: 486,
+                        endpage: 487)
 
 Chapter.create(title: "Spatial Stories",
                         monograph: Monograph.find_by(title: "The Practice of Everyday Life"),
                         publication_date: Time.new(1984),
-                        pages: "115-130")
+                        startpage: 115,
+                        endpage: 130)
 
 Chapter.create(title: "Rhizome",
                         monograph: Monograph.find_by(title: "A Thousand Plateaus"),
                         publication_date: Time.new(1987),
-                        pages: "3-25")
+                        startpage: 3,
+                        endpage: 25)
 
 Chapter.create(title: "Future of Science",
                         monograph: Monograph.find_by(title: "Human, All Too Human"),
                         publication_date: Time.new(1928),
                         medium: "Print",
-                        pages: "119")
+                        startpage: 119,
+                        endpage: 119)
 
 Chapter.create(title: "Preface to the Second Edition",
                         monograph: Monograph.find_by(title: "The Gay Science"),
                         publication_date: Time.new(1928),
                         medium: "Print",
-                        pages: "3-9")
-
+                        startpage: 3,
+                        endpage: 9)
 
 Chapter.create(title: "What is Metaphyics?",
                         monograph: Monograph.last,

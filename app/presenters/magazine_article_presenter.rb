@@ -21,7 +21,7 @@ class MagazineArticlePresenter < ReferencePresenter
     end
 
     def publication_date
-      if reference.publication_date && reference.pages
+      if reference.publication_date && reference.startpage
         "#{ reference.publication_date.strftime("%e %b. %Y") }: "
       elsif reference.publication_date
         "#{ reference.publication_date.strftime("%e %b. %Y") }. "

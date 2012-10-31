@@ -9,7 +9,7 @@ MedialOperations::Application.routes.draw do
    end
   end
 
-  resources :references, only: [:show]
+  resources :references, only: [:show, :index]
 
   match 'syllabus' => 'courses#syllabus', id: "medial-operations"
 
