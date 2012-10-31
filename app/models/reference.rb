@@ -42,11 +42,15 @@ class Reference
     self.author_list = al
   end
 
-  # def self.search(params)
-  #   tire.search(load: true, type: nil) do
-  #     query { string params[:query] } if params[:query].present?
-  #   end
-  # end
+  def self.search(params)
+    if params[:query].present?
+      tire.search(load: true, type: nil) do
+        query { string params[:query] } 
+      end
+    else
+      self.all
+    end
+  end
 
   def to_s
     title.titleize
