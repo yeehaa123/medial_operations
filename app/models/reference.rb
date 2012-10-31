@@ -26,7 +26,6 @@ class Reference
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
-  index_name INDEX_NAME
 
   def to_indexed_json
     self.to_json
