@@ -14,4 +14,7 @@ class MonographPresenter < CollectionReferencePresenter
   end
   alias_method :to_s, :to_mla
 
+  def title
+    "<em> #{ reference.title }</em>. "
+  end
 end

@@ -12,8 +12,6 @@ Author.create(first_name: "Rem", last_name: "Koolhaas")
 Author.create(first_name: "Steven", last_name: "Levy")
 Author.create(first_name: "Friedrich", last_name: "Nietzsche")
 
-Author.create(first_name: "Uni", last_name: "Versal")
-
 # Editors
 
 Author.create(first_name: "Bernard", last_name: "Williams")
@@ -35,8 +33,6 @@ Publisher.create(name: "Harvard University Press", location: "Cambridge, MA")
 Publisher.create(name: "The University of Chicago Press", location: "Chicago")
 Publisher.create(name: "University of California Press", location: "Berkeley")
 Publisher.create(name: "University of Minnesota Press", location: "Minneapolis")
-
-Publisher.create(name: "Annoying", location: "Amsterdam")
 
 
 # References ------------------------------------------------------------------
@@ -87,13 +83,6 @@ Monograph.create(title: "Human, All Too Human",
                  medium: "print",
                  publisher: Publisher.find_by(location: "Cambridge"))
 
-Monograph.create(title: "Everything Ever Written",
-                 authors: [Author.find_by(last_name: "Versal")],
-                 publication_date: Time.new(2012),
-                 medium: "print",
-                 publisher: Publisher.find_by(name: "Annoying"))
-
-
 # Journals
 
 Journal.create(name: "Critical Inquiry",
@@ -108,112 +97,99 @@ Magazine.create(name: "Wired", medium: "print")
 # Chapters
 
 Chapter.create(title: "The Age of the World Picture",
-                        monograph: Monograph.find_by(title: "The Question Concerning Technology"),
-                        publication_date: Time.new(1938),
-                        startpage: 115,
-                        endpage: 155)
+               monograph: Monograph.find_by(title: "The Question Concerning Technology"),
+               publication_date: Time.new(1938),
+               startpage: 115,
+               endpage: 155,
+               tags: %w[mathematics science technology])
 
 Chapter.create(title: "To the Planetarium",
-                        monograph: Monograph.find_by(title: "One-Way Street"),
-                        publication_date: Time.new(1928),
-                        startpage: 486,
-                        endpage: 487)
+               monograph: Monograph.find_by(title: "One-Way Street"),
+               publication_date: Time.new(1928),
+               startpage: 486,
+               endpage: 487,
+               tags: %w[astronomy astrology science technology architecture])
 
 Chapter.create(title: "Spatial Stories",
-                        monograph: Monograph.find_by(title: "The Practice of Everyday Life"),
-                        publication_date: Time.new(1984),
-                        startpage: 115,
-                        endpage: 130)
+               monograph: Monograph.find_by(title: "The Practice of Everyday Life"),
+               publication_date: Time.new(1984),
+               startpage: 115,
+               endpage: 130,
+               tags: %w[space tactics strategy practice architecture narratives])
 
 Chapter.create(title: "Rhizome",
-                        monograph: Monograph.find_by(title: "A Thousand Plateaus"),
-                        publication_date: Time.new(1987),
-                        startpage: 3,
-                        endpage: 25)
+               monograph: Monograph.find_by(title: "A Thousand Plateaus"),
+               publication_date: Time.new(1987),
+               startpage: 3,
+               endpage: 25,
+               tags: %w[space biology practice art brain])
 
 Chapter.create(title: "Future of Science",
-                        monograph: Monograph.find_by(title: "Human, All Too Human"),
-                        publication_date: Time.new(1928),
-                        medium: "Print",
-                        startpage: 119,
-                        endpage: 119)
+               monograph: Monograph.find_by(title: "Human, All Too Human"),
+               publication_date: Time.new(1928),
+               medium: "Print",
+               startpage: 119,
+               endpage: 119,
+               tags: %w[brain science university practice art])
 
 Chapter.create(title: "Preface to the Second Edition",
-                        monograph: Monograph.find_by(title: "The Gay Science"),
-                        publication_date: Time.new(1928),
-                        medium: "Print",
-                        startpage: 3,
-                        endpage: 9)
+               monograph: Monograph.find_by(title: "The Gay Science"),
+               publication_date: Time.new(1928),
+               medium: "Print",
+               startpage: 3,
+               endpage: 9,
+               tags: %w[sickness science art practice])
 
-Chapter.create(title: "What is Metaphyics?",
-                        monograph: Monograph.last,
-                        publication_date: Time.new(1929),
-                        medium: "Print")
-
-Chapter.create(title: "On Revolution",
-                        monograph: Monograph.last,
-                        publication_date: Time.new(1970),
-                        medium: "Print")
-
-Chapter.create(title: "Vita Activa",
-                        monograph: Monograph.last,
-                        publication_date: Time.new(1950),
-                        medium: "Print")
-
-Chapter.create(title: "Grammophone, Film, Typewriter",
-                        monograph: Monograph.last,
-                        publication_date: Time.new(1984),
-                        medium: "Print")
-
-Chapter.create(title: "Kafka. Towards a Minor Literature",
-                        monograph: Monograph.last,
-                        publication_date: Time.new(1974),
-                        medium: "Print")
 
 # Magazine Articles
 
 MagazineArticle.create(title: "How Google's Algorithm Rules the Web",
-                                authors: [Author.find_by(last_name: "Levy")],
-                                magazine: Magazine.find_by(name: "Wired"),
-                                url: "http://www.wired.com/magazine/2010/02/ff_google_algorithm/",
-                                volume: 16,
-                                issue:  07,
-                                publication_date: Time.new(2010, 2, 22))
+                       authors: [Author.find_by(last_name: "Levy")],
+                       magazine: Magazine.find_by(name: "Wired"),
+                       url: "http://www.wired.com/magazine/2010/02/ff_google_algorithm/",
+                       volume: 16,
+                       issue:  07,
+                       publication_date: Time.new(2010, 2, 22),
+                       tags: %w[algorithm google mathematics law])
 
 MagazineArticle.create(title: "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete",
-                                authors: [Author.find_by(last_name: "Anderson")],
-                                magazine: Magazine.find_by(name: "Wired"),
-                                url: "http://www.wired.com/science/discoveries/magazine/16-07/pb_intro",
-                                volume: 17,
-                                issue:  12,
-                                publication_date: Time.new(2008, 8, 23))
+                       authors: [Author.find_by(last_name: "Anderson")],
+                       magazine: Magazine.find_by(name: "Wired"),
+                       url: "http://www.wired.com/science/discoveries/magazine/16-07/pb_intro",
+                       volume: 17,
+                       issue:  12,
+                       publication_date: Time.new(2008, 8, 23),
+                       tags: %w[science humanities algorithm data data_visualization])
 
 MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
-                                authors: [Author.find_by(last_name: "Koolhaas")],
-                                magazine: Magazine.find_by(name: "Wired"),
-                                url: "http://www.wired.com/wired/archive/11.06/newworld.html",
-                                volume: 11,
-                                issue:  06,
-                                publication_date: Time.new(2003, 6))
+                       authors: [Author.find_by(last_name: "Koolhaas")],
+                       magazine: Magazine.find_by(name: "Wired"),
+                       url: "http://www.wired.com/wired/archive/11.06/newworld.html",
+                       volume: 11,
+                       issue:  06,
+                       publication_date: Time.new(2003, 6),
+                       tags: %w[space architecture data data_visualization])
 
 MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
                        magazine: Magazine.find_by(name: "Wired"),
                        url: "http://www.wired.com/magazine/2010/09/ff_wiredu/all/1",
                        volume: 18,
                        issue:  10,
-                       publication_date: Time.new(2003, 9, 27))
+                       publication_date: Time.new(2003, 9, 27),
+                       tags: %w[practice university data data_visualization])
+
 
 # Journal Articles
 
 JournalArticle.create(title: "Universities: Wet, Hard, Soft, and Harder",
-                               authors: [Author.find_by(last_name: "Kittler")],
-                               journal: Journal.find_by(name: "Critical Inquiry"),
-                               url: "http://www.jstor.org/stable/10.1086/427310",
-                               startpage: 244,
-                               endpage: 255,
-                               volume: 31,
-                               issue: 1,
-                               publication_date: Time.new(2004))
+                      authors: [Author.find_by(last_name: "Kittler")],
+                      journal: Journal.find_by(name: "Critical Inquiry"),
+                      url: "http://www.jstor.org/stable/10.1086/427310",
+                      startpage: 244,
+                      endpage: 255,
+                      volume: 31,
+                      issue: 1,
+                      publication_date: Time.new(2004))
 
 
 
@@ -287,7 +263,7 @@ END
 Section.create(title: "Mapping The Humanities",
                course: Course.first,
                description: section_1_description,
-               number: 1)
+               number: 1 )
 Section.create(title: "F(r)ictions and/or (Fr)Actions of the Imaginary",
                course: Course.first,
                description: section_2_description,
@@ -312,7 +288,8 @@ Session.create(title: "Introduction",
                references: [Reference.find_by(title: "To the Planetarium"),
                             Reference.find_by(title: "Future of Science")],
                datetime: Time.now,
-               location: "Bungehuis 4.01")
+               location: "Bungehuis 4.01",
+               tags: %w[science art])
 
 Session.create!(title: "Lecture", 
                 section: Section.find_by(title: "Mapping The Humanities"),

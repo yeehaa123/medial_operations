@@ -16,7 +16,7 @@ class ChapterPresenter < ReferencePresenter
 
   private
     def title
-      t = "\"#{ reference }.\" "
+      t = "\"#{ reference.title }.\" "
       t += content_tag :em, "#{ reference.monograph }"
       t += ". " unless t == ""
     end

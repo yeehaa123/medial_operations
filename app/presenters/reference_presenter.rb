@@ -10,19 +10,21 @@ class ReferencePresenter < BasePresenter
       if dup
         al = "---. "
       else
-        al = ""
-        reference.authors.each_with_index do |a, i|
-          if i == 0
-            al += "#{ a }"
-          elsif i > 0 && reference.authors.size == 2
-            al += " and #{ a.full_name }"
-          elsif i > 0 && i < reference.authors.size - 1
-            al += ", #{ a.full_name }"
-          else
-            al += ", and #{ a.full_name }"
+        if reference.authors 
+          al = ""
+          reference.authors.each_with_index do |a, i|
+            if i == 0
+              al += "#{ a }"
+            elsif i > 0 && reference.authors.size == 2
+              al += " and #{ a.full_name }"
+            elsif i > 0 && i < reference.authors.size - 1
+              al += ", #{ a.full_name }"
+            else
+              al += ", and #{ a.full_name }"
+            end
           end
+          al += ". " unless al == ""
         end
-        al += ". " unless al == ""
       end
       al
     end
@@ -32,13 +34,13 @@ class ReferencePresenter < BasePresenter
     end
 
     def editors
-      if reference.editors
+      if reference.editors.size > 0
         s = ""
-        reference.editors.each_with_index do |t, i|
+        reference.editors.each_with_index do |e, i|
           if i == 0
-            s += "Ed. #{ t.full_name}"
+            s += "Ed. #{ e.full_name }"
           elsif i > 0
-            s += " and #{t.full_name}"
+            s += " and #{ e.full_name }"
           end
         end
         s += ". " unless s == ""
@@ -75,7 +77,7 @@ class ReferencePresenter < BasePresenter
 
     def publication_date
       if reference.publication_date
-        "#{ reference.publication_date.strftime("%Y") }. "
+        "#{ reference.publication_date.to_time.strftime("%Y") }. "
       end
     end
 

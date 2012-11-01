@@ -37,6 +37,7 @@
     +border-radius(0 0 0 0.5em)
     font-weight: 700
     background-color: $base01
+    display: none
     ul
       li
         text-align: left
@@ -250,7 +251,7 @@
     p
       +adjust-font-size-to(12px)
 
-  section.bibliography
+  section.bibliography, section.session_list
     +margin-leader(0.5)
     +padding-leader(0)
     +border-styles($default-border-style)
@@ -282,6 +283,9 @@
         &:last-child
           border: none
 
+    ul.tags
+      a 
+        color: $yellow
 // Footer
 
 #page_footer

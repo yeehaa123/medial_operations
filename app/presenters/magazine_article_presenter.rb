@@ -15,17 +15,16 @@ class MagazineArticlePresenter < ReferencePresenter
   private
   
     def title
-      t = "\"#{ reference }.\" "
+      t = "\"#{ reference.title }.\" "
       t += content_tag :em, "#{ reference.magazine }"
       t += ". " unless t == ""
     end
 
     def publication_date
       if reference.publication_date && reference.startpage
-        "#{ reference.publication_date.strftime("%e %b. %Y") }: "
+        "#{ reference.publication_date.to_time.strftime("%e %b. %Y") }: "
       elsif reference.publication_date
-        "#{ reference.publication_date.strftime("%e %b. %Y") }. "
+        "#{ reference.publication_date.to_time.strftime("%e %b. %Y") }. "
       end
     end
-
 end
