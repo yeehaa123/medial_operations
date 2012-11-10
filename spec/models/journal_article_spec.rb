@@ -6,7 +6,8 @@ describe JournalArticle do
   subject { article }
 
   it { should respond_to(:journal) }
-  it { should respond_to(:pages) }
+  it { should respond_to(:startpage) }
+  it { should respond_to(:endpage) }
   it { should respond_to(:authors) }
   it { should respond_to(:title) }
   it { should respond_to(:translators) }

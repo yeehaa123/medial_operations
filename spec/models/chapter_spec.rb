@@ -13,8 +13,9 @@ describe Chapter do
   it { should respond_to(:editors) }
   it { should respond_to(:publication_date) }
   it { should respond_to(:medium) }
-  it { should respond_to(:pages) }
-
+  it { should respond_to(:endpage) }
+  it { should respond_to(:authors) }
+  
   it { should respond_to(:sessions) }
 
   it { should validate_presence_of(:title) }

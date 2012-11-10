@@ -29,6 +29,7 @@ FactoryGirl.define do
     description   "Hello *World*"
     location      "Bungehuis 4.01"    
     datetime      Time.zone.local(2013,"jan", 3,10,00)
+    tags ["bla"]
     course
 
     factory :session_with_section do
@@ -39,6 +40,7 @@ FactoryGirl.define do
 
   factory :reference do
     title "New reference"
+    tags ["bla"]
     after(:build) do |reference|
       reference.authors = [build(:author)]
       reference.translators = build_list(:author, 2)
@@ -95,12 +97,14 @@ FactoryGirl.define do
 
   factory :chapter do
     title "New Chapter"
-    pages "100-200"
+    startpage 100
+    endpage 200
     monograph
     
     factory :rhizome do
       title "Rhizome"
-      pages "3-25"
+      startpage 3
+      endpage 25
       after(:build) do |reference|
         reference.monograph = build(:a_thousand_plateaus)
       end
@@ -108,7 +112,8 @@ FactoryGirl.define do
 
     factory :preface do
       title "Preface to the Second Edition"
-      pages "3-9"
+      startpage 3
+      endpage 9      
       after(:build) do |reference|
         reference.monograph = build(:the_gay_science)
       end
@@ -119,7 +124,8 @@ FactoryGirl.define do
     title "Universities: Wet, Hard, Soft, and Harder"
     publication_date    Time.new(2004)
     journal
-    pages "244-255"
+    startpage 244
+    endpage 255
     volume 31
     issue 1
     after(:build) do |reference|
@@ -140,7 +146,8 @@ FactoryGirl.define do
     end
 
     factory :magazine_article_with_pages do
-      pages "100-200"
+      startpage 100
+      endpage 200
     end
   end
 
@@ -209,5 +216,14 @@ FactoryGirl.define do
       name  "Chicago University Press"
       location "Chicago"
     end
+  end
+
+  factory :tag do
+    sequence(:name) {|n| "Tag #{n}"}
+  end
+
+  factory :presentation do
+    title "New Presentation"
+    content "New Content"
   end
 end

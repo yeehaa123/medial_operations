@@ -45,4 +45,25 @@ describe Session do
       session.reload.number.should == 1
     end
   end
+
+  describe "search" do
+    before do
+      Session.tire.index.delete
+      session.save
+      Session.tire.index.create
+      Session.tire.index.refresh
+    end
+
+    it { Session.search(query: "tags:bla").results.count.should == 1 }
+
+    describe "three sessions" do
+      before do
+        create(:session, title: "another")
+        create(:session, title: "athird")
+        Session.tire.index.refresh
+      end
+
+      it { Session.search(query: "tags:bla").results.count.should == 3 }
+    end
+  end
 end

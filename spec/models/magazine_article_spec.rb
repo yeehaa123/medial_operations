@@ -13,7 +13,8 @@ describe MagazineArticle do
   it { should respond_to(:magazine) }
   it { should respond_to(:volume) }
   it { should respond_to(:issue) }
-  it { should respond_to(:pages) }
+  it { should respond_to(:startpage) }
+  it { should respond_to(:endpage) }
   it { should respond_to(:sessions) }
   it { should respond_to(:publisher) }
 

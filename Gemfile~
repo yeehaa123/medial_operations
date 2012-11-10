@@ -39,7 +39,7 @@ group :test do
   gem 'launchy'
   gem 'email_spec'
   gem 'shoulda-matchers'
-# gem 'simplecov', require: fal
+  # gem 'simplecov', require: false
   gem 'rb-fsevent', :require => false
   gem 'growl'
 end

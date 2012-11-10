@@ -33,7 +33,7 @@ describe Monograph do
       monograph.save
     end
 
-    its(:author_list) { should == "#{ author }. " }
+    its(:author_list) { should == "#{ author }" }
 
     describe "with more authors" do
       let(:coauthor) { create(:author) }
@@ -43,7 +43,7 @@ describe Monograph do
         monograph.save
       end
 
-      its(:author_list) { should == "#{ author }. #{ coauthor }. " }
+      its(:author_list) { should == "#{ author }. #{ coauthor }" }
     end
   end
 end

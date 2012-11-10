@@ -1,6 +1,17 @@
 class ReferencePresenter < BasePresenter
   presents :reference
 
+  def to_mla(dup = false)
+    s = ""
+    s += authors(dup) if authors
+    s += title if title
+    s += editors if editors
+    s += translators if translators
+    s += publication_date if publication_date
+    return s
+  end
+  alias_method :to_s, :to_mla
+
   def to_link(dup = false)
     haml_tag :li, link_to(raw(to_mla(dup)), reference_path(reference._id))
   end

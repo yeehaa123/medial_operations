@@ -10,7 +10,7 @@ describe MagazineArticlePresenter do
   
     its(:to_s) do
       s = "Anderson, Chris. "
-      s += "\"The End Of Theory: The Data Deluge Makes The Scientific Method Obsolete.\" "
+      s += "\"The End of Theory: The Data Deluge Makes the Scientific Method Obsolete.\" "
       s += "<em>Wired</em>. "
       s += "23 Aug. 2008. Print."
       should == s
@@ -22,7 +22,7 @@ describe MagazineArticlePresenter do
   
     its(:to_s) do
       s = "Anderson, Chris. "
-      s += "\"The End Of Theory: The Data Deluge Makes The Scientific Method Obsolete.\" "
+      s += "\"The End of Theory: The Data Deluge Makes the Scientific Method Obsolete.\" "
       s += "<em>Wired</em>. "
       s += "23 Aug. 2008: 100-200. Print."
       should == s

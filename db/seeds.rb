@@ -333,3 +333,78 @@ Session.create(title: "Lecture",
                    location: "Bungehuis 4.01")
   end
 end
+
+# PRESENTATIONS ---------------------------------------------------------------
+
+p = Presentation.create(title:  "Lost and Found in Space",
+                        tags:   %w[space mathematics imaginary_numbers data_visualization planetarium])
+
+p.content = <<END
+## Outline
+
+### Introduction
+
+1. Walter Benjamin's 'To the Planetarium'
+
+  > And likewise technology is *the mastery of not 
+  > nature but of the relation between nature and 
+  > man.* ... One need recall only the experience of 
+  > velocities, by virtue of which mankind is now 
+  > preparing to embark on incalculable journeys 
+  > into the interior of time to encounter there 
+  > rhythms from which the sick shall draw strength 
+  > as they did earlier on high mountains or on the 
+  > shores of southern seas. The "lunaparks" are a 
+  > prefigurations of sanatoria. (58-59)
+
+2. Planetarium Amsterdam - Full-Dome Digital Planetarium
+
+3. Two opposing historical vectors: 
+  
+  - depicted space becomes increasingly larger
+  - devices for representation smaller
+
+4. Practice Data Visualization:
+  
+  - presentation + imagination
+  - fact + fiction
+
+
+### Practices of Stellar Mapmaking
+
+#### Celestial Maps
+
+- Real and Fictional Spaces come together
+- Theocentric
+
+#### Mechanical Planetariums
+
+- Franeker
+- Clocks
+- Heliocentric
+
+
+### Walter Benjamins Planetariums
+
+#### Deutsches Museum Munich
+
+- two planetariums (mechanical and optical)
+
+#### Shifts
+
+- research/teaching - entertainment
+- heliocentric - geocentric
+- courses/periods - coordinates vectors
+- three-dimensional installation - two-dimensional projection
+
+
+### Heidegger's Mathematics
+
+### Imaginary Numbers
+
+#### Digital Planetarium
+
+- geocentric - anthropocentric - egocentric
+END
+
+p.save

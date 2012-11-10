@@ -8,7 +8,7 @@ class Reference
   field   :tags, type: Array
   field   :author_list, type: String
   slug    :to_s
-
+  
   attr_accessible :sessions, :title, :authors, :translators, :editors, 
                   :publisher, :publication_date, :tags, :set_tags, :tags
 
@@ -19,7 +19,8 @@ class Reference
 
   validates_presence_of :title
   
-  before_save :generate_author_list, :set_tags 
+  before_save :generate_author_list
+  before_save :set_tags 
   
   include Tire::Model::Search
   include Tire::Model::Callbacks
@@ -37,7 +38,7 @@ class Reference
         boolean do
           must { string params[:query], default_operator: "AND" } if params[:query].present?
           must { term :tags, params[:tags] } if params[:tags].present?
-          must { terms :_type, ["chapter", "magazine_article", "journal_article", "monograph"] }
+          must { terms :_type, ["reference", "chapter", "magazine_article", "journal_article", "monograph"] }
         end
       end
       facet('tag_list') { terms :tags, order: 'term' }

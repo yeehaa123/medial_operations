@@ -9,6 +9,7 @@ MedialOperations::Application.routes.draw do
    end
   end
 
+  resources :presentations, only: [:show, :index]
   resources :tags, only: [:show, :index]
   resources :references, only: [:show, :index]
 
