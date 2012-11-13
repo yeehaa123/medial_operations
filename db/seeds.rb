@@ -108,7 +108,7 @@ Chapter.create(title: "To the Planetarium",
                publication_date: Time.new(1928),
                startpage: 486,
                endpage: 487,
-               tags: %w[astronomy astrology science technology architecture])
+               tags: %w[astronomy astrology science planetarium technology architecture])
 
 Chapter.create(title: "Spatial Stories",
                monograph: Monograph.find_by(title: "The Practice of Everyday Life"),
@@ -159,7 +159,7 @@ MagazineArticle.create(title: "The End of Theory: The Data Deluge Makes the Scie
                        volume: 17,
                        issue:  12,
                        publication_date: Time.new(2008, 8, 23),
-                       tags: %w[science humanities algorithm data data_visualization])
+                       tags: %w[science humanities algorithm data data-visualization])
 
 MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
                        authors: [Author.find_by(last_name: "Koolhaas")],
@@ -168,7 +168,7 @@ MagazineArticle.create(title: "The New World: 30 Spaces for the 21st Century",
                        volume: 11,
                        issue:  06,
                        publication_date: Time.new(2003, 6),
-                       tags: %w[space architecture data data_visualization])
+                       tags: %w[space architecture data data-visualization])
 
 MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
                        magazine: Magazine.find_by(name: "Wired"),
@@ -176,7 +176,7 @@ MagazineArticle.create(title: "7 Essential Skills You Didn't Learn in College",
                        volume: 18,
                        issue:  10,
                        publication_date: Time.new(2003, 9, 27),
-                       tags: %w[practice university data data_visualization])
+                       tags: %w[practice university data data-visualization])
 
 
 # Journal Articles
@@ -337,7 +337,7 @@ end
 # PRESENTATIONS ---------------------------------------------------------------
 
 p = Presentation.create(title:  "Lost and Found in Space",
-                        tags:   %w[space mathematics imaginary_numbers data_visualization planetarium])
+                        tags:   %w[space mathematics imaginary-numbers data-visualization planetarium])
 
 p.content = <<END
 ## Outline

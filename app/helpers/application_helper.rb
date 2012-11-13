@@ -15,8 +15,9 @@ module ApplicationHelper
       haml_tag :h1, title
       haml_tag :ul do
         a = []
-        references.sort_by(&:author_list).each do |ref|
-          present ref do |r|
+        references.each do |ref|
+        # references.sort_by(&:author_list).each do |ref|
+           present ref do |r|
             if a == ref.authors && a != []
               r.to_link(true)
             else

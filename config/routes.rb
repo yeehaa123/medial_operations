@@ -1,5 +1,7 @@
 MedialOperations::Application.routes.draw do
-  root to: 'courses#show', id: "medial-operations"
+  # root to: 'courses#show', id: "medial-operations"
+  
+  root to: 'pages#home'
 
   resources :courses, only: [:show] do
     resources :sections, only: [:show]
