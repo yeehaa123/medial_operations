@@ -4,7 +4,8 @@ $ ->
   barPadding = 3
   
   window.dataurl = $('#bar').data('url')
-  window.dataset = $('#bar').data('tagsarray') 
+  # window.dataset = $('#bar').data('tagsarray') 
+  window.dataset = dataset
 
   svg = d3.select("#bar")
           .append("svg")
