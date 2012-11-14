@@ -3,6 +3,9 @@ $ ->
   w = $("#bar").width()
   barPadding = 3
   
+  dataurl = $('#bar').data('url')
+  dataset = $('#bar').data('tagsarray') 
+
   svg = d3.select("#bar")
           .append("svg")
           .attr("width": w)
@@ -11,13 +14,13 @@ $ ->
   x = d3.scale.linear()
     .domain([0, d3.max(dataset, (d) -> d.count)])
     .range([0, w])
-  
+
   svg.selectAll("rect")
      .data(dataset)
      .enter()
      .append("a")
       .attr("xlink:href", (d)->
-        url = "http://localhost:3000/tags/" + d.name)
+        url = dataurl + "/" + d.name)
       .append("rect")
         .attr("x", 0)
         .attr("fill", "#b58900")
@@ -33,5 +36,5 @@ $ ->
      .attr("fill", "#ffffff")
      .attr("font-family", "sans-serif")
      .attr("font-size", "9px")
-     .attr("x", 7)
+     .attr("x", 10)
      .attr("y", (d, i) -> (i * (20 + barPadding)) + 13)

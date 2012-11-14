@@ -1,0 +1,3 @@
+heroku run rake environment tire:import CLASS=Reference 
+heroku run rake environment tire:import CLASS=Session 
+heroku run rake environment tire:import CLASS=Tag 

@@ -2,6 +2,6 @@
 
 rake db:drop
 rake db:seed
-rake environment tire:import CLASS=Reference FORCE=true
+rake environment tire:import CLASS=Reference 
 rake environment tire:import CLASS=Session 
 rake environment tire:import CLASS=Tag 
