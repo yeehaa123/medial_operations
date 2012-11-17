@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Presentation do
-  let(:presentation) { build(:presentation)}
+  let(:presentation) { create(:presentation)}
 
   subject { presentation }
 
@@ -12,6 +12,7 @@ describe Presentation do
   it { should be_valid }
 
   its(:slug) { should == presentation.title.parameterize }
+  its(:to_s) { should == presentation.title }
 
   describe "set_tags" do
 

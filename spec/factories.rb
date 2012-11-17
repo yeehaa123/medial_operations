@@ -161,6 +161,12 @@ FactoryGirl.define do
       last_name "Anderson"
     end
     
+    factory :certeau  do
+      first_name  "Michel"
+      particle    "de"
+      last_name   "Certeau"
+    end
+
     factory :nietzsche do
       first_name "Friedrich"
       last_name "Nietzsche"

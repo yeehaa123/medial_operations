@@ -14,10 +14,19 @@ class Author
   has_and_belongs_to_many :volumes, class_name: "Reference"
 
   def to_s
-    "#{last_name}, #{first_name}"
+    if particle
+      "#{last_name}, #{first_name} #{ particle }"
+    else
+      "#{last_name}, #{first_name}"
+    end
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    if particle
+      "#{first_name} #{ particle } #{last_name}"
+    else
+      "#{first_name} #{last_name}"
+    end
+
   end
 end

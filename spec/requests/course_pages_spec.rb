@@ -26,10 +26,8 @@ describe "CoursePages" do
     it { should show_menu }
     it { should have_selector('hgroup.course_title') }
     it { should have_selector('section.course_description') }
-
     it { should have_selector('section.section', count: 3) }
-
-    it { should have_selector('section.session', count: 10) }
+    it { should have_selector('section.session', count: 9) }
   end
 
   context "course section pages" do

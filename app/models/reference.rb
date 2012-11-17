@@ -21,13 +21,14 @@ class Reference
   
   before_save :generate_author_list
   before_save :set_tags 
-  
+  after_save do
+    Tire.index(INDEX_NAME).import(Reference.all)
+  end 
+
   include Tire::Model::Search
   include Tire::Model::Callbacks
   index_name INDEX_NAME
 
-  default_scope asc('author_list')
-    
   def to_indexed_json
     self.to_json
   end

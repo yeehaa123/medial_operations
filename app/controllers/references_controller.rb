@@ -1,6 +1,6 @@
 class ReferencesController < ApplicationController
   expose(:references) { Reference.search(params) }
-  expose(:reference)  { Reference.find(params[:id]) }
+  expose(:reference) { Reference.find(params[:id]) }
 
   def show
   end

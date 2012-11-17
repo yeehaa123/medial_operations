@@ -16,6 +16,8 @@ gem 'kaminari'
 
 group :development do
   gem 'rails_best_practices'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development, :test do
@@ -39,7 +41,7 @@ group :test do
   gem 'launchy'
   gem 'email_spec'
   gem 'shoulda-matchers'
-# gem 'simplecov', require: fal
+  gem 'simplecov', require: false
   gem 'rb-fsevent', :require => false
   gem 'growl'
 end

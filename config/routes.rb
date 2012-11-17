@@ -14,6 +14,7 @@ MedialOperations::Application.routes.draw do
   resources :presentations, only: [:show, :index]
   resources :tags, only: [:show, :index]
   resources :references, only: [:show, :index]
+  resources :authors, only: [:show, :index]
 
   match 'syllabus' => 'courses#syllabus', id: "medial-operations"
 
