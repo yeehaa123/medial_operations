@@ -1,2 +1,7 @@
-%p= author.full_name
+%h1= author.full_name
+%p
+  - unless author.particle
+    = link_to "Wikipedia Page", "http://www.wikipedia.org/wiki/#{ author.first_name }_#{ author.last_name }"
+  - else
+    = link_to "Wikipedia Page", "http://www.wikipedia.org/wiki/#{ author.first_name }_#{ author.particle }_#{ author.last_name }"
 - works_cited(references)

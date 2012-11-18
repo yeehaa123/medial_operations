@@ -3,18 +3,14 @@ require 'spec_helper'
 describe "TagPages" do
   let!(:reference) { create(:reference)}
   let!(:tag)       { Tag.find_by(name: "bla") }
-  let!(:session)   { create(:session)}
+  let!(:meeting)   { create(:meeting)}
 
   subject { page }
 
   context "tag show page" do 
     
     before do 
-      Reference.tire.index.delete
-      reference.save
-      Reference.tire.index.create
-      Reference.tire.index.refresh
-      visit tag_path(tag)
+     visit tag_path(tag)
     end
     
     it { save_and_open_page }

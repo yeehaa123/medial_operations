@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   expose(:course)
   expose(:sections) { course.sections }
-  expose(:sessions) { course.sessions }
+  expose(:meetings) { course.meetings }
 
   def show
   end

@@ -13,7 +13,7 @@ describe CollectionReference do
   # it { should respond_to(:meetings) }
   # it { should respond_to(:pages) }
 
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
 
   # it { should validate_presence_of(:authors) }
   it { should validate_presence_of(:title) }

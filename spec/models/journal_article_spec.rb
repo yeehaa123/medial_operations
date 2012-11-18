@@ -15,11 +15,11 @@ describe JournalArticle do
   it { should respond_to(:medium) }
   it { should respond_to(:volume) }
   it { should respond_to(:issue)}
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
 
   it { should validate_presence_of(:title) }
   it { should be_valid }
     
   it { should have(1).authors }
-  it { should have(4).sessions } 
+  it { should have(4).meetings } 
 end

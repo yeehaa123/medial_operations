@@ -10,7 +10,7 @@ describe Reference do
   it { should respond_to(:translators) }
   it { should respond_to(:editors) }
   it { should respond_to(:publication_date) }
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
 
   it { should validate_presence_of(:title) }
 
@@ -26,22 +26,15 @@ describe Reference do
 
   describe "search" do
     before do
-      Reference.tire.index.delete
-      Reference.tire.index.create
       reference.save
-      Reference.tire.index.refresh
     end
 
-    it { Reference.search(query: "tags:bla").results.count.should == 1 }
+    it { Reference.fulltext_search("bla").count.should == 1 }
 
     describe "three references" do
-      before do
-        create(:reference, title: "another")
-        create(:reference, title: "athird")
-        Reference.tire.index.refresh
-      end
+      let!(:other_references) { create_list(:reference, 2) }
 
-      it { Reference.search(query: "tags:bla").results.count.should == 3 }
+      it { Reference.fulltext_search("bla").count.should == 3 }
     end
   end
 end

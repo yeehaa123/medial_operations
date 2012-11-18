@@ -92,7 +92,6 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
-    hashr (0.0.22)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -121,6 +120,9 @@ GEM
       moped (~> 1.1)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
+    mongoid_fulltext (0.6.0)
+      mongoid (~> 3.0.1)
+      unicode_utils (~> 1.0.0)
     mongoid_slug (2.0.0)
       mongoid (~> 3.0)
       stringex (~> 1.4)
@@ -170,8 +172,6 @@ GEM
     rb-fsevent (0.9.2)
     rdoc (3.12)
       json (~> 1.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -216,12 +216,6 @@ GEM
     sys-proctable (0.9.2)
     thor (0.16.0)
     tilt (1.3.3)
-    tire (0.5.0)
-      activemodel (>= 3.0)
-      hashr (~> 0.0.19)
-      multi_json (~> 1.0)
-      rake
-      rest-client (~> 1.6)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -229,6 +223,7 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicode_utils (1.0.0)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -251,6 +246,7 @@ DEPENDENCIES
   kramdown
   launchy
   mongoid
+  mongoid_fulltext
   mongoid_slug
   pry
   pry-rails
@@ -263,5 +259,4 @@ DEPENDENCIES
   simplecov
   spork
   susy
-  tire
   uglifier (>= 1.0.3)

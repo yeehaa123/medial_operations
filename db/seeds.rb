@@ -1,7 +1,6 @@
 # Authors ---------------------------------------------------------------------
 
 Author.create(first_name: "Chris", last_name: "Anderson")
-Author.create(first_name: "Hannah", last_name: "Arendt")
 Author.create(first_name: "Walter", last_name: "Benjamin")
 Author.create(first_name: "Michel", particle: 'de', last_name: "Certeau")
 Author.create(first_name: "Gilles", last_name: "Deleuze")
@@ -274,27 +273,27 @@ Section.create(title: "The Eternal Recurrence of Body Snatchers",
                number: 3)
 
 
-# SESSIONS --------------------------------------------------------------------
+# MeetingS --------------------------------------------------------------------
 
-session_description = <<END
+meeting_description = <<END
 Nowadays, computers are literally everywhere. Through heterogeneous interfaces
 - such as sensors, transistors, and servo motors - they are inextricably
 linked our spaces and bodies.
 END
 
-Session.create(title: "Introduction", 
+Meeting.create(title: "Introduction", 
                course: Course.first,
-               description: session_description,
+               description: meeting_description,
                references: [Reference.find_by(title: "To the Planetarium"),
                             Reference.find_by(title: "Future of Science")],
                datetime: Time.now,
                location: "Bungehuis 4.01",
                tags: %w[science art])
 
-Session.create!(title: "Lecture", 
+Meeting.create!(title: "Lecture", 
                 section: Section.find_by(title: "Mapping The Humanities"),
                 course: Course.first,
-                description: session_description,
+                description: meeting_description,
                 references: [Reference.find_by(title: "The Age of the World Picture"),
                              Reference.find_by(title: "Universities: Wet, Hard, Soft, and Harder"),
                              Reference.find_by(title: "How Google's Algorithm Rules the Web"),
@@ -302,10 +301,10 @@ Session.create!(title: "Lecture",
                 datetime: Time.now + 1.weeks,
                 location: "Bungehuis 4.01")
 
-Session.create(title: "Lecture", 
+Meeting.create(title: "Lecture", 
                section: Section.find_by(title: "Mapping The Humanities"),
                course: Course.first,
-               description: session_description,
+               description: meeting_description,
                references: [Reference.find_by(title: "Preface to the Second Edition"),
                             Reference.find_by(title: "Spatial Stories"),
                             Reference.find_by(title: "Rhizome"),
@@ -318,17 +317,17 @@ Session.create(title: "Lecture",
   c = count + 4
   case c
   when 4..8
-    Session.create(title: "Test #{ c }", 
+    Meeting.create(title: "Test #{ c }", 
                    section: Section.find_by(title: "F(r)ictions and/or (Fr)Actions of the Imaginary"),
                    course: Course.first,
-                   description: session_description,
+                   description: meeting_description,
                    datetime: Time.now + c.weeks,
                    location: "Bungehuis 4.01")
-  when 9..12
-    Session.create(title: "Test #{ c }", 
+  when 9..1
+    Meeting.create(title: "Test #{ c }", 
                    section: Section.find_by(title: "The Eternal Recurrence of Body Snatchers"), 
                    course: Course.first,
-                   description: session_description,
+                   description: meeting_description,
                    datetime: Time.now + c.weeks,
                    location: "Bungehuis 4.01")
   end

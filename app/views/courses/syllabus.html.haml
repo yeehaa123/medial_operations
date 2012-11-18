@@ -3,9 +3,9 @@
 
   %section.course_program
     %h1 Course Program
-    - if sessions.size > 0 && sessions.first.section == nil
-      = render sessions.first
+    - if meetings.size > 0 && meetings.first.section == nil
+      = render meetings.first
     - if sections.size > 0
       = render sections
     - else
-      = render sessions
+      = render meetings

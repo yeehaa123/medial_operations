@@ -2,48 +2,36 @@ class Reference
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::FullTextSearch
 
   field   :title, type: String
   field   :publication_date, type: DateTime
   field   :tags, type: Array
   field   :author_list, type: String
-  slug    :to_s
+
+  slug    :title   
+
+  fulltext_search_in :tags_string
   
-  attr_accessible :sessions, :title, :authors, :translators, :editors, 
-                  :publisher, :publication_date, :tags, :set_tags, :tags
+  attr_accessible :meetings, :title, :authors, :translators, :editors, 
+                  :publication_date, :tags, :set_tags, :tags
 
   has_and_belongs_to_many   :authors
   has_and_belongs_to_many   :translators, class_name: "Author"
   has_and_belongs_to_many   :editors, class_name: "Author"
-  has_and_belongs_to_many   :sessions
+  has_and_belongs_to_many   :meetings
 
   validates_presence_of :title
   
   before_save :generate_author_list
   before_save :set_tags 
-  after_save do
-    Tire.index(INDEX_NAME).import(Reference.all)
-  end 
-
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-  index_name INDEX_NAME
-
-  def to_indexed_json
-    self.to_json
+  
+  def to_s
+    title.titleize
   end
-
-  def self.search(params={})
-    tire.search(load: true, per_page: 50, type: nil) do
-      query do 
-        boolean do
-          must { string params[:query], default_operator: "AND" } if params[:query].present?
-          must { term :tags, params[:tags] } if params[:tags].present?
-          must { terms :_type, ["reference", "chapter", "magazine_article", "journal_article", "monograph"] }
-        end
-      end
-      facet('tag_list') { terms :tags, order: 'term' }
-    end
+  
+  def tags_string
+    tags.join(', ') if tags
   end
 
   def set_tags
@@ -58,10 +46,6 @@ class Reference
     end
   end
 
-  def to_s
-    title.titleize
-  end
-
   def generate_author_list
     self.author_list = if authors.size > 0
       authors.map(&:to_s).join(". ")
@@ -69,18 +53,4 @@ class Reference
       ""
     end
   end
-
-  # def self.tagged_with(name)
-  #   Tag.find_by(name: name).references
-  # end
-  
-  # def tag_list
-  #   tags.map(&:name).join(", ")
-  # end
-  
-  # def tag_list=(names)
-  #   self.tags = names.split(",").map do |n|
-  #     Tag.where(name: n.strip).first_or_create!
-  #   end
-  # end
 end

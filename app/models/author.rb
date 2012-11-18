@@ -7,6 +7,8 @@ class Author
   field :last_name, type: String
   field :particle, type: String
   
+  slug :full_name
+
   attr_accessible :references, :first_name, :last_name, :translations, :volumes
 
   has_and_belongs_to_many :references
@@ -27,6 +29,5 @@ class Author
     else
       "#{first_name} #{last_name}"
     end
-
   end
 end

@@ -2,17 +2,13 @@ class Tag
   include Mongoid::Document
   include Mongoid::Slug
 
-  attr_accessible :name, :count, :references, :sessions
+  attr_accessible :name, :count, :references, :meetings
 
   field :name, type: String
   slug :name
 
   validates_presence_of :name
   
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-  index_name INDEX_NAME
-
   def to_s
     name
   end
@@ -22,25 +18,14 @@ class Tag
   end
 
   def count
-    Tag.search(query: "tags:#{ self }").results.count
+    references.count + meetings.count
   end
 
   def references
-    Reference.search(query: "tags:#{ self }")
+    Reference.fulltext_search(self.to_s)
   end
 
-  def sessions
-    Session.search(query: "tags:#{ self }")
-  end
-
-  def self.search(params={})
-    tire.search(type: nil) do
-      query do 
-        boolean do
-          must { string params[:query], default_operator: "and" } if params[:query].present?
-          must { term :tags, params[:tags] } if params[:tags].present?
-        end
-      end
-    end
+  def meetings
+    Meeting.fulltext_search(self.to_s)
   end
 end

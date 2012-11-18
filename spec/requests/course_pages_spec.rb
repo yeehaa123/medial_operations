@@ -27,7 +27,7 @@ describe "CoursePages" do
     it { should have_selector('hgroup.course_title') }
     it { should have_selector('section.course_description') }
     it { should have_selector('section.section', count: 3) }
-    it { should have_selector('section.session', count: 9) }
+    it { should have_selector('section.meeting', count: 10) }
   end
 
   context "course section pages" do
@@ -38,16 +38,16 @@ describe "CoursePages" do
     it { should have_selector('title', text: "#{ base_title }") }
     it { should show_menu }
     it { should have_selector('section.section', count: 1) }
-    it { should have_selector('section.session', count: 3) }
+    it { should have_selector('section.meeting', count: 3) }
   end
 
   context "course section pages" do
-    let(:session) { course.sessions.first }
+    let(:meeting) { course.meetings.first }
 
-    before { visit course_session_path(course, session) }
+    before { visit course_meeting_path(course, meeting) }
 
     it { should have_selector('title', text: "#{ base_title }") }
     it { should show_menu }
-    it { should have_selector('section.session', count: 1) }
+    it { should have_selector('section.meeting', count: 1) }
   end
 end

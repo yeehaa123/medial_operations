@@ -15,7 +15,7 @@ describe MagazineArticle do
   it { should respond_to(:issue) }
   it { should respond_to(:startpage) }
   it { should respond_to(:endpage) }
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
   it { should respond_to(:publisher) }
 
   it { should validate_presence_of(:title) }
@@ -24,5 +24,5 @@ describe MagazineArticle do
   it { should be_valid }
     
   it { should have(1).authors }
-  it { should have(4).sessions }  
+  it { should have(4).meetings }  
 end

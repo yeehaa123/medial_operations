@@ -12,7 +12,7 @@ class Section
   attr_accessible :title, :course, :description, :number
 
   belongs_to    :course
-  has_many      :sessions
+  has_many      :meetings
 
   validates_presence_of :title
   validates_presence_of :number

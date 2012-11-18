@@ -7,10 +7,10 @@ FactoryGirl.define do
 
     factory :defined_course do
       after(:build) do |course|
-        course.sessions << create(:session, course: course, title: "Introduction")
+        course.meetings << create(:meeting, course: course, title: "Introduction")
         3.times { course.sections << create(:section, course: course) }
         course.sections.each do |section|
-          3.times { course.sessions << create(:session, course: course, 
+          3.times { course.meetings << create(:meeting, course: course, 
                                              section: section) }
         end
       end
@@ -24,15 +24,15 @@ FactoryGirl.define do
     course
   end  
   
-  factory :session do
-    title         "New Session"
+  factory :meeting do
+    title         "New Meeting"
     description   "Hello *World*"
     location      "Bungehuis 4.01"    
     datetime      Time.zone.local(2013,"jan", 3,10,00)
     tags ["bla"]
     course
 
-    factory :session_with_section do
+    factory :meeting_with_section do
       section
       course { section.course }
     end
@@ -54,7 +54,7 @@ FactoryGirl.define do
       reference.authors = [build(:author)]
       reference.translators = build_list(:author, 2)
       reference.editors = build_list(:author, 3)
-      reference.sessions = build_list(:session, 4)
+      reference.meetings = build_list(:meeting, 4)
     end
 
     factory :a_thousand_plateaus do
@@ -130,7 +130,7 @@ FactoryGirl.define do
     issue 1
     after(:build) do |reference|
       reference.authors = [build(:kittler)]
-      reference.sessions = build_list(:session, 4)
+      reference.meetings = build_list(:meeting, 4)
     end
   end
 
@@ -142,7 +142,7 @@ FactoryGirl.define do
     magazine
     after(:build) do |reference|
       reference.authors = [build(:anderson)]
-      reference.sessions = build_list(:session, 4)
+      reference.meetings = build_list(:meeting, 4)
     end
 
     factory :magazine_article_with_pages do

@@ -1,5 +1,5 @@
-class SessionPresenter < BasePresenter
-  presents :session
+class MeetingPresenter < BasePresenter
+  presents :meeting
 
   def date
     "Date: #{ @object.datetime.strftime("%A, %B %d") }"

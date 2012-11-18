@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Tag do
   let(:tag)       { create(:tag) }
   let(:reference) { create(:reference, tags: [tag.name])}
-  let(:session)   { create(:session, tags: [tag.name])}
+  let(:meeting)   { create(:meeting, tags: [tag.name])}
 
   subject { tag }
 
   it { should respond_to(:name) }
   it { should respond_to(:slug) }
   it { should respond_to(:references) }
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
 
   it { should be_valid }
 
@@ -18,23 +18,17 @@ describe Tag do
 
   describe "references" do 
     before do
-      Reference.tire.index.delete
-      Reference.tire.index.create
       reference.save
-      Reference.tire.index.refresh
     end
 
-    it { tag.references.results.count.should == 1 }
+    it { tag.references.count.should == 1 }
   end
 
-  describe "session" do 
+  describe "meetings" do 
     before do
-      Session.tire.index.delete
-      Session.tire.index.create
-      session.save
-      Session.tire.index.refresh
+      meeting.save
     end
 
-    it { tag.sessions.results.count.should == 1 }
+    it { tag.meetings.count.should == 1 }
   end
 end

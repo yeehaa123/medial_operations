@@ -1,0 +1,11 @@
+- present meeting do |meeting_presenter|
+  = content_tag_for(:section, meeting) do
+    %h1= link_to meeting_presenter.heading, course_meeting_path(course, meeting)
+    %ul.info
+      %li.date= meeting_presenter.date
+      %li.time= meeting_presenter.time
+      %li.location= meeting_presenter.location
+
+    = meeting_presenter.description
+    
+    - works_cited(meeting.references, "Readings")

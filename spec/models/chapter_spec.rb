@@ -16,7 +16,7 @@ describe Chapter do
   it { should respond_to(:endpage) }
   it { should respond_to(:authors) }
   
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
 
   it { should validate_presence_of(:title) }
 end

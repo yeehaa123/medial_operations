@@ -12,7 +12,7 @@ class Course
   attr_accessible :title, :title_prefix, :description
 
   has_many    :sections
-  has_many    :sessions
+  has_many    :meetings
 
   validates_presence_of :title
 

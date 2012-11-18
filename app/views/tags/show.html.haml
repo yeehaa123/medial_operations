@@ -1,7 +1,7 @@
 %h1= taggie.to_s.titleize
 - works_cited(references)
-%section.session_list
+%section.meeting_list
   %h1 Sessions
   %ul
-    - sessions.each do |s|
+    - meetings.each do |s|
       %li= "#{ s.datetime.to_time.strftime("%A, %B %d") } – #{ s.title }"

@@ -10,7 +10,7 @@ describe Course do
   it { should respond_to(:title_prefix) }
   it { should respond_to(:description) }
   it { should respond_to(:sections) }
-  it { should respond_to(:sessions) }
+  it { should respond_to(:meetings) }
   
   it { should be_valid }
 

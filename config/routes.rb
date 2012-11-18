@@ -5,7 +5,7 @@ MedialOperations::Application.routes.draw do
 
   resources :courses, only: [:show] do
     resources :sections, only: [:show]
-    resources :sessions, only: [:show]
+    resources :meetings, only: [:show]
     member do
      get 'syllabus'
    end

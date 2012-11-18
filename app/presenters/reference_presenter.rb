@@ -13,9 +13,15 @@ class ReferencePresenter < BasePresenter
   alias_method :to_s, :to_mla
 
   def to_link(dup = false)
-    haml_tag :li, link_to(raw(to_mla(dup)), reference_path(reference._id))
-  end
+    haml_tag :li, link_to(raw(to_mla(dup)), reference_path(reference._slugs))
+  end 
 
+  def author_list
+    reference.authors.map do |a|
+      link_to a, a
+    end.join('. ')
+  end
+  
   private
     def authors(dup = false)
       if dup
