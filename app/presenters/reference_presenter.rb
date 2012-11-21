@@ -19,11 +19,11 @@ class ReferencePresenter < BasePresenter
   def author_list
     reference.authors.map do |a|
       link_to a, a
-    end.join('. ')
+    end.join('. ').html_safe
   end
   
-  def profile
-    haml_tag :p, author_list if authors
+  def information
+    content_tag :p, author_list if authors
   end
   
   private

@@ -6,19 +6,27 @@ describe ChapterPresenter do
   
   subject { presenter }
   
-  describe "chapter with editor and translators" do
+  context "chapter with editor and translators" do
     let(:reference)   { build(:rhizome) }
-  
-    its(:to_s) do
-      s = "Deleuze, Gilles and Felix Guattari. "
-      s += "\"Rhizome.\" <em>A Thousand Plateaus</em>. "
-      s += "Cambridge: Cambridge University Press, 1987. "
-      s += "3-25. Print."
-      should == s
+
+    describe "#information" do
+      its(:information) do
+        should == "<p><a href=\"/authors\">Deleuze, Gilles</a>. <a href=\"/authors\">Guattari, Felix</a></p>"
+      end
+    end
+
+    describe "#to_s" do
+      its(:to_s) do
+        s = "Deleuze, Gilles and Felix Guattari. "
+        s += "\"Rhizome.\" <em>A Thousand Plateaus</em>. "
+        s += "Cambridge: Cambridge University Press, 1987. "
+        s += "3-25. Print."
+        should == s
+      end
     end
   end
 
-  describe "chapter with editor and translators" do
+  context "chapter with editor and translators" do
     let(:reference) { build(:preface) }
 
     its(:to_s) do
