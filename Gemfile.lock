@@ -248,6 +248,7 @@ DEPENDENCIES
   mongoid
   mongoid_fulltext
   mongoid_slug
+  nokogiri
   pry
   pry-rails
   rails (= 3.2.8)

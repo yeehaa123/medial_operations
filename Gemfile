@@ -13,6 +13,7 @@ gem 'decent_exposure'
 # gem 'tire'
 gem 'kaminari'
 gem 'mongoid_fulltext'
+gem 'nokogiri'
 
 group :development do
   gem 'rails_best_practices'
