@@ -21,6 +21,10 @@ class Tag
     references.count + meetings.count
   end
 
+  def nice_count
+    "Hello Sander, the count is: #{ count}"
+  end
+
   def references
     Reference.fulltext_search(self.to_s)
   end

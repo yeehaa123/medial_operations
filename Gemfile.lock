@@ -253,7 +253,7 @@ DEPENDENCIES
   rails (= 3.2.8)
   rails_best_practices
   rb-fsevent
-  rspec-rails
+  rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   shoulda-matchers
   simplecov

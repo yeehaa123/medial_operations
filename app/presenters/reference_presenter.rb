@@ -22,6 +22,10 @@ class ReferencePresenter < BasePresenter
     end.join('. ')
   end
   
+  def profile
+    haml_tag :p, author_list if authors
+  end
+  
   private
     def authors(dup = false)
       if dup

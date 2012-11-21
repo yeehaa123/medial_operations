@@ -1,5 +1,3 @@
 %h1= reference.title
 - present reference do |reference_presenter|
-  %p= raw "Author(s): #{ reference_presenter.author_list }"
-  %p= reference_presenter.send(:publisher)
-
+  - reference_presenter.profile

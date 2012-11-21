@@ -26,6 +26,7 @@ class Meeting
   after_save :order_meetings
   before_save :set_tags
   before_save :set_reference_tags
+  after_save { update_ngram_index }
 
   default_scope asc(:datetime)
 

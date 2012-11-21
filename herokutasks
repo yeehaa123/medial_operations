@@ -4,3 +4,4 @@ git push heroku
 heroku addons:remove mongolab:starter --confirm stark-atoll-3568
 heroku addons:add mongolab:starter
 heroku run rake db:seed
+heroku run rake db:mongoid:create_indexes

@@ -14,7 +14,6 @@ gem 'decent_exposure'
 gem 'kaminari'
 gem 'mongoid_fulltext'
 
-
 group :development do
   gem 'rails_best_practices'
   gem 'pry'
@@ -22,7 +21,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem "rspec-rails", "~> 2.0"
   gem 'factory_girl_rails'
 end
 

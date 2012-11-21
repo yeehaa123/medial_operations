@@ -197,6 +197,11 @@ FactoryGirl.define do
       last_name "Del Caro"
     end
 
+    factory :donner do
+      first_name "Jan Hein"
+      last_name "Donner"
+    end
+
     factory :williams do
       first_name "Bernard"
       last_name "Williams"

@@ -1,7 +1,5 @@
 %h1= author.full_name
+%img.portrait{ src: author.portrait }
 %p
-  - unless author.particle
-    = link_to "Wikipedia Page", "http://www.wikipedia.org/wiki/#{ author.first_name }_#{ author.last_name }"
-  - else
-    = link_to "Wikipedia Page", "http://www.wikipedia.org/wiki/#{ author.first_name }_#{ author.particle }_#{ author.last_name }"
+  = link_to("Wikipedia Page", author.wikipage) if author.wikipage
 - works_cited(references)
