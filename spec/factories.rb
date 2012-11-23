@@ -151,11 +151,18 @@ FactoryGirl.define do
     end
   end
 
+  factory :comment do
+    content "bla bla bla"
+  end
+
   factory :author do
     first_name  "Jane"
     # middle_name "H."
     sequence(:last_name) { |n| "#{n}-Doe" }
-    
+    after(:build) do |author|
+      author.comments = [build(:comment)]
+    end
+
     factory :anderson do
       first_name "Chris"
       last_name "Anderson"

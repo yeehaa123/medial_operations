@@ -20,7 +20,7 @@ class Meeting
 
   belongs_to  :course
   belongs_to  :section
-
+  embeds_many :comments, as: :commentable
   has_and_belongs_to_many :references
 
   after_save :order_meetings

@@ -11,6 +11,7 @@ describe Meeting do
   it { should respond_to(:datetime) }
   it { should respond_to(:section) }
   it { should respond_to(:references)}
+  it { should respond_to(:comments) }
 
   it { should be_valid }
   it { should validate_presence_of(:course) }

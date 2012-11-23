@@ -8,6 +8,8 @@ describe Author do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:particle) }
+  
+  it { should respond_to(:comments) }
 
   it { should be_valid }
   

@@ -18,6 +18,7 @@ class Author
   has_and_belongs_to_many :references
   has_and_belongs_to_many :translations, class_name: "Reference"
   has_and_belongs_to_many :volumes, class_name: "Reference"
+  embeds_many :comments, as: :commentable
 
   def to_s
     if particle

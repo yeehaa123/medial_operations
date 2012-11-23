@@ -3,3 +3,8 @@
 %p
   = link_to("Wikipedia Page", author.wikipage) if author.wikipage
 - works_cited(references)
+
+%section.comments
+  %ul
+    - author.comments.each do |c|
+      %li= c.content
