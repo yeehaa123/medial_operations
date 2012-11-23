@@ -13,7 +13,7 @@ describe "TagPages" do
      visit tag_path(tag)
     end
     
-    it { save_and_open_page }
+    # it { save_and_open_page }
     # it { should have_selector('title', text: "#{ base_title }") }
     # it { should show_menu }
     # it { should have_selector('hgroup.course_title') }
