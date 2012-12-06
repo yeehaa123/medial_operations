@@ -2,11 +2,11 @@
   %nav#main_nav{role: "navigation"}
     %ul
       %li= link_to "home", root_path
-      %li= link_to "course", course_path("medial-operations") 
-      %li= link_to "syllabus", syllabus_path
+      %li= link_to "course", root_path
+      %li= link_to "syllabus", "#"
       %li= link_to "articles", "#"
   %em#logo
     = link_to "#" do
       %span#medial medial
-      %span#slash /
+      %span#slash // 
       %span#operations operations

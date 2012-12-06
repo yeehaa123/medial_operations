@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  expose(:course)
+  expose(:course)   { Course.first }
   expose(:sections) { course.sections }
   expose(:meetings) { course.meetings }
 

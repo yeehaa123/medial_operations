@@ -16,9 +16,9 @@ class Reference
   attr_accessible :meetings, :title, :authors, :translators, :editors, 
                   :publication_date, :tags, :set_tags, :tags
 
-  has_and_belongs_to_many   :authors
-  has_and_belongs_to_many   :translators, class_name: "Author"
-  has_and_belongs_to_many   :editors, class_name: "Author"
+  has_and_belongs_to_many   :authors, inverse_of: :references
+  has_and_belongs_to_many   :translators, class_name: "Author", inverse_of: :references
+  has_and_belongs_to_many   :editors, class_name: "Author", inverse_of: :references
   has_and_belongs_to_many   :meetings
 
   validates_presence_of :title
