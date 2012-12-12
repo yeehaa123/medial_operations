@@ -1,39 +1,38 @@
 require 'spec_helper'
 
 describe Meeting do
-  let(:meeting) { build(:meeting, number: 1) }
+  Given(:meeting) { build(:meeting, number: 1) }
 
   subject { meeting }
 
-  it { should respond_to(:title) }
-  it { should respond_to(:description) }
-  it { should respond_to(:course) }
-  it { should respond_to(:datetime) }
-  it { should respond_to(:section) }
-  it { should respond_to(:references)}
-  it { should respond_to(:comments) }
+  it { should have_fields :title, :description, :datetime, :number, :location,
+                          :number, :tags  }
+
+  it { should belong_to :course }
+  it { should belong_to :section }
+  it { should have_and_belong_to_many :references }
+  it { should embed_many :comments }
+
+  it { should validate_presence_of :course }
 
   it { should be_valid }
-  it { should validate_presence_of(:course) }
-
-  describe "only assign sections belonging to right course" do
-    let(:meeting) { build(:meeting_with_section) }
-    let(:other_course) { Course.new }
-    
-    before do 
-      meeting.course = other_course
-    end
-
-    it { should_not be_valid }
-    it { should have(1).error_on(:section) }
-  end
 
   its(:to_s) { should == "#{ meeting.number } - #{ meeting.title.titleize }" }
 
+  describe "only assign sections belonging to right course" do
+    Given(:meeting)       { build(:meeting_with_section) }
+    Given(:other_course)  { Course.new }
+    
+    When { meeting.course = other_course }
+
+    Then { meeting.should_not be_valid }
+    Then { meeting.should have(1).error_on(:section) }
+  end
+
   describe "order meetings" do
-    let(:course)   { create(:defined_course) }
-    let(:meetings) { course.meetings }
-    let(:meeting)  { meetings.find_by(title: "Introduction").reload }
+    Given(:course)      { create(:defined_course) }
+    Given(:meetings)      { course.meetings }
+    Given(:meeting)       { meetings.find_by(title: "Introduction").reload }
     
     its(:number) { should == 1 }
 
@@ -48,22 +47,33 @@ describe Meeting do
   end
 
   describe "search" do
-    before do
-      meeting.save
-    end
+    When  { meeting.save }
 
-    it { Meeting.fulltext_search("bla").count.should == 1 }
+    Then { Meeting.fulltext_search("bla").count.should == 1 }
 
     describe "three meetings" do
-      let(:two)   { create(:meeting, number: 2) }
-      let(:three) { create(:meeting, number: 3) }
+      Given(:two)   { create(:meeting, number: 2) }
+      Given(:three) { create(:meeting, number: 3) }
 
-      before do
+      When do
         two.save
         three.save
       end
 
-      it { Meeting.fulltext_search("bla").count.should == 3 }
+      Then { Meeting.fulltext_search("bla").count.should == 3 }
     end
+  end
+
+  describe "create_meeting" do
+    Given(:course)  { create(:course) }
+    Given(:meeting) do
+      Meeting.create_meeting "New meeting", course do
+      end
+      course.meetings.first
+    end
+
+    Then  { expect(meeting.title).to eq  "New meeting" }
+    And   { expect(meeting).to be_valid }
+    And   { expect(meeting).to be_persisted }
   end
 end

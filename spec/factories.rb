@@ -1,5 +1,13 @@
 FactoryGirl.define do
 
+  factory :assignment do
+    sequence(:title)  { |n| "Assignment #{ n }" }
+    description       "Hello *World*"
+    deadline          Time.zone.local(2013, "feb", 10,18,00)
+    course
+  end
+
+
   factory :course do
     title   "Medial Operations"
     description   "Hello *World*"

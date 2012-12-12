@@ -2,19 +2,63 @@ require 'spec_helper'
 
 describe Course do
 
-  let(:course) { build(:course) }
+  Given(:course) { build(:course) }
 
   subject { course }
 
-  it { should respond_to(:title) }
-  it { should respond_to(:title_prefix) }
-  it { should respond_to(:description) }
-  it { should respond_to(:sections) }
-  it { should respond_to(:meetings) }
-  
+  it  { should have_fields :title, :title_prefix, :description }
+
+  it  { should have_many :sections }
+  it  { should have_many :meetings }
+  it  { should have_many :assignments }
+
+  it { should validate_presence_of :title }
+
   it { should be_valid }
 
-  it { should validate_presence_of(:title) }
-
   its(:to_s) { should == "#{ course.title }" }
+
+  describe "create_course" do
+    Given(:course) do 
+      Course.create_course "Prefix: New Course" do
+        course_description "Course Description"
+        meeting "Introduction" do
+        end
+        section "1 - New Section" do
+          meeting "Lecture" do
+          end
+        end
+        section "2 - New Section" do
+          meeting "Seminar" do
+          end
+        end
+        section "3 - New Section" do
+        end
+        meeting "Closing Session" do
+        end
+      end
+    end
+
+
+    Then  { expect(course.title_prefix).to eq "Prefix" }
+    And   { expect(course.title).to eq "New Course" }
+    And   { expect(course.description).to eq "Course Description" } 
+  
+    describe "sections" do
+      Given(:section) { course.sections.first }
+      
+      Then  { expect(course.sections.size).to eq 3 }
+      And   { expect(section.course).to eq course }
+    end
+    
+    describe "sessions" do
+      Given(:meeting) { course.meetings.first }
+      
+      Then  { expect(course.meetings.size).to eq 4 }
+      And   { expect(meeting.course).to eq course }
+    end
+
+    And   { course.should be_valid }
+    And   { course.should be_persisted }
+  end
 end

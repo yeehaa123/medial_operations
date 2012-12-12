@@ -1,10 +1,6 @@
 # Authors ---------------------------------------------------------------------
 
 Author.create(first_name: "Chris", last_name: "Anderson")
-Author.create(first_name: "Walter", last_name: "Benjamin")
-Author.create(first_name: "Michel", particle: 'de', last_name: "Certeau")
-Author.create(first_name: "Gilles", last_name: "Deleuze")
-Author.create(first_name: "Felix", last_name: "Guattari")
 Author.create(first_name: "Martin", last_name: "Heidegger")
 Author.create(first_name: "Friedrich", last_name: "Kittler")
 Author.create(first_name: "Rem", last_name: "Koolhaas")
@@ -14,8 +10,6 @@ Author.create(first_name: "Friedrich", last_name: "Nietzsche")
 # Editors
 
 Author.create(first_name: "Bernard", last_name: "Williams")
-Author.create(first_name: "Marcus Paul", last_name: "Bullock")
-Author.create(first_name: "Michael William", last_name: "Jennings")
 
 # Translators
 
@@ -28,7 +22,6 @@ Author.create(first_name: "William", last_name: "Lovitt")
 # Publisher -------------------------------------------------------------------
 
 Publisher.create(name: "Cambridge University Press", location: "Cambridge")
-Publisher.create(name: "Harvard University Press", location: "Cambridge, MA")
 Publisher.create(name: "The University of Chicago Press", location: "Chicago")
 Publisher.create(name: "University of California Press", location: "Berkeley")
 Publisher.create(name: "University of Minnesota Press", location: "Minneapolis")
@@ -39,22 +32,30 @@ Publisher.create(name: "University of Minnesota Press", location: "Minneapolis")
 # Monographs
 
 Monograph.create(title: "One-Way Street",
-                 authors: [Author.find_by(last_name: "Benjamin")],
-                 editors: [Author.find_by(last_name: "Bullock"),
-                           Author.find_by(last_name: "Jennings")],
+                 authors: [Author.find_or_create_by(first_name: "Walter", 
+                                                    last_name: "Benjamin")],
+                 editors: [Author.find_or_create_by(first_name: "Marcus Paul", 
+                                                    last_name: "Bullock"),
+                           Author.find_or_create_by(first_name: "Michael William", 
+                                                    last_name: "Jennings")],
                  publication_date: Date.new(1996),
                  medium: "print",
-                 publisher: Publisher.find_by(location: "Cambridge, MA"))
+                 publisher: Publisher.find_or_create_by(name: "Harvard University Press", 
+                                                        location: "Cambridge, MA"))
 
 Monograph.create(title: "The Practice of Everyday Life",
-                 authors: [Author.find_by(last_name: "Certeau")],
+                 authors: [Author.find_or_create_by(first_name: "Michel",
+                                                    particle: "de",
+                                                    last_name: "Certeau")],
                  publication_date: Date.new(1984),
                  medium: "print",
                  publisher: Publisher.find_by(location: "Berkeley"))
 
 Monograph.create(title: "A Thousand Plateaus",
-                 authors: [Author.find_by(last_name: "Deleuze"),
-                           Author.find_by(last_name: "Guattari")],
+                 authors: [Author.find_or_create_by(first_name: "Gilles",
+                                                    last_name: "Deleuze"),
+                           Author.find_or_create_by(first_name: "Felix",
+                                                    last_name: "Guattari")],
                  publisher: Publisher.find_by(location: "Minneapolis"),
                  publication_date: Time.new(1987),
                 medium: "print")
@@ -333,77 +334,14 @@ Meeting.create(title: "Lecture",
   end
 end
 
-# PRESENTATIONS ---------------------------------------------------------------
 
-p = Presentation.create(title:  "Lost and Found in Space",
-                        tags:   %w[space mathematics imaginary-numbers data-visualization planetarium])
+# Assignments -----------------------------------------------------------------
 
-p.content = <<END
-## Outline
-
-### Introduction
-
-1. Walter Benjamin's 'To the Planetarium'
-
-  > And likewise technology is *the mastery of not 
-  > nature but of the relation between nature and 
-  > man.* ... One need recall only the experience of 
-  > velocities, by virtue of which mankind is now 
-  > preparing to embark on incalculable journeys 
-  > into the interior of time to encounter there 
-  > rhythms from which the sick shall draw strength 
-  > as they did earlier on high mountains or on the 
-  > shores of southern seas. The "lunaparks" are a 
-  > prefigurations of sanatoria. (58-59)
-
-2. Planetarium Amsterdam - Full-Dome Digital Planetarium
-
-3. Two opposing historical vectors: 
-  
-  - depicted space becomes increasingly larger
-  - devices for representation smaller
-
-4. Practice Data Visualization:
-  
-  - presentation + imagination
-  - fact + fiction
-
-
-### Practices of Stellar Mapmaking
-
-#### Celestial Maps
-
-- Real and Fictional Spaces come together
-- Theocentric
-
-#### Mechanical Planetariums
-
-- Franeker
-- Clocks
-- Heliocentric
-
-
-### Walter Benjamins Planetariums
-
-#### Deutsches Museum Munich
-
-- two planetariums (mechanical and optical)
-
-#### Shifts
-
-- research/teaching - entertainment
-- heliocentric - geocentric
-- courses/periods - coordinates vectors
-- three-dimensional installation - two-dimensional projection
-
-
-### Heidegger's Mathematics
-
-### Imaginary Numbers
-
-#### Digital Planetarium
-
-- geocentric - anthropocentric - egocentric
-END
-
-p.save
+3.times do |count|
+  c = count + 1 
+  Assignment.create(title: "Assignment #{ c }",
+                    course: Course.first,
+                    section: Section.find_by(number: c),
+                    description: "Assignment #{ c }",
+                    deadline: Time.now + c.months)
+end

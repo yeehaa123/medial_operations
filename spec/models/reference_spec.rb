@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Reference do
-  let(:reference) { build(:reference) }
+
+  Given(:reference) { build(:reference) }
 
   subject { reference }
   
@@ -16,25 +17,20 @@ describe Reference do
 
   it { should be_valid }
 
-  its(:to_s) do
-    should == "#{ reference.title.titleize }"
-  end
-
-  its(:author_list) do 
-    should be_nil
-  end
+  Then  { expect(reference.to_s).to eq "#{ reference.title.titleize }" }
+  And   { expect(reference.author_list).to eq nil }
 
   describe "search" do
-    before do
-      reference.save
-    end
 
-    it { Reference.fulltext_search("bla").count.should == 1 }
+    When { reference.save }
+
+    Then { Reference.fulltext_search("bla").count.should == 1 }
 
     describe "three references" do
-      let!(:other_references) { create_list(:reference, 2) }
 
-      it { Reference.fulltext_search("bla").count.should == 3 }
+      When { create_list(:reference, 2) }
+
+      Then { Reference.fulltext_search("bla").count.should == 3 }
     end
   end
-end
+ end

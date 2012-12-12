@@ -11,6 +11,6 @@ describe CoursePresenter do
   it { should respond_to(:heading) }
   it { should respond_to(:description) }
 
-  its(:heading)     { should == "New Course" }
+  its(:heading)     { should == "Medial Operations" }
   its(:description) { should == "<p>Hello <em>World</em></p>\n" }
 end

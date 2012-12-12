@@ -1,0 +1,9 @@
+class Assignment
+  include Mongoid::Document
+  field :title, type: String
+  field :number, type: Integer
+  field :deadline, type: Time
+  field :description, type: String
+  
+  attr_accessible :title, :number, :deadline, :description
+end

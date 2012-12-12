@@ -14,16 +14,6 @@ gem 'kaminari'
 gem 'mongoid_fulltext'
 gem 'nokogiri'
 
-group :development do
-  gem 'rails_best_practices'
-  gem 'pry'
-  gem 'pry-rails'
-end
-
-group :development, :test do
-  gem "rspec-rails", "~> 2.0"
-  gem 'factory_girl_rails'
-end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,13 +23,21 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test do
+group :development, :test do
+  gem 'rails_best_practices'
+  gem 'pry'
+  gem 'pry-rails'
+  gem "rspec-rails", "~> 2.0"
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'guard-spork'  
-  gem 'spork'
+  gem 'guard-rspec', '1.2.1'
+  gem 'guard-spork', '1.2.0'  
+  gem 'spork', '0.9.2'
+  gem 'rspec-given'
   gem 'launchy'
   gem 'email_spec'
+  gem 'mongoid-rspec'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'rb-fsevent', :require => false

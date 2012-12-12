@@ -1,34 +1,36 @@
 require 'spec_helper'
   
 describe Tag do
-  let(:tag)       { create(:tag) }
-  let(:reference) { create(:reference, tags: [tag.name])}
-  let(:meeting)   { create(:meeting, tags: [tag.name])}
+
+  Given(:tag)       { create(:tag) }
+  Given(:reference) { create(:reference, tags: [tag.name])}
+  Given(:meeting)   { create(:meeting, tags: [tag.name])}
 
   subject { tag }
+ 
+  it  { should have_fields :name }
+  it  { should respond_to(:slug) }
+  it  { should respond_to(:references) }
+  it  { should respond_to(:meetings) }
 
-  it { should respond_to(:name) }
-  it { should respond_to(:slug) }
-  it { should respond_to(:references) }
-  it { should respond_to(:meetings) }
+  it  { should allow_mass_assignment_of :name }
+  it  { should_not allow_mass_assignment_of :slug }
 
-  it { should be_valid }
+  it  { should validate_presence_of(:name) }
+
+  it  { tag.should be_valid }
 
   its(:to_s) { should == tag.name }
 
   describe "references" do 
-    before do
-      reference.save
-    end
+    When { reference.save }
 
-    it { tag.references.count.should == 1 }
+    Then { tag.references.count.should == 1 }
   end
 
   describe "meetings" do 
-    before do
-      meeting.save
-    end
+    When { meeting.save }
 
-    it { tag.meetings.count.should == 1 }
+    Then { tag.meetings.count.should == 1 }
   end
 end

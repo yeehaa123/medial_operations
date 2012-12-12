@@ -216,7 +216,7 @@
       &:hover
         color: $base02
 
-  section.meeting
+  section.meeting, section.assignment
     h1
       +border-styles($lighter-border-style, $lighter-border-style, 1.8, 0.2, 0.2, 0.8)
       +adjust-font-size-to(12px)
@@ -250,6 +250,8 @@
             text-align: right
         &:last-child
           +padding-trailer(0)
+      li.deadline
+        color: $red
 
     p
       +adjust-font-size-to(12px)

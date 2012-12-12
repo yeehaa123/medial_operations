@@ -5,7 +5,7 @@ class Meeting
   include Mongoid::FullTextSearch
 
   field :title, type: String
-  field :datetime, type: DateTime
+  field :datetime, type: Time
   field :description, type: String
   field :location, type: String
   field :number, type: Integer
@@ -74,4 +74,22 @@ class Meeting
       s.set(:number, i)
     end
   end
+
+  def self.create_meeting(title, block_context, &block)
+    meeting = self.new(title: title)
+    meeting.instance_eval(&block)
+    if block_context && block_context.respond_to?(:course)
+      meeting.course = block_context.course
+    else
+      meeting.course = block_context
+    end
+    meeting.save
+    meeting
+  end
+ 
+  def meeting_course(course)
+    self.course = course
+    self
+  end
 end
+

@@ -1,0 +1,7 @@
+- present assignment do |assignment_presenter|
+  = content_tag_for(:section, assignment) do
+    %h1= link_to assignment_presenter.heading
+    %ul.info
+      %li.deadline= assignment_presenter.deadline
+
+    = assignment_presenter.description
