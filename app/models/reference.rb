@@ -14,7 +14,7 @@ class Reference
   fulltext_search_in :tags_string
   
   attr_accessible :meetings, :title, :authors, :translators, :editors, 
-                  :publication_date, :tags, :set_tags, :tags
+                  :publication_date, :tags, :set_tags, :tags, :publisher
 
   has_and_belongs_to_many   :authors, inverse_of: :references
   has_and_belongs_to_many   :translators, class_name: "Author", inverse_of: :references
