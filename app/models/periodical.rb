@@ -6,7 +6,7 @@ class Periodical
   field   :name, type: String
   field   :medium, type: String
 
-  attr_accessible :articles, :name, :authors
+  attr_accessible :articles, :name, :authors, :medium
 
   validates_presence_of :name
   belongs_to :publisher

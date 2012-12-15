@@ -1,66 +1,3 @@
-module ReferenceParser
-  
-  def self.reference(quotation)
-    detect_reference_type(quotation)
-  end
-  
-  def self.detect_reference_type(quotation)
-    monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
-    chapter_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(Ed\.\s.+\.\s)?(Trans\.\s.+\.)\s?(.+:\s.+),\s(\d{4})\.\s(\d+-\d+)\.\s(Print)\./x 
-    m = monograph_regex.match(quotation)
-    c = chapter_regex.match(quotation)
-    if c
-      authors = set_authors(c[1])
-      author_list = authors.map(&:to_s).join(". ")
-      monograph = Monograph.find_or_initialize_by(author_list: author_list, title: c[3], 
-                                                  publisher: set_publisher(c[6]),
-                                                  publication_date: Time.zone.local(c[7].to_i),
-                                                  medium: "Print")
-      monograph.authors = authors
-      monograph.save
-      reference = Chapter.create(title: c[2], monograph: monograph)
-    elsif m
-      reference = Monograph.create(title: m[2], authors: set_authors(m[1]), 
-                                   publisher: set_publisher(m[4]), 
-                                   publication_date: Time.zone.local(m[5].to_i),
-                                   medium: "Print" )
-    end
-  end
-
-  private
-
-    def self.set_authors(authors)
-      author_list_regex = /([a-zA-Z]+,\s[a-zA-Z]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\./x 
-      author_list = author_list_regex.match(authors)
-      al = []
-      al << set_first_author(author_list[1]) if author_list[1]
-      al << set_other_author(author_list[3]) if author_list[3]
-      al << set_other_author(author_list[5]) if author_list[5]
-      al
-    end
-
-    def self.set_first_author(author)
-      author_name = author.split(", ")
-      author_first_name = author_name[1]
-      author_last_name = author_name[0]
-      Author.find_or_create_by(first_name: author_first_name, last_name: author_last_name)
-    end
-
-    def self.set_other_author(author)
-      author_name = author.split(" ")
-      author_first_name = author_name[0]
-      author_last_name = author_name[1]
-      Author.find_or_create_by(first_name: author_first_name, last_name: author_last_name)
-    end
-
-    def self.set_publisher(publisher)
-      publisher_string = publisher.split(": ")
-      publisher_name = publisher_string[1]
-      publisher_location = publisher_string[0]
-      Publisher.find_or_create_by(name: publisher_name, location: publisher_location)
-    end
-end
-
 describe ReferenceParser do
   
   Given(:reference) { ReferenceParser.reference(quotation) }
@@ -127,6 +64,8 @@ describe ReferenceParser do
       And   { expect(reference.monograph.title).to eq "The Question Concerning Technology." }
       And   { expect(reference.publisher.to_s).to eq "New York: Harper & Row" }
       And   { expect(reference.publication_date.strftime("%Y")).to eq "1977" }
+      And   { expect(reference.startpage).to eq 3 }
+      And   { expect(reference.endpage).to eq 9 }
       And   { expect(reference.medium).to eq "Print" }
 
       describe "another chapter from the same volume" do
@@ -142,8 +81,43 @@ describe ReferenceParser do
     describe "chapter with one author, one editor, and two translators" do
 
       Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
+  
+      Then  { expect(reference._type).to eq "Chapter" }
+      And   { expect(reference.authors.first.to_s).to eq "Nietzsche, Friedrich" }
+      And   { expect(reference.title).to eq "Preface to the Second Edition." }
+      And   { expect(reference.monograph.title).to eq "The Gay Science." }
+      And   { expect(reference.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
+      And   { expect(reference.publication_date.strftime("%Y")).to eq "2001" }
+      And   { expect(reference.medium).to eq "Print" }
+   end
+  end
 
-      Then { expect(reference._type).to eq "Chapter" }
+  context "articles" do
+
+    describe "magazine article" do
+      Given(:quotation) { 'Anderson, Chris. "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." <em>Wired.</em> 23 Aug 2008. 102-1190. Print.' }
+
+      Then  { expect(reference._type).to eq "MagazineArticle" }
+      And   { expect(reference.authors.first.to_s).to eq "Anderson, Chris" }
+      And   { expect(reference.title).to eq "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." }
+      And   { expect(reference.magazine.to_s).to eq "Wired" }
+      And   { expect(reference.publication_date.strftime("%e %b %Y")).to eq "23 Aug 2008" }
+      And   { expect(reference.startpage).to eq 102 }
+      And   { expect(reference.endpage).to eq 1190 }
+      And   { expect(reference.medium).to eq "Print" }
+    end
+    
+    describe "journal article" do
+      Given(:quotation) { 'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
+
+      Then  { expect(reference._type).to eq "JournalArticle" }
+      And   { expect(reference.authors.first.to_s).to eq "Kittler, Friedrich" }
+      And   { expect(reference.title).to eq "Universities: Wet, Hard, Soft, and Harder." }
+      And   { expect(reference.journal.to_s).to eq "Critical Inquiry" }
+      And   { expect(reference.publication_date.strftime("%Y")).to eq "2004" }
+      And   { expect(reference.startpage).to eq 244 }
+      And   { expect(reference.endpage).to eq 255 }
+      And   { expect(reference.medium).to eq "Print" }
     end
   end
 end

@@ -3,4 +3,10 @@ class JournalArticle < PeriodicalReference
 
   belongs_to  :journal
   delegate    :medium, :publisher, to: :journal
+
+  validates_presence_of :journal
+
+  def medium=(medium)
+    self.journal.update_attributes(medium: medium)
+  end
 end
