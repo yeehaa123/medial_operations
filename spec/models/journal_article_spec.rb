@@ -24,9 +24,27 @@ describe JournalArticle do
   it { should have(4).meetings } 
 
   describe "create_journal_article" do
-    Given(:quotation) {'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
-    Given(:article) { JournalArticle.create_reference(quotation) }
+    # Given(:quotation) {'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
+    Given(:article) do
+      JournalArticle.create_reference do
+        author_list           "Kittler, Friedrich"
+        article_title         "Universities: Wet, Hard, Soft, and Harder."
+        journal_name          "Critical Inquiry"
+        year_of_publication   "2004"
+        pages                 "244-255"
+        medium_of_publication "Print"
+      end
+    end
 
-    Then { expect(article.authors.first).to eq "Kittler, Friedrich" }
+    Then  { expect(article.authors.first.to_s).to eq "Kittler, Friedrich" }
+    And   { expect(article.title).to eq "Universities: Wet, Hard, Soft, and Harder." }
+    And   { expect(article.journal.to_s).to eq "Critical Inquiry" }
+    And   { expect(article.publication_date.strftime("%Y")).to eq "2004" }
+    And   { expect(article.startpage).to eq 244 }
+    And   { expect(article.endpage).to eq 255 }
+    And   { expect(article.medium).to eq "Print" }
+
+    And   { expect(article).to be_valid }
+    And   { expect(article).to be_persisted }
   end
 end

@@ -43,7 +43,7 @@ module ReferenceParser
   private
 
   def self.set_authors(authors)
-    author_list_regex = /([a-zA-Z]+,\s[a-zA-Z]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\./x 
+    author_list_regex = /([a-zA-Z]+,\s[a-zA-Z]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x 
     author_list = author_list_regex.match(authors)
     al = []
     al << set_first_author(author_list[1]) if author_list[1]
@@ -85,5 +85,3 @@ module ReferenceParser
     pages = pages.split("-").map { |m| m.to_i }
   end
 end
-
-
