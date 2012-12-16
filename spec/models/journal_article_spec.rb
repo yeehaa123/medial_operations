@@ -27,10 +27,10 @@ describe JournalArticle do
     # Given(:quotation) {'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
     Given(:article) do
       JournalArticle.create_reference do
-        author_list           "Kittler, Friedrich"
+        author                "Kittler, Friedrich"
         article_title         "Universities: Wet, Hard, Soft, and Harder."
         journal_name          "Critical Inquiry"
-        year_of_publication   "2004"
+        date_of_publication   "2004"
         pages                 "244-255"
         medium_of_publication "Print"
       end

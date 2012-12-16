@@ -25,4 +25,29 @@ describe MagazineArticle do
     
   it { should have(1).authors }
   it { should have(4).meetings }  
+
+  describe "create_journal_article" do
+    # Given(:quotation) { 'Anderson, Chris. "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." <em>Wired.</em> 23 Aug 2008. 102-1190. Print.' }
+    Given(:article) do
+      MagazineArticle.create_reference do
+        author                "Anderson, Chris"
+        article_title         "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete."
+        magazine_name         "Wired"
+        date_of_publication   "23 Aug 2008"
+        pages                 "102-1190"
+        medium_of_publication "Print"
+      end
+    end
+
+    Then  { expect(article.authors.first.to_s).to eq "Anderson, Chris" }
+    And   { expect(article.title).to eq "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." }
+    And   { expect(article.magazine.to_s).to eq "Wired" }
+    And   { expect(article.publication_date.strftime("%e %b %Y")).to eq "23 Aug 2008" }
+    And   { expect(article.startpage).to eq 102 }
+    And   { expect(article.endpage).to eq 1190 }
+    And   { expect(article.medium).to eq "Print" }
+
+    And   { expect(article).to be_valid }
+    And   { expect(article).to be_persisted }
+  end
 end

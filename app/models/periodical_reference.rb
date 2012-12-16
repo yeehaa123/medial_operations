@@ -3,4 +3,15 @@ class PeriodicalReference < IndividualReference
 
   field :volume, type: Integer
   field :issue, type: Integer
+
+  def medium=(medium = "Print")
+    self.periodical.update_attributes(medium: medium)
+  end
+
+
+  private
+   
+    def periodical_name(periodical)
+      self.periodical = Periodical.find_or_create_by(name: periodical)
+    end
 end

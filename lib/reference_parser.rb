@@ -23,20 +23,32 @@ module ReferenceParser
       Chapter.create(title: c[2], monograph: monograph,
                      startpage: pages(c[8])[0], endpage: pages(c[8])[1])     
     elsif m
-      Monograph.create(title: m[2], authors: set_authors(m[1]), 
-                       publisher: set_publisher(m[4]), 
-                       publication_date: Time.zone.local(m[5].to_i),
-                       medium: "Print")
+      Monograph.create_reference do
+        author                m[1]
+        book_title            m[2]
+        translator            m[3]
+        publisher_name        m[4]
+        date_of_publication   m[5]
+        medium_of_publication m[6]
+      end
     elsif ma
-      MagazineArticle.create(authors: set_authors(ma[1]), title: ma[2], 
-                             magazine: set_magazine(ma[3], ma[6]), 
-                             publication_date: Time.strptime(ma[4], "%e %b %Y"),
-                             startpage: pages(ma[5])[0], endpage: pages(ma[5])[1])     
+      MagazineArticle.create_reference do
+        author                ma[1]
+        article_title         ma[2]
+        magazine_name         ma[3]
+        date_of_publication   ma[4]
+        pages                 ma[5]
+        medium_of_publication ma[6]
+      end
     elsif ja
-      JournalArticle.create(authors: set_authors(ja[1]), title: ja[2],
-                            journal: set_journal(ja[3], ja[6]), 
-                            publication_date: Time.new(ja[4]).to_i, 
-                            startpage: pages(ja[5])[0], endpage: pages(ja[5])[1]) 
+      JournalArticle.create_reference do
+        author                ja[1]
+        article_title         ja[2]
+        journal_name          ja[3]
+        date_of_publication   ja[4]
+        pages                 ja[5]
+        medium_of_publication ja[6]
+      end
     end
   end
 
@@ -71,14 +83,6 @@ module ReferenceParser
     publisher_name = publisher_string[1]
     publisher_location = publisher_string[0]
     Publisher.find_or_create_by(name: publisher_name, location: publisher_location)
-  end
-
-  def self.set_magazine(magazine, medium)
-    Magazine.find_or_create_by(name: magazine, medium: medium)
-  end
-
-  def self.set_journal(journal, medium)
-    Journal.find_or_create_by(name: journal, medium: medium) 
   end
 
   def self.pages(pages)

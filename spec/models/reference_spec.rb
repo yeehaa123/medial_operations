@@ -33,4 +33,4 @@ describe Reference do
       Then { Reference.fulltext_search("bla").count.should == 3 }
     end
   end
- end
+end

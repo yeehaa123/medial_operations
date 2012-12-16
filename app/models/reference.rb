@@ -53,4 +53,34 @@ class Reference
       ""
     end
   end
+
+  def self.create_reference(&block)
+    reference = self.new
+    reference.instance_eval(&block)
+    reference.save
+    reference
+  end
+
+  private
+    def author(authors)
+      self.authors << ReferenceParser.set_authors(authors)
+    end
+
+    def translator(translators)
+      if translators
+        self.translators << ReferenceParser.set_authors(translators)
+      end
+    end
+
+    def article_title(title)
+      self.title = title
+    end
+
+    def date_of_publication(date)
+      self.publication_date = Time.new(date)
+    end
+
+    def medium_of_publication(medium = "Print")
+      self.medium = medium 
+    end
 end

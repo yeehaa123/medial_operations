@@ -46,4 +46,26 @@ describe Monograph do
       its(:author_list) { should == "#{ author }. #{ coauthor }" }
     end
   end
+
+  describe "create_reference" do
+    # Given(:quotation) { 'Benjamin, Walter. <em>One-Way-Street.</em> Bla: Cla, 1940. Print.' }
+    Given(:monograph) do
+      Monograph.create_reference do
+        author                "Benjamin, Walter"
+        book_title            "One-Way-Street" 
+        publisher_name        "Bla: Cla"
+        date_of_publication   "1940"
+        medium_of_publication "Print"
+      end
+    end
+
+    Then  { expect(monograph.authors.first.to_s).to eq "Benjamin, Walter" }
+    And   { expect(monograph.title).to eq "One-Way-Street" }
+    And   { expect(monograph.publisher.to_s).to eq "Bla: Cla" }
+    And   { expect(monograph.publication_date.strftime("%Y")).to eq "1940" }
+    And   { expect(monograph.medium).to eq "Print" }
+
+    And   { expect(monograph).to be_valid }
+    And   { expect(monograph).to be_persisted }
+  end
 end
