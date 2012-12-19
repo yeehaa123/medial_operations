@@ -11,7 +11,16 @@ module ReferenceParser
     ma  = magazine_article_regex.match(quotation)
     ja  = journal_article_regex.match(quotation)
 
-    if c
+    if c then chapter c
+    elsif m then monograph m
+    elsif ma then magazine_article ma
+    elsif ja then journal_article ja
+    end
+  end
+
+  private
+    
+    def self.chapter(c) 
       Chapter.create_reference do
         author                c[1]
         chapter_title         c[2] 
@@ -23,7 +32,9 @@ module ReferenceParser
         pages                 c[8]
         medium_of_publication c[9]
       end
-    elsif m
+    end
+    
+    def self.monograph(m)
       Monograph.create_reference do
         author                m[1]
         book_title            m[2]
@@ -32,7 +43,9 @@ module ReferenceParser
         date_of_publication   m[5]
         medium_of_publication m[6]
       end
-    elsif ma
+    end
+    
+    def self.magazine_article(ma)
       MagazineArticle.create_reference do
         author                ma[1]
         article_title         ma[2]
@@ -41,7 +54,9 @@ module ReferenceParser
         pages                 ma[5]
         medium_of_publication ma[6]
       end
-    elsif ja
+    end
+
+    def self.journal_article(ja)
       JournalArticle.create_reference do
         author                ja[1]
         article_title         ja[2]
@@ -51,9 +66,4 @@ module ReferenceParser
         medium_of_publication ja[6]
       end
     end
-  end
-
-  private
-
-
 end
