@@ -47,22 +47,52 @@ describe Monograph do
     end
   end
 
-  describe "create_reference" do
-    # Given(:quotation) { 'Benjamin, Walter. <em>One-Way-Street.</em> Bla: Cla, 1940. Print.' }
+  context "create_reference" do
+    describe "reference" do
+      # Given(:quotation) { 'Benjamin, Walter. <em>One-Way-Street.</em> Bla: Cla, 1940. Print.' }
+      Given(:monograph) do
+        Monograph.create_reference do
+          author                "Benjamin, Walter"
+          book_title            "One-Way-Street" 
+          publisher_name        "Bla: Cla"
+          date_of_publication   "1940"
+          medium_of_publication "Print"
+        end
+      end
+
+      Then  { expect(monograph.authors.first.to_s).to eq "Benjamin, Walter" }
+      And   { expect(monograph.title).to eq "One-Way-Street" }
+      And   { expect(monograph.publisher.to_s).to eq "Bla: Cla" }
+      And   { expect(monograph.publication_date.strftime("%Y")).to eq "1940" }
+      And   { expect(monograph.medium).to eq "Print" }
+
+      And   { expect(monograph).to be_valid }
+      And   { expect(monograph).to be_persisted }
+    end    
+
+    describe "reference with editor and two translators"
+    # Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
+
     Given(:monograph) do
       Monograph.create_reference do
-        author                "Benjamin, Walter"
-        book_title            "One-Way-Street" 
-        publisher_name        "Bla: Cla"
-        date_of_publication   "1940"
+        author                "Nietzsche, Friedrich" 
+        book_title            "The Gay Science." 
+        editor                "Williams, Bernard"
+        translator            "Nauckhoff, Josefine"
+        translator            "Del Caro, Adrian"
+        publisher_name        "Cambridge: Cambridge University Press"
+        date_of_publication   "2001"
         medium_of_publication "Print"
       end
     end
 
-    Then  { expect(monograph.authors.first.to_s).to eq "Benjamin, Walter" }
-    And   { expect(monograph.title).to eq "One-Way-Street" }
-    And   { expect(monograph.publisher.to_s).to eq "Bla: Cla" }
-    And   { expect(monograph.publication_date.strftime("%Y")).to eq "1940" }
+    Then  { expect(monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
+    And   { expect(monograph.title).to eq "The Gay Science." }
+    And   { expect(monograph.editors.first.to_s).to eq "Williams, Bernard" }
+    And   { expect(monograph.translators.first.to_s).to eq "Nauckhoff, Josefine" }
+    And   { expect(monograph.translators.last.to_s).to eq "Del Caro, Adrian" }
+    And   { expect(monograph.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
+    And   { expect(monograph.publication_date.strftime("%Y")).to eq "2001" }
     And   { expect(monograph.medium).to eq "Print" }
 
     And   { expect(monograph).to be_valid }

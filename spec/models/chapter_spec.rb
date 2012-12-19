@@ -49,5 +49,6 @@ describe Chapter do
 
     And   { expect(chapter).to be_valid }
     And   { expect(chapter).to be_persisted }
+    And   { expect(chapter.monograph).to be_persisted }
   end
 end

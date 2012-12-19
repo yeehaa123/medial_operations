@@ -8,9 +8,10 @@ class Chapter < IndividualReference
            :medium, to: :monograph
 
   private
-    
+
     def author(authors)
-      @a  = ReferenceParser.set_authors(authors)
+      a   = parse_authors(authors)
+      @a  = set_authors(a)
       @al = @a.map(&:to_s).join(". ")
     end
 
@@ -20,15 +21,21 @@ class Chapter < IndividualReference
 
     def book_title(title)
       @m = Monograph.find_or_initialize_by(author_list: @al, title: title)
-      @m.authors << @a
+      @m.authors << @a 
     end
 
     def editor(editors)
-      @m.send(:editor, editors)
+      if editors
+        editors = parse_editors(editors)
+        @m.editors << set_editors(editors)
+      end
     end
 
     def translator(translators)
-      @m.send(:translator, translators)
+      if translators
+        translators = parse_translators(translators)
+        @m.translators << set_translators(translators)
+      end
     end
 
     def publisher_name(publisher)
@@ -41,6 +48,7 @@ class Chapter < IndividualReference
 
     def medium_of_publication(medium)
       @m.send(:medium_of_publication, medium)
+      @m.save
       self.monograph = @m
     end
 end

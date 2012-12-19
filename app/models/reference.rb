@@ -63,13 +63,77 @@ class Reference
 
   private
     def author(authors)
-      self.authors << ReferenceParser.set_authors(authors)
+      authors = parse_authors(authors) 
+      self.authors << set_authors(authors)
     end
 
     def translator(translators)
       if translators
-        self.translators << ReferenceParser.set_authors(translators)
+        translators = parse_translators(translators)
+        self.translators << set_translators(translators)
       end
+    end
+
+    def parse_authors(authors)
+      author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[a-zA-Z]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x
+      a = authors.scan(author_list_regex)[0]
+      authors = []
+      a.each_with_index do |a,i|
+        if a && (i%2 == 0)
+          authors << a
+        end
+      end
+      authors
+    end
+
+    def parse_translators(translators)
+      if translators.include?("Trans.")
+        translators.gsub!("Trans. ", "").chop!
+        translators = translators.split(", and ")
+      else
+        [translators]
+      end
+    end
+    
+    def parse_editors(editors)
+      if editors.include?("Ed.")
+        editors.gsub!("Ed. ", "")
+        editors = editors.strip
+        editors = editors.chop
+        editors = editors.split(", and ")
+      else
+        [editors]
+      end
+   end
+
+    
+    def set_authors(parsed_authors)
+      authors = []
+      parsed_authors.each do |a|
+        if a 
+          authors << set_author(a)
+        end
+      end
+      return authors
+    end
+    alias_method :set_editors, :set_authors
+    alias_method :set_translators, :set_authors
+
+    def set_author(author)
+      if author.include?(",")
+        author_name = author.split(", ")
+        author_first_name = author_name[1]
+        author_last_name = author_name[0]
+      else
+        author_name = author.split(" ")
+        author_first_name = author_name[0]
+        if author_name.count > 2
+          author_last_name = author_name[1] + " " + author_name[2]
+        else
+          author_last_name = author_name[1]
+        end
+      end
+      Author.find_or_create_by(first_name: author_first_name, last_name: author_last_name)
     end
 
     def article_title(title)

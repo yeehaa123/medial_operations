@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe ReferenceParser do
   
   Given(:reference) { ReferenceParser.reference(quotation) }
@@ -80,14 +82,19 @@ describe ReferenceParser do
 
     describe "chapter with one author, one editor, and two translators" do
 
-      Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
+      Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff, and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
   
       Then  { expect(reference._type).to eq "Chapter" }
       And   { expect(reference.authors.first.to_s).to eq "Nietzsche, Friedrich" }
       And   { expect(reference.title).to eq "Preface to the Second Edition." }
       And   { expect(reference.monograph.title).to eq "The Gay Science." }
+      And   { expect(reference.editors.first.to_s).to eq "Williams, Bernard" }
+      And   { expect(reference.translators.first.to_s).to eq "Nauckhoff, Josefine" }
+      And   { expect(reference.translators.last.to_s).to eq "Del Caro, Adrian" }
       And   { expect(reference.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
       And   { expect(reference.publication_date.strftime("%Y")).to eq "2001" }
+      And   { expect(reference.startpage).to eq 3 }
+      And   { expect(reference.endpage).to eq 9 }
       And   { expect(reference.medium).to eq "Print" }
    end
   end

@@ -13,12 +13,13 @@ class Monograph < CollectionReference
     end
     alias_method :monograph_title, :book_title
 
-    def editor(editors)
-      if editors
-        self.editors << ReferenceParser.set_authors(editors)
-      end
-    end
-
+   def editor(editors)
+     if editors
+       editors = parse_editors(editors)
+       self.editors << set_editors(editors)
+     end
+   end    
+   
     def publisher_name(publisher)
       publisher_string = publisher.split(": ")
       publisher_name = publisher_string[1]
