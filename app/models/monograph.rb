@@ -15,8 +15,8 @@ class Monograph < CollectionReference
 
    def editor(editors)
      if editors
-       editors = parse_editors(editors)
-       self.editors << set_editors(editors)
+       editors = ReferenceParser.parse_editors(editors)
+       self.editors << ReferenceParser.set_editors(editors)
      end
    end    
    

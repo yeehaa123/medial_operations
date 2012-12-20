@@ -13,7 +13,7 @@ class Author
   
   slug :full_name
 
-  attr_accessible :references, :first_name, :last_name, :translations, :volumes
+  attr_accessible :references, :first_name, :last_name, :translations, :volumes, :particle
 
   has_and_belongs_to_many :references
   has_and_belongs_to_many :translations, class_name: "Reference"

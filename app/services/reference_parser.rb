@@ -1,4 +1,4 @@
-module ReferenceParser
+class ReferenceParser
 
   def self.reference(quotation)
     monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
@@ -66,7 +66,7 @@ module ReferenceParser
   end
 
   def self.parse_authors(authors)
-    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[a-zA-Z]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x
+    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[a-zA-Z\s]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x
     a = authors.scan(author_list_regex)[0]
     authors = []
     a.each_with_index do |a,i|
@@ -104,7 +104,7 @@ module ReferenceParser
         authors << set_author(a)
       end
     end
-    return authors
+    authors
   end
 
   class << self
@@ -114,19 +114,43 @@ module ReferenceParser
 
   def self.set_author(author)
     if author.include?(",")
-      author_name = author.split(", ")
-      author_first_name = author_name[1]
-      author_last_name = author_name[0]
+      author = set_first_author(author)
     else
-      author_name = author.split(" ")
-      author_first_name = author_name[0]
-      if author_name.count > 2
-        author_last_name = author_name[1] + " " + author_name[2]
-      else
-        author_last_name = author_name[1]
-      end
+      author = set_other_author(author) 
     end
-    Author.find_or_create_by(first_name: author_first_name, last_name: author_last_name)
+    Author.find_or_create_by(first_name: author[:first_name], particle: author[:particle],
+                             last_name: author[:last_name])
   end
 
+  def self.set_first_author(author)
+    name = author.split(", ")
+    first_name = name[1].split(" ")
+    count = first_name.count
+    author = {}
+    author[:last_name] = name[0]
+    if count == 1
+      author[:first_name] = first_name[0]
+    elsif first_name_array[count - 1] =~ /\A[a-z].+/
+      author[:particle] = first_name[1]
+      author[:first_name] = first_name[0]
+    else
+      author[:first_name] = first_name[0] + " " + first_name[1]
+    end
+    author 
+  end
+
+  def self.set_other_author(author)
+    name = author.split(" ")
+    count = name.count
+    author = {}
+    author[:first_name] = name[0]
+    if count <= 2
+      author[:last_name] = name[1]
+    elsif name[count - 1] =~ /\A[a-z].+/
+      author[:particle] = name[2]
+    else
+      author[:last_name] = name[1] + " " + name[2]
+    end
+    author 
+  end
 end
