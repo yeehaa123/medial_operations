@@ -6,15 +6,12 @@ class ReferenceParser
     magazine_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s(\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
     journal_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
 
-    m   = monograph_regex.match(quotation)
-    c   = chapter_regex.match(quotation)
-    ma  = magazine_article_regex.match(quotation)
-    ja  = journal_article_regex.match(quotation)
 
-    if c then chapter c
-    elsif m then monograph m
-    elsif ma then magazine_article ma
-    elsif ja then journal_article ja
+    case quotation 
+    when chapter_regex then chapter chapter_regex.match(quotation)
+    when monograph_regex then monograph monograph_regex.match(quotation)
+    when magazine_article_regex then magazine_article magazine_article_regex.match(quotation)
+    when journal_article_regex then journal_article journal_article_regex.match(quotation)
     end
   end
 
@@ -69,9 +66,9 @@ class ReferenceParser
     author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[a-zA-Z\s]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x
     a = authors.scan(author_list_regex)[0]
     authors = []
-    a.each_with_index do |a,i|
+    a.each_with_index do |author,i|
       if a && (i%2 == 0)
-        authors << a
+        authors << author
       end
     end
     authors
