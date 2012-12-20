@@ -15,6 +15,22 @@ class ReferenceParser
     end
   end
 
+  #  def self.parse(syllabus)
+  #   syllabus = Nokogiri::HTML(syllabus)
+  #   create_course do
+  #     course_title_prefix   syllabus.search('//p').first.text 
+  #     course_title          syllabus.search('//h1').first.text
+  #     course_description    syllabus.css('section#description').to_html 
+  #   end
+  # end
+ 
+  def self.parse_list(quotations = [])
+    quotations = Nokogiri::HTML(quotations)
+    quotations.search('section.references p').each do |q|
+      parse(q.to_html)
+    end
+  end
+
   def self.chapter(c)
     Chapter.reference c
   end

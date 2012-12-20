@@ -16,9 +16,12 @@ class JournalArticle < PeriodicalReference
       medium_of_publication ja[6]
     end
   end
- 
+
   private
+    def journal_name(journal)
+      self.journal = Journal.find_or_create_by(name: journal)
+    end
+
     alias_method  :periodical, :journal
     alias_method  :periodical=, :journal=
-    alias_method  :journal_name, :periodical_name
 end

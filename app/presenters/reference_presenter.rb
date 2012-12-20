@@ -66,7 +66,6 @@ class ReferencePresenter < BasePresenter
         end
         s += ". " unless s == ""
       end
-      s
     end
 
     def translators

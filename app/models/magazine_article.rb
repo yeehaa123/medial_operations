@@ -18,10 +18,13 @@ class MagazineArticle < PeriodicalReference
     end
   end
 
-  private
+ private
     alias_method :periodical, :magazine
     alias_method :periodical=, :magazine=
-    alias_method :magazine_name, :periodical_name
+
+   def magazine_name(magazine)
+    self.magazine = Magazine.find_or_create_by(name: magazine)
+   end
 
     def date_of_publication(date)
       self.publication_date = Time.strptime(date, "%e %b %Y")

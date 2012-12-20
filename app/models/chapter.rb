@@ -8,7 +8,7 @@ class Chapter < IndividualReference
            :medium, to: :monograph
 
   def self.reference(c)
-    Chapter.create_reference do
+    self.create_reference do
       author                c[1]
       chapter_title         c[2] 
       book_title            c[3] 
