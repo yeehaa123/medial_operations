@@ -7,6 +7,17 @@ class Monograph < CollectionReference
   validates_presence_of :authors
   belongs_to :publisher
 
+  def self.reference(m)
+    self.create_reference do
+      author                m[1]
+      book_title            m[2]
+      translator            m[3]
+      publisher_name        m[4]
+      date_of_publication   m[5]
+      medium_of_publication m[6]
+    end
+  end
+
   private
     def book_title(title)
       self.title = title

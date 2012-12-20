@@ -5,7 +5,18 @@ class MagazineArticle < PeriodicalReference
   belongs_to  :magazine
   delegate    :medium, :publisher, to: :magazine
 
-  validates_presence_of   :magazine
+  validates_presence_of   :magazine    
+  
+  def self.reference(ma)
+    MagazineArticle.create_reference do
+      author                ma[1]
+      article_title         ma[2]
+      magazine_name         ma[3]
+      date_of_publication   ma[4]
+      pages                 ma[5]
+      medium_of_publication ma[6]
+    end
+  end
 
   private
     alias_method :periodical, :magazine

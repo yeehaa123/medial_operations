@@ -7,6 +7,20 @@ class Chapter < IndividualReference
   delegate :authors, :publisher, :translators, :editors, :publication_date, 
            :medium, to: :monograph
 
+  def self.reference(c)
+    Chapter.create_reference do
+      author                c[1]
+      chapter_title         c[2] 
+      book_title            c[3] 
+      editor                c[4]
+      translator            c[5] 
+      publisher_name        c[6]
+      date_of_publication   c[7]
+      pages                 c[8]
+      medium_of_publication c[9]
+    end
+  end
+ 
   private
 
     def author(authors)

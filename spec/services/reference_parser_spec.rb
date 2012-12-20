@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ReferenceParser do
   
-  Given(:reference) { ReferenceParser.reference(quotation) }
+  Given(:reference) { ReferenceParser.parse(quotation) }
   
   context "monograph" do
 
@@ -22,7 +22,7 @@ describe ReferenceParser do
 
         Given(:another_quotation) { "Benjamin, Walter. <em>The Arcades Project.</em> Bla: Dla, 1950. Print." }
 
-        When  { ReferenceParser.reference(another_quotation) }
+        When  { ReferenceParser.parse(another_quotation) }
         Then  { expect(reference.title).to eq "One-Way-Street." } 
         And   { expect(Reference.count).to eq 2 }
         And   { expect(Author.count).to eq 1 }
