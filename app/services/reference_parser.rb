@@ -1,11 +1,11 @@
+# coding: UTF-8
 class ReferenceParser
 
   def self.parse(quotation)
     monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
     chapter_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(Ed\.\s.+\.\s)?(Trans\.\s.+\.)?\s(.+:\s.+),\s(\d{4})\.\s(\d+-\d+)\.\s(Print)\./x
     magazine_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s(\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
-    journal_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
-
+    journal_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(\d+)\.(\d+)\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
 
     case quotation 
     when chapter_regex then chapter chapter_regex.match(quotation)
@@ -26,7 +26,7 @@ class ReferenceParser
  
   def self.parse_list(quotations = [])
     quotations = Nokogiri::HTML(quotations)
-    quotations.search('section.references p').each do |q|
+    quotations.search('li').each do |q|
       parse(q.to_html)
     end
   end
@@ -48,7 +48,7 @@ class ReferenceParser
   end
 
   def self.parse_authors(authors)
-    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[a-zA-Z\s]+)(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?(,\sand\s([a-zA-Z]+\s[a-zA-Z]+)*)?\.?/x
+    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[\p{word}\s]+)(,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?(,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?\.?/x
     a = authors.scan(author_list_regex)[0]
     authors = []
     a.each_with_index do |author,i|

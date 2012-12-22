@@ -30,6 +30,8 @@ describe JournalArticle do
         author                "Kittler, Friedrich"
         article_title         "Universities: Wet, Hard, Soft, and Harder."
         journal_name          "Critical Inquiry"
+        volume                "31"
+        issue                 "1"
         date_of_publication   "2004"
         pages                 "244-255"
         medium_of_publication "Print"
@@ -39,6 +41,8 @@ describe JournalArticle do
     Then  { expect(article.authors.first.to_s).to eq "Kittler, Friedrich" }
     And   { expect(article.title).to eq "Universities: Wet, Hard, Soft, and Harder." }
     And   { expect(article.journal.to_s).to eq "Critical Inquiry" }
+    And   { expect(article.volume).to eq 31 }
+    And   { expect(article.issue).to eq 1 }
     And   { expect(article.publication_date.strftime("%Y")).to eq "2004" }
     And   { expect(article.startpage).to eq 244 }
     And   { expect(article.endpage).to eq 255 }

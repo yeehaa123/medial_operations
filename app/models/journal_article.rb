@@ -11,9 +11,11 @@ class JournalArticle < PeriodicalReference
       author                ja[1]
       article_title         ja[2]
       journal_name          ja[3]
-      date_of_publication   ja[4]
-      pages                 ja[5]
-      medium_of_publication ja[6]
+      volume                ja[4]
+      issue                 ja[5]
+      date_of_publication   ja[6]
+      pages                 ja[7]
+      medium_of_publication ja[8]
     end
   end
 

@@ -1,3 +1,5 @@
+#coding: UTF-8
+
 require 'spec_helper'
 
 describe ReferenceParser do
@@ -38,11 +40,11 @@ describe ReferenceParser do
       end
 
       describe "monograph with two authors" do
-        Given(:quotation) { "Deleuze, Gilles, and Felix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
+        Given(:quotation) { "Deleuze, Gilles, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
 
         Then  { expect(reference._type).to eq "Monograph" }
         And   { expect(reference.authors.first.to_s).to eq "Deleuze, Gilles" }
-        And   { expect(reference.authors.last.to_s).to eq "Guattari, Felix" }
+        And   { expect(reference.authors.last.to_s).to eq "Guattari, Félix" }
         And   { expect(reference.title).to eq "A Thousand Plateaus." } 
         And   { expect(reference.publisher.to_s).to eq "Bla: Bla" }
         And   { expect(reference.publication_date.strftime("%Y")).to eq "1970" }
@@ -50,12 +52,12 @@ describe ReferenceParser do
       end
 
       describe "monograph with three authors" do
-        Given(:quotation) { "Deleuze, Gilles, and Bull Shit, and Felix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
+        Given(:quotation) { "Deleuze, Gilles, and Bull Shit, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
 
         Then  { expect(reference.title).to eq "A Thousand Plateaus." } 
         And   { expect(reference.authors.first.to_s).to eq "Deleuze, Gilles" }
         And   { expect(reference.authors[1].to_s).to eq "Shit, Bull" }
-        And   { expect(reference.authors.last.to_s).to eq "Guattari, Felix" }
+        And   { expect(reference.authors.last.to_s).to eq "Guattari, Félix" }
         And   { expect(reference._type).to eq "Monograph" }
       end
     end
@@ -118,12 +120,14 @@ describe ReferenceParser do
       end
 
       describe "journal article" do
-        Given(:quotation) { 'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
+        Given(:quotation) { 'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry</em> 31.1 (2004): 244-255. Print.' }
 
         Then  { expect(reference._type).to eq "JournalArticle" }
         And   { expect(reference.authors.first.to_s).to eq "Kittler, Friedrich" }
         And   { expect(reference.title).to eq "Universities: Wet, Hard, Soft, and Harder." }
         And   { expect(reference.journal.to_s).to eq "Critical Inquiry" }
+        And   { expect(reference.volume).to eq 31 }
+        And   { expect(reference.issue).to eq 1 }
         And   { expect(reference.publication_date.strftime("%Y")).to eq "2004" }
         And   { expect(reference.startpage).to eq 244 }
         And   { expect(reference.endpage).to eq 255 }
@@ -141,18 +145,19 @@ describe ReferenceParser do
     end  
     
     describe "reference list" do
-      Given(:quotations)    { IO.read(Rails.root.join("spec", "fixtures", "references.html")) }
-      Given(:technology)   { Monograph.find_by(title: "The Question Concerning Technology.") }
+      Given(:quotation_list)  { IO.read(Rails.root.join("spec", "fixtures", "references.md")) }
+      Given(:quotations)      { Kramdown::Document.new(quotation_list, smart_quotes: ["lsquo", "rsquo", "quot", "quot"]).to_html }
+      Given(:technology)      { Monograph.find_by(title: "The Question Concerning Technology.") }
 
       When  { ReferenceParser.parse_list(quotations) }
-      Then  { expect(Reference.count).to eq 11 }
+      Then  { expect(Reference.count).to eq 12 }
       And   { expect(Monograph.count).to eq 6 }
       And   { expect(Chapter.count).to eq 3 }
-      And   { expect(JournalArticle.count).to eq 1 }
+      And   { expect(JournalArticle.count).to eq 2 }
       And   { expect(MagazineArticle.count).to eq 1 }
-      And   { expect(Journal.count).to eq 1 }
+      And   { expect(Journal.count).to eq 2 }
       And   { expect(Magazine.count).to eq 1 }
-      And   { expect(Author.count).to eq 13 }
+      And   { expect(Author.count).to eq 14 }
       And   { expect(technology.chapters.count).to eq 2 }
     end
   end

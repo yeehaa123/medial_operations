@@ -14,4 +14,12 @@ class PeriodicalReference < IndividualReference
     def periodical_name(periodical)
       self.periodical = Periodical.find_or_create_by(name: periodical)
     end
+
+    def volume(volume)
+      self.volume = volume
+    end
+
+    def issue(issue)
+      self.issue = issue
+    end
 end

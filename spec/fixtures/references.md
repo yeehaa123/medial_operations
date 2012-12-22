@@ -1,0 +1,10 @@
+- Anderson, Chris. "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." *Wired.* 23 Aug 2008. 102-1190. Print.
+- Benjamin, Walter. *One-Way-Street.* Bla: Cla, 1940. Print.
+- Certeau, Michel de. *The Practice of Everyday Life.* Minneapolis: University Of Minnesota Press, 1984. Print.
+- Eshun, Kodwo. "Further Considerations of Afrofuturism." <em>CR: The New Centennial Review</em> 3.2 (2003): 287-302. Print.
+- Deleuze, Gilles, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print.
+- Heidegger, Martin. "The Question Concerning Technology." <em>The Question Concerning Technology.</em> Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
+- Heidegger, Martin. "The Age of the World Picture." <em>The Question Concerning Technology.</em> Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
+- Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff, and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.
+- Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry</em> 31.1 (2004): 244-255. Print.
+- Olsen, Russ. <em>Eloquent Ruby.</em> Boston: Pearson Education, 2011. Print.

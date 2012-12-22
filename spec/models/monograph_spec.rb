@@ -1,3 +1,5 @@
+#coding: UTF-8
+
 require 'spec_helper'
 
 describe Monograph do
@@ -105,13 +107,37 @@ describe Monograph do
         end
       end
 
-    Then  { expect(monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
-    And   { expect(monograph.title).to eq "The Gay Science." }
-    And   { expect(monograph.editors.first.to_s).to eq "Williams, Bernard" }
-    And   { expect(monograph.translators.first.to_s).to eq "Nauckhoff, Josefine" }
-    And   { expect(monograph.translators.last.to_s).to eq "Del Caro, Adrian" }
-    And   { expect(monograph.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
-    And   { expect(monograph.publication_date.strftime("%Y")).to eq "2001" }
+      Then  { expect(monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
+      And   { expect(monograph.title).to eq "The Gay Science." }
+      And   { expect(monograph.editors.first.to_s).to eq "Williams, Bernard" }
+      And   { expect(monograph.translators.first.to_s).to eq "Nauckhoff, Josefine" }
+      And   { expect(monograph.translators.last.to_s).to eq "Del Caro, Adrian" }
+      And   { expect(monograph.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
+      And   { expect(monograph.publication_date.strftime("%Y")).to eq "2001" }
+      And   { expect(monograph.medium).to eq "Print" }
+
+      And   { expect(monograph).to be_valid }
+      And   { expect(monograph).to be_persisted }
+    end
+  end
+
+  describe "reference with two authors" do
+    Given(:monograph) do
+      Monograph.create_reference do
+        author                "Deleuze, Gilles"
+        author                "Guattari, Félix"
+        book_title            "A Thousand Plateaus"
+        publisher_name        "Bla: Bla"
+        date_of_publication   "1984"
+        medium_of_publication "Print"
+      end
+    end
+    
+    Then  { expect(monograph.authors.first.to_s).to eq "Deleuze, Gilles" }
+    And   { expect(monograph.authors.last.to_s).to eq "Guattari, Félix" }
+    And   { expect(monograph.title).to eq "A Thousand Plateaus" }
+    And   { expect(monograph.publisher.to_s).to eq "Bla: Bla" }
+    And   { expect(monograph.publication_date.strftime("%Y")).to eq "1984" }
     And   { expect(monograph.medium).to eq "Print" }
 
     And   { expect(monograph).to be_valid }
