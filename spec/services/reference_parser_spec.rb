@@ -150,9 +150,9 @@ describe ReferenceParser do
       Given(:technology)      { Monograph.find_by(title: "The Question Concerning Technology.") }
 
       When  { ReferenceParser.parse_list(quotations) }
-      Then  { expect(Reference.count).to eq 12 }
-      And   { expect(Monograph.count).to eq 6 }
-      And   { expect(Chapter.count).to eq 3 }
+      Then  { expect(Reference.count).to eq 14 }
+      And   { expect(Monograph.count).to eq 7 }
+      And   { expect(Chapter.count).to eq 4 }
       And   { expect(JournalArticle.count).to eq 2 }
       And   { expect(MagazineArticle.count).to eq 1 }
       And   { expect(Journal.count).to eq 2 }

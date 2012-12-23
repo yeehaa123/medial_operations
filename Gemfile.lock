@@ -142,6 +142,7 @@ GEM
     multi_json (1.4.0)
     nokogiri (1.5.5)
     origin (1.0.11)
+    pandoc-ruby (0.6.0)
     polyglot (0.3.3)
     progressbar (0.12.0)
     pry (0.9.10)
@@ -270,6 +271,7 @@ DEPENDENCIES
   mongoid_fulltext
   mongoid_slug
   nokogiri
+  pandoc-ruby
   pry
   pry-rails
   rails (= 3.2.9)

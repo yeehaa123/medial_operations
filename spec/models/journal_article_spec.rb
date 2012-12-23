@@ -18,13 +18,15 @@ describe JournalArticle do
   it { should respond_to(:meetings) }
 
   it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:journal) }
+  it { should validate_uniqueness_of(:title).scoped_to(:journal) }
+
   it { should be_valid }
     
   it { should have(1).authors }
   it { should have(4).meetings } 
 
   describe "create_journal_article" do
-    # Given(:quotation) {'Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." <em>Critical Inquiry.</em> (2004): 244-255. Print.' }
     Given(:article) do
       JournalArticle.create_reference do
         author                "Kittler, Friedrich"

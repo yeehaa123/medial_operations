@@ -19,9 +19,10 @@ describe Chapter do
   it { should respond_to(:meetings) }
 
   it { should validate_presence_of(:title) } 
+  it { should validate_presence_of(:monograph) }
+  it { should validate_uniqueness_of(:title).scoped_to(:monograph) }
  
   describe "create_reference" do
-    # Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
     Given(:chapter) do
       Chapter.create_reference do
         author                "Nietzsche, Friedrich" 

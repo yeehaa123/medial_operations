@@ -1,6 +1,4 @@
-# Medial Operations
-
-Art, Science, and Technology
+# Art, Science, and Technology: Medial Operations
 
 ## Description
 
@@ -23,6 +21,27 @@ itself but only a means to an end. We treat code as a particular form of
 knowledge organization. Our goal is not to become full-time programmers, but to
 gain an extra tool to pursue our research.
 
-## Bla
+
+## 1 - Section I
+
+### Description
 
 Bla bla bla
+
+### Session 1
+
+#### Readings
+
+Olsen, Russ. *Eloquent Ruby.* Boston: Pearson Education, 2011. Print.
+
+### Session 2
+
+
+### Session 3
+
+Bla Bla Bla
+
+
+## 2 - Section II
+
+### Session 2

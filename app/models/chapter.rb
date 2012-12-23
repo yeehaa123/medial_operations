@@ -7,6 +7,9 @@ class Chapter < IndividualReference
   delegate :authors, :publisher, :translators, :editors, :publication_date, 
            :medium, to: :monograph
 
+  validates_presence_of(:monograph)
+  validates_uniqueness_of :title, scope: :monograph
+
   def self.reference(c)
     self.create_reference do
       author                c[1]
@@ -24,8 +27,7 @@ class Chapter < IndividualReference
   private
 
     def author(authors)
-      a   = ReferenceParser.parse_authors(authors)
-      @a  = ReferenceParser.set_authors(a)
+      @a = ReferenceParser.parse_authors(authors)
       @al = @a.map(&:to_s).join(". ")
     end
 
@@ -40,15 +42,13 @@ class Chapter < IndividualReference
 
     def editor(editors)
       if editors
-        editors = ReferenceParser.parse_editors(editors)
-        @m.editors << ReferenceParser.set_editors(editors)
+        @m.editors << ReferenceParser.parse_editors(editors)
       end
     end
 
     def translator(translators)
       if translators
-        translators = ReferenceParser.parse_translators(translators)
-        @m.translators << ReferenceParser.set_translators(translators)
+        @m.translators << ReferenceParser.parse_translators(translators)
       end
     end
 

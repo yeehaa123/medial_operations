@@ -91,5 +91,10 @@ class Meeting
     self.course = course
     self
   end
+
+  def reference(quotation)
+    self.references << ReferenceParser.parse(quotation)
+    self
+  end
 end
 

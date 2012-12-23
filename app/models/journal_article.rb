@@ -5,6 +5,7 @@ class JournalArticle < PeriodicalReference
   delegate    :medium, :publisher, to: :journal
 
   validates_presence_of :journal
+  validates_uniqueness_of :title, scope: :journal
 
   def self.reference(ja)
     self.create_reference do

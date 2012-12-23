@@ -63,14 +63,12 @@ class Reference
 
   private
     def author(authors)
-      authors = ReferenceParser.parse_authors(authors) 
-      self.authors << ReferenceParser.set_authors(authors)
+      self.authors << ReferenceParser.parse_authors(authors) 
     end
 
     def translator(translators)
       if translators
-        translators = ReferenceParser.parse_translators(translators)
-        self.translators << ReferenceParser.set_translators(translators)
+        self.translators << ReferenceParser.parse_translators(translators)
       end
     end
 

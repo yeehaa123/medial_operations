@@ -19,7 +19,8 @@ describe MagazineArticle do
   it { should respond_to(:publisher) }
 
   it { should validate_presence_of(:title) }
-  it { should respond_to(:magazine) }
+  it { should validate_presence_of(:magazine) }
+  it { should validate_uniqueness_of(:title).scoped_to(:magazine) }
 
   it { should be_valid }
     
@@ -27,7 +28,6 @@ describe MagazineArticle do
   it { should have(4).meetings }  
 
   describe "create_magazine" do
-    # Given(:quotation) { 'Anderson, Chris. "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete." <em>Wired.</em> 23 Aug 2008. 102-1190. Print.' }
     Given(:article) do
       MagazineArticle.create_reference do
         author                "Anderson, Chris"

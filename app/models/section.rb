@@ -48,4 +48,9 @@ class Section
     self.number = number
     self
   end
+  
+  def section_description(description)
+    self.description = description
+    self
+  end
 end

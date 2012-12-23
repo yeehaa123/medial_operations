@@ -13,6 +13,7 @@ gem 'decent_exposure'
 gem 'kaminari'
 gem 'mongoid_fulltext'
 gem 'nokogiri'
+gem 'pandoc-ruby'
 
 
 # Gems used only for assets and not required

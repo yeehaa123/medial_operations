@@ -19,6 +19,7 @@ describe Monograph do
 
   it { should validate_presence_of(:authors) }
   it { should validate_presence_of(:title) }
+  it { should validate_uniqueness_of(:title).scoped_to(:authors) }
 
   it { should be_valid }
     

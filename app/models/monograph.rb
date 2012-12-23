@@ -7,6 +7,8 @@ class Monograph < CollectionReference
   validates_presence_of :authors
   belongs_to :publisher
 
+  validates_uniqueness_of :title, scope: :authors
+
   def self.reference(m)
     self.create_reference do
       author                m[1]
@@ -26,8 +28,7 @@ class Monograph < CollectionReference
 
    def editor(editors)
      if editors
-       editors = ReferenceParser.parse_editors(editors)
-       self.editors << ReferenceParser.set_editors(editors)
+       self.editors = ReferenceParser.parse_editors(editors)
      end
    end    
    
