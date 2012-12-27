@@ -41,7 +41,7 @@ describe JournalArticle do
     end
 
     Then  { expect(article.authors.first.to_s).to eq "Kittler, Friedrich" }
-    And   { expect(article.title).to eq "Universities: Wet, Hard, Soft, and Harder." }
+    And   { expect(article.title).to eq "Universities: Wet, Hard, Soft, and Harder" }
     And   { expect(article.journal.to_s).to eq "Critical Inquiry" }
     And   { expect(article.volume).to eq 31 }
     And   { expect(article.issue).to eq 1 }
