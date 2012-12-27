@@ -45,7 +45,8 @@ Levy, Steven. "How Google's Algorithm Rules the Web." *Wired.* 22 Feb 2010. 111-
 
 #### Readings
 
-Certeau, Michel de. "Spatial Stories" *The Practice of Everyday Life.* Minneapolis: University Of Minnesota Press, 1984. 115-130. Print.
+Certeau, Michel de. "Spatial Stories." *The Practice of Everyday Life.*
+Minneapolis: University Of Minnesota Press, 1984. 115-130. Print.
 
 Deleuze, Gilles, and Félix Guattari. "Rhizome." *A Thousand Plateaus.* Minneapolis: University of Minnesota Press, 1987. 3-25. Print.
 
@@ -70,8 +71,3 @@ Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into 
 ## Section 3 - The Eternal Recurrence of Body Snatchers
 
 ### Session 5
-
-#### Readings
-
-
-

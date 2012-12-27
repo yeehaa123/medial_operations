@@ -1,4 +1,4 @@
-module SyllabusParser
+module CourseParser
   
   def self.parse(syllabus)
     syllabus = Nokogiri::HTML(syllabus)
@@ -18,14 +18,14 @@ module SyllabusParser
                   l2.css('.level3').each do |l3|
                     case l3['id']
                       when /description/ then section_description l3.css('p').text
-                      when /session/ then
+                      when /session/ then 
                         meeting l3.css('h3').text do
                           l3.css('.level4').each do |l4|
                             q = l4.css('p').to_html
                             reference(q)
                           end
+                        end                    
                       end
-                    end
                   end
                 end
             end
@@ -37,10 +37,11 @@ module SyllabusParser
     def self.course(title, &block)
       Course.create_course(title, &block)
     end
+    
 end
 
-describe SyllabusParser do
-  Given(:course) { SyllabusParser.parse(syllabus).first }
+describe CourseParser do
+  Given(:course) { CourseParser.parse(syllabus).first }
   Given(:syllabus) { PandocRuby.convert(IO.read(Rails.root.join("spec", "fixtures", "syllabus.md")), {:f => :markdown, :to => :html5}, 'section_div') } 
 
   subject { course }

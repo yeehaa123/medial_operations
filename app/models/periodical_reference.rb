@@ -22,4 +22,8 @@ class PeriodicalReference < IndividualReference
     def issue(issue)
       self.issue = issue
     end
+
+    def article_title(title)
+      self.title = title.delete(".")
+    end
 end

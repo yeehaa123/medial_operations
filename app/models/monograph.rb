@@ -22,7 +22,7 @@ class Monograph < CollectionReference
 
   private
     def book_title(title)
-      self.title = title
+      self.title = title.delete(".")
     end
     alias_method :monograph_title, :book_title
 

@@ -39,8 +39,8 @@ describe Chapter do
     end
 
     Then  { expect(chapter.authors.first.to_s).to eq "Nietzsche, Friedrich" }
-    And   { expect(chapter.title).to eq "Preface to the Second Edition." }
-    And   { expect(chapter.monograph.to_s).to eq "The Gay Science." }
+    And   { expect(chapter.title).to eq "Preface to the Second Edition" }
+    And   { expect(chapter.monograph.to_s).to eq "The Gay Science" }
     And   { expect(chapter.editors.first.to_s).to eq "Williams, Bernard" }
     And   { expect(chapter.translators.first.to_s).to eq "Nauckhoff, Josefine" }
     And   { expect(chapter.translators.last.to_s).to eq "Del Caro, Adrian" }

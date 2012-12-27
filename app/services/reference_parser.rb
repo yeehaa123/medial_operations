@@ -10,7 +10,7 @@ class ReferenceParser
 
   def self.parse(quotation)
     monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
-    chapter_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(Ed\.\s.+\.\s)?(Trans\.\s.+\.)?\s(.+:\s.+),\s(\d{4})\.\s(\d+-\d+)\.\s(Print)\./x
+    chapter_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(Ed\.\s[A-Za-z ]+\.\s)?(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4})\.\s(\d+-\d+)\.\s(Print)\./x
     magazine_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s(\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
     journal_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(\d+)\.(\d+)\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
 
@@ -36,7 +36,9 @@ class ReferenceParser
 
   def self.parse_translators(translators)
     if translators.include?("Trans.")
-      translators.gsub!("Trans. ", "").chop!
+      translators.gsub!("Trans. ", "")
+      translators = translators.strip
+      translators = translators.chop
       translators = translators.split(", and ")
     else
       translators = [translators]
@@ -118,10 +120,13 @@ class ReferenceParser
       author[:first_name] = name[0]
       if count <= 2
         author[:last_name] = name[1]
-      elsif name[count - 1] =~ /\A[a-z].+/
+      elsif name[count - 2] =~ /\A[a-z].+/
         author[:particle] = name[2]
-      else
+      elsif name[count - 2] =~ /Del/
         author[:last_name] = name[1] + " " + name[2]
+      else
+        author[:last_name] = name[2]
+        author[:first_name] = name[0] + " " + name[1]
       end
       author 
     end

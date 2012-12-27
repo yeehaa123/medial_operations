@@ -94,7 +94,6 @@ class Meeting
 
   def reference(quotation)
     self.references << ReferenceParser.parse(quotation)
-    self
   end
 end
 

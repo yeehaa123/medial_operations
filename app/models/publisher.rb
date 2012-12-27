@@ -14,6 +14,6 @@ class Publisher
   validates_uniqueness_of :location, scope: :name
 
   def to_s
-    "#{ location.titleize }: #{ name.titleize }"
+    "#{ location }: #{ name.titleize }"
   end
 end

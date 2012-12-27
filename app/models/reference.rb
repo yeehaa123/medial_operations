@@ -72,10 +72,6 @@ class Reference
       end
     end
 
-    def article_title(title)
-      self.title = title
-    end
-
     def date_of_publication(date)
       self.publication_date = Time.new(date)
     end

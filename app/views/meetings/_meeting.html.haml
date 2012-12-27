@@ -2,9 +2,9 @@
   = content_tag_for(:section, meeting) do
     %h1= link_to meeting_presenter.heading, course_meeting_path(meeting)
     %ul.info
-      %li.date= meeting_presenter.date
-      %li.time= meeting_presenter.time
-      %li.location= meeting_presenter.location
+      %li.date= "Now" || meeting_presenter.date
+      %li.time= "Now" || meeting_presenter.time
+      %li.location=  meeting_presenter.location
 
     = meeting_presenter.description
     

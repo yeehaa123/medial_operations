@@ -32,10 +32,11 @@ class Chapter < IndividualReference
     end
 
     def chapter_title(title)
-      self.title = title
+      self.title = title.delete(".")
     end
 
     def book_title(title)
+      title = title.delete(".")
       @m = Monograph.find_or_initialize_by(author_list: @al, title: title)
       @m.authors << @a 
     end
