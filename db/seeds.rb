@@ -1,5 +1,5 @@
 parser = CourseParser.new
-syllabus = PandocRuby.convert(IO.read(Rails.root.join("db", "syllabus.md")), {:f => :markdown, :to => :html5}, 'section_div')
+syllabus = IO.read(Rails.root.join("db", "syllabus.html"))
 parser.parse_course(syllabus)
 #
 #
