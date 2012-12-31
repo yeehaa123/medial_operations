@@ -14,7 +14,7 @@ gem 'kaminari'
 gem 'mongoid_fulltext'
 gem 'nokogiri'
 gem 'pandoc-ruby'
-
+gem 'RedCloth'
 
 # Gems used only for assets and not required
 # in production environments by default.

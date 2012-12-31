@@ -1,53 +1,62 @@
-class CourseParser
-  attr_accessor :course
+class CourseParser < BaseParser
 
   def initialize
-    @course = Course.new
+    @object = Course.new
   end
 
   def parse_course(syllabus)
     syllabus = Nokogiri::HTML(syllabus)
-    course_title(syllabus)
-    course_info(syllabus)
-    course_meeting(syllabus)
-    course_section(syllabus)
-    course.save
-    course
+    title(syllabus)
+    info(syllabus)
+    introduction(syllabus)
+    section(syllabus)
+    object.save
+    object
   end
 
-  def course_title(syllabus)
+  def title(syllabus)
     title = syllabus.css('h1').text
     title = title.split(": ")
-    course.title = title[1]
-    course.title_prefix = title[0]
+    object.title = title[1]
+    object.title_prefix = title[0]
   end
 
-  def course_info(syllabus)
-    syllabus.css('.level4').each do |c|
+  def info(syllabus)
+    syllabus.css('h1 ~ .level4').each do |c|
       case c['id']
       when /description/ then description(c)
+      when /textbook/ then references(c)
+      when /prerequisites/ then prerequisites(c)
+      when /requirements/ then requirements(c)
       end
     end
   end
-
-  def description(d)
-    course.description = d.css('p').text
-  end
-
-  def course_meeting(syllabus)
+  
+  def introduction(syllabus)
     syllabus.css('.level3').each do |m|
       case m['id']
       when /introduction/ then 
-        meeting = MeetingParser.new(course)
-        meeting = meeting.parse_meeting(m)
+        MeetingParser.new(object).parse(m)
       end
     end
   end
 
-  def course_section(syllabus)
-    syllabus.css('.level2').each do |s|
-      section = SectionParser.new(course)
-      section = section.parse_section(s)
+  def section(syllabus)
+    syllabus.css('h1 ~ .level2').each do |s|
+      case s['id']
+      when /section/ then 
+        SectionParser.new(object).parse(s)
+      end
     end
+  end
+
+  def requirements(r)
+    r = r.css('h4 ~ *').to_html
+    object.requirements = r.to_html
+  end
+
+  def prerequisites(p)
+    p = p.css('h4 ~ *').to_html
+    object.prerequisites = p.to_html
   end
 end

@@ -1,28 +1,24 @@
-class MeetingParser
-  attr_accessor :meeting
+class MeetingParser < BaseParser
 
   def initialize(parent)
     if parent.is_a?(Section)
-      @meeting = Meeting.new(course: parent.course, section: parent)
+      @object = Meeting.new(course: parent.course, section: parent)
     else
-      @meeting = Meeting.new(course: parent)
+      @object = Meeting.new(course: parent)
     end
   end
 
-  def parse_meeting(syllabus)
-    meeting_title(syllabus)
-    meeting.number = Meeting.count + 1
-    meeting_info(syllabus)
-    meeting.location = "Bungehuis 4.01"
-    meeting.save
-    meeting
+  def parse(syllabus)
+    info(syllabus) 
+    object.save
+    object
   end
 
-  def meeting_title(syllabus)
-    meeting.title = syllabus.css('h3').text
-  end
-
-  def meeting_info(syllabus)
+  def info(syllabus)
+    title(syllabus)
+    number
+    date(syllabus)
+    location(syllabus)
     syllabus.css('.level4').each do |m|
       case m['id']
       when /readings/ then references(m)
@@ -30,9 +26,26 @@ class MeetingParser
     end
   end
 
-  def references(r)
-    r.css('p').each do |reference|
-      meeting.reference(reference.to_html)
-    end
+  def title(syllabus)
+    object.title = syllabus.css('h3').text
   end
+
+  def number
+    object.number = Meeting.count + 1
+  end
+
+  def date(syllabus)
+    datetime_regex = /Date: ([A-Za-z]+) (\d*)th (\d{4}) Time: (\d{2}:\d{2})-(\d{2}:\d{2})/
+    date = syllabus.css('h3 ~ p').text.match(datetime_regex)
+    month = Date::MONTHNAMES.index(date[1])
+    start_time = date[4][0..1]
+    object.datetime = Time.local(date[3], month, date[2], start_time)
+  end
+
+  def location(syllabus)
+    location_regex = /Location: ([A-Z]+ .+)/
+    location = syllabus.css('h3 ~ p').text.match(location_regex)
+    object.location = location[1]
+  end
+
 end

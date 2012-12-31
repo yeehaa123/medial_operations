@@ -1,5 +1,5 @@
 parser = CourseParser.new
-syllabus = IO.read(Rails.root.join("db", "syllabus.html"))
+syllabus = IO.read(Rails.root.join("db", "medial_operations.html"))
 parser.parse_course(syllabus)
 #
 #

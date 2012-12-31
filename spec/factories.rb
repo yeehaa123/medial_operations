@@ -5,6 +5,11 @@ FactoryGirl.define do
     description       "Hello *World*"
     deadline          Time.zone.local(2013, "feb", 10,18,00)
     course
+
+    factory :assignment_with_section do
+      section
+      course { section.course }
+    end
   end
 
 

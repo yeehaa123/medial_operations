@@ -20,6 +20,7 @@ class Reference
   has_and_belongs_to_many   :translators, class_name: "Author", inverse_of: :references
   has_and_belongs_to_many   :editors, class_name: "Author", inverse_of: :references
   has_and_belongs_to_many   :meetings
+  has_and_belongs_to_many   :courses
 
   validates_presence_of :title
   

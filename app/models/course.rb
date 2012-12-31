@@ -6,14 +6,17 @@ class Course
   field :title, type: String
   field :title_prefix, type: String
   field :description, type: String
+  field :requirements, type: String
+  field :prerequisites, type: String
 
   slug  :title
 
-  attr_accessible :title, :title_prefix, :description
+  attr_accessible :title, :title_prefix, :description, :requirements
 
-  has_many    :sections
-  has_many    :meetings
-  has_many    :assignments
+  has_many  :sections
+  has_many  :meetings
+  has_many  :assignments
+  has_and_belongs_to_many  :references
 
   validates_presence_of :title
 
@@ -34,11 +37,20 @@ class Course
     self
   end
 
+  def course_requirements(requirements)
+    self.requirements = requirements 
+    self
+  end
+
   def section(title, &block)
     self.sections << Section.create_section(title, self, &block)
   end
 
   def meeting(title, &block)
     self.meetings << Meeting.create_meeting(title, self, &block)
+  end
+
+  def reference(quotation)
+    self.references << ReferenceParser.parse(quotation)
   end
 end

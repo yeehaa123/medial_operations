@@ -191,7 +191,7 @@
       +adjust-font-size-to(14px)
       color: $red
 
-  section.section
+  section.section, section.course_prerequisites, section.course_requirements
     h1
       +leader(1)
       +adjust-font-size-to(12px)
@@ -209,6 +209,14 @@
             
     p
       +adjust-font-size-to(12px)
+    
+    ul
+      +leader(1)
+      li
+        +adjust-font-size-to(10px)
+        text-align: left
+        a
+          color: $base01
 
     a
       +unstyled-link

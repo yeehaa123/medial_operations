@@ -12,6 +12,7 @@ describe Reference do
   it { should respond_to(:editors) }
   it { should respond_to(:publication_date) }
   it { should respond_to(:meetings) }
+  it { should respond_to(:courses) }
 
   it { should validate_presence_of(:title) }
 

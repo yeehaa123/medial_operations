@@ -6,11 +6,13 @@ describe Course do
 
   subject { course }
 
-  it  { should have_fields :title, :title_prefix, :description }
+  it  { should have_fields :title, :title_prefix, :description, :requirements,
+                           :prerequisites }
 
   it  { should have_many :sections }
   it  { should have_many :meetings }
   it  { should have_many :assignments }
+  it  { should have_and_belong_to_many :references }
 
   it { should validate_presence_of :title }
 
@@ -22,6 +24,7 @@ describe Course do
     Given(:course) do 
       Course.create_course "Prefix: New Course" do
         course_description "Course Description"
+        course_requirements "Course Requirements"
         meeting "Introduction" do
         end
         section "1 - New Section" do
@@ -43,6 +46,7 @@ describe Course do
     Then  { expect(course.title_prefix).to eq "Prefix" }
     And   { expect(course.title).to eq "New Course" }
     And   { expect(course.description).to eq "Course Description" } 
+    And   { expect(course.requirements).to eq "Course Requirements" } 
   
     describe "sections" do
       Given(:section) { course.sections.first }

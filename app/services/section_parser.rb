@@ -1,47 +1,43 @@
-class SectionParser
-    attr_accessor :section
+class SectionParser < BaseParser
 
     def initialize(course)
-      @section = Section.new(course: course)
+      @object = Section.new(course: course)
     end
 
-    def parse_section(syllabus)
-      section_heading(syllabus)
-      section_info(syllabus)
-      section.save
-      section
+    def parse(syllabus)
+      title(syllabus)
+      number(syllabus)
+      info(syllabus)
+      meeting(syllabus)
+      object.save
+      object
     end
 
-    def section_heading(syllabus)
-      section_title(syllabus)
-      section_number(syllabus)
-    end
-
-    def section_title(syllabus)
+    def title(syllabus)
       header = syllabus.css('h2').text
-      section.title = header.split(" - ")[1]
+      object.title = header.split(" - ")[1]
     end
 
-    def section_number(syllabus)
+    def number(syllabus)
       header = syllabus.css('h2').text
-      section.number = header.split(" - ")[0].split[1]
+      object.number = header.split(" - ")[0].split[1]
     end
 
-    def section_info(syllabus)
-      syllabus.css('.level3').each do |s|
+    def info(syllabus)
+      syllabus.css('.level4').each do |s|
         case s['id']
         when /description/ then description(s)
-        when /session/ then meeting(s)
         end
       end
     end
-
-    def description(d)
-      section.description = d.css('p').text
+    
+    def meeting(syllabus)
+    syllabus.css('.level3').each do |m|
+      case m['id']
+      when /session/ then 
+        MeetingParser.new(object).parse(m)
+      end
     end
+  end
 
-    def meeting(m)
-      meeting = MeetingParser.new(section)
-      meeting = meeting.parse_meeting(m)
-    end
 end

@@ -6,3 +6,14 @@
 
     %section.course_description
       = course_presenter.description
+
+    - works_cited(course.references, "Textbook")
+
+    %section.course_prerequisites
+      %h1 Prerequisites
+      = course_presenter.prerequisites
+
+    %section.course_requirements
+      %h1 Requirements
+      = course_presenter.requirements
+
