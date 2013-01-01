@@ -9,7 +9,6 @@ describe Assignment do
 
   it  { should have_fields :title, :description, :deadline, :number }
 
-  it  { should belong_to :course }
   it  { should belong_to :section }
 
   it  { should validate_presence_of :course }

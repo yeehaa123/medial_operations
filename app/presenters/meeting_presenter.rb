@@ -18,6 +18,6 @@ class MeetingPresenter < BasePresenter
   end
 
   def end_time
-    @object.datetime.advance(hours: 3).strftime("%H:%M")
+    @object.datetime.advance(hours: 4).strftime("%H:%M")
   end
 end

@@ -10,4 +10,8 @@ class BaseParser
       object.reference(reference.to_html)
     end
   end
+
+   def title(syllabus)
+    object.title = syllabus.css('h3').text
+  end
  end

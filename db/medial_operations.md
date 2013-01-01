@@ -115,6 +115,12 @@ Location:	PCH 6.25
 #### Readings
 
 
+### Assignment 1
+Deadline: April 5th 2013
+
+Nulla dictum, libero quis rutrum faucibus, nunc odio dignissim lorem, at sodales felis justo a nisi. Etiam in mauris lectus. Sed congue faucibus tellus sed feugiat. Duis semper pretium sem eu imperdiet. Aliquam erat volutpat. Fusce ut elit enim. Quisque euismod tellus nec lacus euismod venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+
 ## Section 2 - F(r)ictions and/or (Fr)Actions of the Imaginary
 
 ### Session 8
@@ -161,3 +167,9 @@ Time: 		14:00-18:00
 Location:	PCH 6.25
 
 #### Readings
+
+
+### Assignment 2
+Deadline: May 31st 2013
+
+Nulla dictum, libero quis rutrum faucibus, nunc odio dignissim lorem, at sodales felis justo a nisi. Etiam in mauris lectus. Sed congue faucibus tellus sed feugiat. Duis semper pretium sem eu imperdiet. Aliquam erat volutpat. Fusce ut elit enim. Quisque euismod tellus nec lacus euismod venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.

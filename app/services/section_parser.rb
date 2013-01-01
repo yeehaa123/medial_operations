@@ -36,6 +36,8 @@ class SectionParser < BaseParser
       case m['id']
       when /session/ then 
         MeetingParser.new(object).parse(m)
+      when /assignment/ then
+        AssignmentParser.new(object).parse(m)
       end
     end
   end

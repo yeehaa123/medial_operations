@@ -12,7 +12,7 @@ describe MeetingPresenter do
   its(:location) { should == "Location: #{ meeting.location }" }
   its(:time) do
     start_time  = meeting.datetime.strftime("%H:%M")
-    end_time    = meeting.datetime.advance(hours: 3).strftime("%H:%M")
+    end_time    = meeting.datetime.advance(hours: 4).strftime("%H:%M")
     should == "Time: #{ start_time } - #{ end_time }"
   end
 end

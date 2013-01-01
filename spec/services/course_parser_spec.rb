@@ -46,7 +46,6 @@ describe CourseParser do
 
     subject { section }
     
-    its(:class)       { should == Section }
     its(:title)       { should == "Mapping The Humanities" }
     its(:number)      { should == 1 }
     its(:description) { should include "Bla bla bla" }
@@ -60,7 +59,6 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:class)   { should == Meeting }
       its(:title)   { should == "Session 2" }
       its(:number)  { should ==  2 }
 
@@ -81,7 +79,6 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:class)   { should == Meeting }
       its(:title)   { should == "Session 3" }
       its(:number)  { should ==  3 }
 
@@ -96,6 +93,16 @@ describe CourseParser do
 
       it { should be_persisted }
     end
+
+    context "Assignment 1" do
+      let!(:assignment) { section.assignments.first }
+
+      subject { assignment }
+
+      its(:title)       { should == "Assignment 1" }
+      its(:deadline)    { should == "Fri, 01 Mar 2013 00:00:00 CET +01:00" }
+      its(:description) { should == "Bla bla bla bla" }
+    end
   end
 
   context 'section 2' do
@@ -103,7 +110,6 @@ describe CourseParser do
 
     subject { section }
 
-    its(:class)       { should == Section }
     its(:title)       { should == "F(r)ictions and/or (Fr)Actions of the Imaginary" }
     
     it { should have(1).meetings }
@@ -113,7 +119,6 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:class)   { should == Meeting }
       its(:title)   { should == "Session 4" }
       its(:number)  { should ==  4 }
 

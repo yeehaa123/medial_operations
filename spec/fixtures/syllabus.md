@@ -49,7 +49,7 @@ Bla bla bla
 
 
 ### Session 2
-Date:			February 19th 2013
+Date:		February 19th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
@@ -65,18 +65,31 @@ Levy, Steven. "How Google's Algorithm Rules the Web." *Wired.* 22 Feb 2010. 111-
 
 
 ### Session 3
-Date:			February 26th 2013
+Date:		February 26th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
 #### Readings
+
+
+
+### Assignment 1
+Deadline: 	March 1st 2013
+
+Bla bla bla bla
 
 
 ## Section 2 - F(r)ictions and/or (Fr)Actions of the Imaginary
 
 ### Session 4
-Date:			April 16th 2013
+Date:		April 16th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
 #### Readings
+
+
+### Assignment 2
+Deadline: 	April 23th 2013
+
+Bla bla bla bla

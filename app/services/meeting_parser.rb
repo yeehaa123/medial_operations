@@ -17,7 +17,7 @@ class MeetingParser < BaseParser
   def info(syllabus)
     title(syllabus)
     number
-    date(syllabus)
+    datetime(syllabus)
     location(syllabus)
     syllabus.css('.level4').each do |m|
       case m['id']
@@ -34,8 +34,8 @@ class MeetingParser < BaseParser
     object.number = Meeting.count + 1
   end
 
-  def date(syllabus)
-    datetime_regex = /Date: ([A-Za-z]+) (\d*)th (\d{4}) Time: (\d{2}:\d{2})-(\d{2}:\d{2})/
+  def datetime(syllabus)
+    datetime_regex = /Date: ([A-Za-z]+) (\d*)[a-z]+ (\d{4}) Time: (\d{2}:\d{2})-(\d{2}:\d{2})/
     date = syllabus.css('h3 ~ p').text.match(datetime_regex)
     month = Date::MONTHNAMES.index(date[1])
     start_time = date[4][0..1]
