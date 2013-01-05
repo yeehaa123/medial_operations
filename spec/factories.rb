@@ -43,6 +43,7 @@ FactoryGirl.define do
     location      "Bungehuis 4.01"    
     datetime      Time.zone.local(2013,"jan", 3,10,00)
     tags ["bla"]
+    textbook_readings "Bla, Chapter 1-20 (1-999)"
     course
 
     factory :meeting_with_section do

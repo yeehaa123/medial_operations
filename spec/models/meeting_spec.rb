@@ -6,7 +6,7 @@ describe Meeting do
   subject { meeting }
 
   it { should have_fields :title, :description, :datetime, :number, :location,
-                          :number, :tags  }
+                          :number, :tags, :textbook_readings  }
 
   it { should belong_to :course }
   it { should belong_to :section }
@@ -17,7 +17,7 @@ describe Meeting do
 
   it { should be_valid }
 
-  its(:to_s) { should == "#{ meeting.number } - #{ meeting.title.titleize }" }
+  its(:to_s) { should == "Session #{ meeting.number } - #{ meeting.title.titleize }" }
 
   describe "only assign sections belonging to right course" do
     Given(:meeting)       { build(:meeting_with_section) }
@@ -37,10 +37,10 @@ describe Meeting do
     its(:number) { should == 1 }
 
     it "after updating datetime should change number" do
-      meeting.datetime = Time.new(2030)
+      meeting.datetime = Time.new(2130)
       meeting.save
       meeting.reload.number.should == 10
-      meeting.datetime = Time.now
+      meeting.datetime = Time.new(1999)
       meeting.save
       meeting.reload.number.should == 1
     end

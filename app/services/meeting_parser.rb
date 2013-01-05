@@ -21,13 +21,17 @@ class MeetingParser < BaseParser
     location(syllabus)
     syllabus.css('.level4').each do |m|
       case m['id']
+      when /textbook/ then textbook(m)
       when /readings/ then references(m)
+      when /tags/ then tags(m)
       end
     end
   end
 
   def title(syllabus)
-    object.title = syllabus.css('h3').text
+    title = syllabus.css('h3').text.split(" - ")
+    object.title = title[1]
+    
   end
 
   def number
@@ -48,4 +52,11 @@ class MeetingParser < BaseParser
     object.location = location[1]
   end
 
+  def tags(m)
+    object.tags = m.css('h4 ~ p').text.split(", ")
+  end
+
+  def textbook(t)
+    object.textbook_readings = t.css('h4 ~ p').text
+  end
 end

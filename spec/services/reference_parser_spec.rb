@@ -191,4 +191,15 @@ describe ReferenceParser do
       And   { expect(technology.chapters.count).to eq 2 }
     end
   end
+
+  describe "multiple references from same author" do
+    Given(:quotation_list)  { IO.read(Rails.root.join("spec", "fixtures", "same_author.md")) }
+    Given(:quotations)      { Kramdown::Document.new(quotation_list, smart_quotes: ["lsquo", "rsquo", "quot", "quot"]).to_html }
+
+      When  { ReferenceParser.parse_list(quotations) }
+      Then  { expect(Reference.count).to eq 4 }
+      And   { expect(Author.count).to eq 2 }
+      And   { expect(Journal.count).to eq 2 }
+      And   { expect(Publisher.count).to eq 1 } 
+  end
 end

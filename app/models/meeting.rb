@@ -10,6 +10,7 @@ class Meeting
   field :location, type: String
   field :number, type: Integer
   field :tags, type: Array
+  field :textbook_readings, type: String
 
   slug :to_s
 
@@ -65,7 +66,7 @@ class Meeting
   end
 
   def to_s
-    "#{ number } - #{ title.titleize }"
+    "Session #{ number } - #{ title.titleize }"
   end
 
   def order_meetings

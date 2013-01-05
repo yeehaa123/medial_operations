@@ -38,7 +38,14 @@ Date:		February 5th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
+#### Textbook
+
+Olsen, Chapter 1-3 (1-42)
+
+
 #### Readings
+
+
 
 
 ## Section 1 - Mapping The Humanities
@@ -48,7 +55,7 @@ Location:	PCH 6.25
 Bla bla bla
 
 
-### Session 2
+### Session 2 - Lecture
 Date:		February 19th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
@@ -63,8 +70,11 @@ Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." *Critical Inqui
 
 Levy, Steven. "How Google's Algorithm Rules the Web." *Wired.* 22 Feb 2010. 111-120. Print.
 
+#### Tags
+science, art, planetarium, brain, future
 
-### Session 3
+
+### Session 3 - Seminar
 Date:		February 26th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
@@ -81,7 +91,7 @@ Bla bla bla bla
 
 ## Section 2 - F(r)ictions and/or (Fr)Actions of the Imaginary
 
-### Session 4
+### Session 4 - Lecture
 Date:		April 16th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25

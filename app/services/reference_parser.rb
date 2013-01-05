@@ -9,29 +9,42 @@ class ReferenceParser
   end
 
   def self.parse(quotation)
-    monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
-    chapter_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(Ed\.\s[A-Za-z ]+\.\s)?(Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4})\.\s(\d+-\d+)\.\s(Print)\./x
-    magazine_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s(\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
-    journal_article_regex = /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s(\d+)\.(\d+)\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
+    monograph_regex = /([A-Z].+,\s[A-Z].+\.)?\s?<em>(.+)<\/em>\s
+                      (Trans\.\s.+\.\s)?(.+:\s.+),\s(\d{4}).\s(Print)\./x 
+    chapter_regex =   /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s
+                      (Ed\.\s[A-Za-z ]+\.\s)?(Trans\.\s.+\.\s)?(.+:\s.+),\s
+                       (\d{4})\.\s(\d+-\d+)\.\s(Print)\./x
+    ma_regex =        /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)\.<\/em>\s
+                      (\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
+    ja_regex =        /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s
+                      (\d+)\.(\d+)\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
 
-    case quotation 
+    r = case quotation 
     when chapter_regex then chapter chapter_regex.match(quotation)
     when monograph_regex then monograph monograph_regex.match(quotation)
-    when magazine_article_regex then magazine_article magazine_article_regex.match(quotation)
-    when journal_article_regex then journal_article journal_article_regex.match(quotation)
+    when ma_regex then magazine_article ma_regex.match(quotation)
+    when ja_regex then journal_article ja_regex.match(quotation)
     end
+    @previous_author = r.authors
+    r
   end
 
   def self.parse_authors(authors)
-    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[\p{word}\s]+)(,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?(,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?\.?/x
-    a = authors.scan(author_list_regex)[0]
-    authors = []
-    a.each_with_index do |author,i|
-      if a && (i%2 == 0)
-        authors << author
+    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[\p{word}\s]+)
+                        (,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?
+                        (,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?\.?/x
+    if authors
+      a = authors.scan(author_list_regex)[0]
+      authors = []
+      a.each_with_index do |author,i|
+        if i%2 == 0
+          authors << author
+        end
       end
+      set_authors(authors)
+    else
+      @previous_author
     end
-    set_authors(authors)
   end
 
   def self.parse_translators(translators)
@@ -69,7 +82,7 @@ class ReferenceParser
     end
 
     def self.magazine_article(ma)
-      MagazineArticle.reference ma
+      magazine_article = MagazineArticle.reference ma
     end
 
     def self.journal_article(ja)

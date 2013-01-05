@@ -6,7 +6,7 @@ describe MeetingPresenter do
   
   subject { presenter }
 
-  its(:heading)     { should == "1 - New Meeting" }
+  its(:heading)     { should == "Session 1 - New Meeting" }
   its(:description) { should == "<p>Hello <em>World</em></p>\n" }
   its(:date) {should == "Date: #{ meeting.datetime.strftime("%A, %B %d") }" }
   its(:location) { should == "Location: #{ meeting.location }" }
@@ -15,4 +15,5 @@ describe MeetingPresenter do
     end_time    = meeting.datetime.advance(hours: 4).strftime("%H:%M")
     should == "Time: #{ start_time } - #{ end_time }"
   end
+  its(:textbook) { should == "Bla, Chapter 1-20 (1-999)" }
 end

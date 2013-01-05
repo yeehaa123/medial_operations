@@ -7,5 +7,12 @@
       %li.location=  meeting_presenter.location
 
     = meeting_presenter.description
-    
+    = meeting_presenter.tags
+
+    - if meeting.textbook_readings
+      %section.bibliography
+        %h1 Textbook
+        %ul
+          %li= meeting_presenter.textbook
+
     - works_cited(meeting.references, "Readings")

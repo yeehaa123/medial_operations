@@ -71,3 +71,8 @@ Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into 
 ## Section 3 - The Eternal Recurrence of Body Snatchers
 
 ### Session 5
+
+Olsen, Russ. "Chapter 1: Write Code That Looks Like Ruby." *Eloquent Ruby.* Boston: Pearson Education, 2011. 3-16. Print.
+
+---. "Chapter 2: Choose the Right Control Structure." *Eloquent Ruby.* Boston: Pearson Education, 2011. 3-16. Print.
+

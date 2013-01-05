@@ -26,9 +26,10 @@ describe CourseParser do
     subject { introduction }
 
     its(:class)     { should == Meeting }
-    its(:title)     { should == "Session 1 - Introduction" }
+    its(:title)     { should == "Introduction" }
     its(:number)    { should == 1 }
     its(:section)   { should == nil }
+    its(:textbook_readings)  { should == "Olsen, Chapter 1-3 (1-42)" }
 
     it "should have the correct date and time" do
       introduction.datetime.should == "Tue, 05 Feb 2013 14:00:00 CET +01:00"
@@ -59,7 +60,7 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:title)   { should == "Session 2" }
+      its(:title)   { should == "Lecture" }
       its(:number)  { should ==  2 }
 
       it "should have the correct date and time" do
@@ -70,6 +71,7 @@ describe CourseParser do
 
 
       it { should have(4).references }
+      it { should have(5).tags }
 
       it { should be_persisted }
     end
@@ -79,7 +81,7 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:title)   { should == "Session 3" }
+      its(:title)   { should == "Seminar" }
       its(:number)  { should ==  3 }
 
       it "should have the correct date and time" do
@@ -119,7 +121,7 @@ describe CourseParser do
       
       subject { meeting }
 
-      its(:title)   { should == "Session 4" }
+      its(:title)   { should == "Lecture" }
       its(:number)  { should ==  4 }
 
       it "should have the correct date and time" do
