@@ -61,26 +61,33 @@ Date:		February 12th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
-#### Textbook
 
-Olsen, Chapter 1-3 (1-42)
+#### Readings
 
+Kittler, Friedrich. "Code." *Software Studies: A Lexicon.* Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.
+
+Lafore, Robert. "The Big Picture." *Object-Oriented Programming in C++.* Indianapolis: Sams Publishing, 2002. 9-28. Print.
+
+Sample, Mark. "Criminal Code: The Procedural Logic of Crime in Videogames." *Sample Reality.* n.p., 14 Jan. 2011. Web. 6 Jan. 2013.
 
 
 ## Section 1 - The Future of Writing
 
-#### Description
-
-Bla bla bla
 
 ### Session 3 - Lecture
 Date:		February 19th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
+#### Textbook
+
+Olsen, Chapter 1-3 (1-42)
+
 #### Readings
 
 Flusser, Vilém. "The Future of Writing." *Writings.* Ed. Andreas Ströhl. Trans. Erik Eisel. Minneapolis: University of Minnesota Press, 2002. 63-69. Print.
+
+McLuhan, Marshall. "The Printed Word: Architect of Nationalism." *Understanding Media: The Extensions of Man.* Abingdon: Routledge, 2001. 185-194. Print.
 
 
 ### Session 4 - Seminar
@@ -90,9 +97,7 @@ Location:	PCH 6.25
 
 #### Readings
 
-
-
-
+Kittler, Friedrich. "The Perspective of Print." *Configurations.* 10.1 (2002): 37-50. Print.
 
 
 ### Session 5 - Seminar
@@ -102,7 +107,8 @@ Location:	PCH 6.25
 
 #### Readings
 
-Kittler, Friedrich. "The Perspective of Print." *Configurations.* 10.1 (2002): 37-50. Print.
+Hayles, N. Katherine. "Print Is Flat: Code Is Deep: The Importance of Media-Specific Analysis." *Poetics Today.* 25.1 (2004): 67-89. Print.
+
 
 ### Session 6 - Seminar
 Date:		March 12th 2013
@@ -121,16 +127,16 @@ Location:	PCH 6.25
 
 #### Readings
 
-Certeau, Michel de. "Spatial Stories" *The Practice of Everyday Life.* Minneapolis: University Of Minnesota Press, 1984. 115-130. Print.
-
+Kittler, Friedrich. "There Is No Software." *Literature, Media, Information Systems: Essays.* Ed. John Johnston. Amsterdam: Overseas Publishers Assocation, 1997. 147-155. Print.
 
 ### Assignment 1
-Deadline: April 5th 2013
+Deadline: 	April 5th 2013
 
 Nulla dictum, libero quis rutrum faucibus, nunc odio dignissim lorem, at sodales felis justo a nisi. Etiam in mauris lectus. Sed congue faucibus tellus sed feugiat. Duis semper pretium sem eu imperdiet. Aliquam erat volutpat. Fusce ut elit enim. Quisque euismod tellus nec lacus euismod venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
 
-## Section 2 - Different Spaces
+## Section 2 - The Future of Science
+
 
 ### Session 8 - Lecture
 Date:		April 16th 2013
@@ -139,9 +145,7 @@ Location:	PCH 6.25
 
 #### Readings
 
-Foucault, Michel. "Different Spaces" *Aesthetics, Methods, and Epistemology.* Ed. James Faubion. London: Penguin Books, 1998. 175-185. Print.
-
-Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into Hi-Res Samples." *Wired.* 22 Feb 2010. 111-222. Print.
+Heidegger, Martin. "The Age of the World Picture." *The Question Concerning Technology.* Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
 
 
 ### Session 9 - Seminar
@@ -151,7 +155,7 @@ Location:	PCH 6.25
 
 #### Readings
 
-Heidegger, Martin. "The Age of the World Picture." *The Question Concerning Technology.* Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
+Castells, Manuel. "The Space of Flows." *The Rise of the Network Society.* Oxford: Blackwell Publishers, 2000. 407-459. Print.
 
 Koolhaas, Rem. "The New World: 30 Spaces for the 21st Century." *Wired.* 13 Jun 2003. 23-56. Print.
 
@@ -163,8 +167,6 @@ Location:	PCH 6.25
 
 #### Readings
 
-Castells, Manuel. "The Space of Flows." *The Rise of the Network Society.* Oxford: Blackwell Publishers, 2000. 407-459. Print.
-
 
 ### Session 11 - Seminar
 Date:		May 14th 2013
@@ -172,6 +174,8 @@ Time: 		14:00-18:00
 Location:	PCH 6.25
 
 #### Readings
+
+Ronell, Avitall. "Proving Grounds: On Nietzsche and the Test Drive." *MLN.* 118.3 (2003): 653-669. Print.
 
 
 ### Session 12 - Seminar
@@ -183,8 +187,10 @@ Location:	PCH 6.25
 
 Kittler, Friedrich. "The World of the Symbolic. A World of the Machine." *Literature, Media, Information Systems: Essays.* Ed. John Johnston. Amsterdam: Overseas Publishers Assocation, 1997. 130-146. Print.
 
+Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into Hi-Res Samples." *Wired.* 22 Feb 2010. 111-222. Print.
+
 
 ### Assignment 2
-Deadline: May 31st 2013
+Deadline: 	May 31st 2013
 
 Nulla dictum, libero quis rutrum faucibus, nunc odio dignissim lorem, at sodales felis justo a nisi. Etiam in mauris lectus. Sed congue faucibus tellus sed feugiat. Duis semper pretium sem eu imperdiet. Aliquam erat volutpat. Fusce ut elit enim. Quisque euismod tellus nec lacus euismod venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.

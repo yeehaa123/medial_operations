@@ -9,7 +9,7 @@ class MagazineArticle < PeriodicalReference
   validates_uniqueness_of :title, scope: :magazine
   
   def self.reference(ma)
-    MagazineArticle.create_reference do
+    self.create_reference do
       author                ma[1]
       article_title         ma[2]
       magazine_name         ma[3]
@@ -31,4 +31,3 @@ class MagazineArticle < PeriodicalReference
       self.publication_date = Time.strptime(date, "%e %b %Y")
     end
 end
-

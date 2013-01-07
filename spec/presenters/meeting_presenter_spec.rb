@@ -6,7 +6,7 @@ describe MeetingPresenter do
   
   subject { presenter }
 
-  its(:heading)     { should == "Session 1 - New Meeting" }
+  its(:heading)     { should == "New Meeting" }
   its(:description) { should == "<p>Hello <em>World</em></p>\n" }
   its(:date) {should == "Date: #{ meeting.datetime.strftime("%A, %B %d") }" }
   its(:location) { should == "Location: #{ meeting.location }" }

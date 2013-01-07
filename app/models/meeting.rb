@@ -66,7 +66,7 @@ class Meeting
   end
 
   def to_s
-    "Session #{ number } - #{ title.titleize }"
+    "#{ title.titleize }"
   end
 
   def order_meetings

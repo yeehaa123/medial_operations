@@ -165,6 +165,17 @@ FactoryGirl.define do
     end
   end
 
+  factory :online_article do
+    title "Criminal Code: The Procedural Logic of Crime in Videogames"
+    publication_date  Time.new(2011, 1, 14)
+    website           "Sample Reality"
+    medium            "Web"
+    access_date       Time.new(2013, 1, 6)
+    after(:build) do |reference|
+      reference.authors = [build(:sample)]
+    end
+  end
+
   factory :comment do
     content "bla bla bla"
   end
@@ -187,6 +198,12 @@ FactoryGirl.define do
       particle    "de"
       last_name   "Certeau"
     end
+
+    factory :sample  do
+      first_name  "Mark"
+      last_name   "Sample"
+    end
+
 
     factory :nietzsche do
       first_name "Friedrich"

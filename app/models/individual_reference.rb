@@ -10,4 +10,8 @@ class IndividualReference < Reference
       self.startpage = pages[0]
       self.endpage = pages[1]
     end
+
+    def article_title(title)
+      self.title = title.delete(".")
+    end
 end

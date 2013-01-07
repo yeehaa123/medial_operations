@@ -17,7 +17,7 @@ describe Meeting do
 
   it { should be_valid }
 
-  its(:to_s) { should == "Session #{ meeting.number } - #{ meeting.title.titleize }" }
+  its(:to_s) { should == "#{ meeting.title.titleize }" }
 
   describe "only assign sections belonging to right course" do
     Given(:meeting)       { build(:meeting_with_section) }

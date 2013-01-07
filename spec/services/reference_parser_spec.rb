@@ -143,7 +143,7 @@ describe ReferenceParser do
         And   { expect(reference.authors.first.to_s).to eq "Anderson, Chris" }
         And   { expect(reference.title).to eq "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete" }
         And   { expect(reference.magazine.to_s).to eq "Wired" }
-        And   { expect(reference.publication_date.strftime("%e %b %Y")).to eq "23 Aug 2008" }
+        And   { expect(reference.publication_date.strftime("%-d %b. %Y")).to eq "23 Aug. 2008" }
         And   { expect(reference.startpage).to eq 102 }
         And   { expect(reference.endpage).to eq 1190 }
         And   { expect(reference.medium).to eq "Print" }
@@ -162,6 +162,19 @@ describe ReferenceParser do
         And   { expect(reference.startpage).to eq 244 }
         And   { expect(reference.endpage).to eq 255 }
         And   { expect(reference.medium).to eq "Print" }
+      end
+
+      describe "online article" do
+        Given(:quotation) { 'Sample, Mark. "Criminal Code: The Procedural Logic of Crime in Videogames." <em>Sample Reality.</em> n.p., 14 Jan. 2011. Web. 6 Jan. 2013.' }
+
+        Then  { expect(reference._type).to eq "OnlineArticle" }
+        And   { expect(reference.authors.first.to_s).to eq "Sample, Mark" }
+        And   { expect(reference.title).to eq "Criminal Code: The Procedural Logic of Crime in Videogames" }
+        And   { expect(reference.website).to eq "Sample Reality" }
+        And   { expect(reference.publisher).to eq nil }
+        And   { expect(reference.publication_date.strftime("%-d %b. %Y")).to eq "14 Jan. 2011" }
+        And   { expect(reference.medium).to eq "Web" }
+        And   { expect(reference.access_date.strftime("%-d %b. %Y")).to eq "6 Jan. 2013" }
       end
     end
   end

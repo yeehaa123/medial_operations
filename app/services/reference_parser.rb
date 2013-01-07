@@ -18,12 +18,16 @@ class ReferenceParser
                       (\d{2}\s.+\s\d{4})\.\s(\d+-\d+)?\.\s(Print)\./x
     ja_regex =        /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s
                       (\d+)\.(\d+)\s\((\d{4})\):\s(\d+-\d+)\.\s(Print)\./x
+    oa_regex =        /([A-Z].+,\s[A-Z].+\.)?\s?"(.+)"\s<em>(.+)<\/em>\s
+                      (n\.p\.|.+),\s(n\.d\.|\d{2}\s.+\s\d{4})\.\s(Web)\.\s
+                      (\d+\s.+\s\d{4})\./x
 
     r = case quotation 
     when chapter_regex then chapter chapter_regex.match(quotation)
     when monograph_regex then monograph monograph_regex.match(quotation)
     when ma_regex then magazine_article ma_regex.match(quotation)
     when ja_regex then journal_article ja_regex.match(quotation)
+    when oa_regex then online_article oa_regex.match(quotation)
     end
     @previous_author = r.authors
     r
@@ -83,6 +87,10 @@ class ReferenceParser
 
     def self.magazine_article(ma)
       magazine_article = MagazineArticle.reference ma
+    end
+    
+    def self.online_article(oa)
+      online_article = OnlineArticle.reference oa
     end
 
     def self.journal_article(ja)
