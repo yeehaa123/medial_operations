@@ -42,11 +42,10 @@ describe MagazineArticle do
     Then  { expect(article.authors.first.to_s).to eq "Anderson, Chris" }
     And   { expect(article.title).to eq "The End of Theory: The Data Deluge Makes the Scientific Method Obsolete" }
     And   { expect(article.magazine.to_s).to eq "Wired" }
-    And   { expect(article.publication_date.strftime("%e %b %Y")).to eq "23 Aug 2008" }
+    And   { expect(article.publication_date.strftime("%-d %b. %Y")).to eq "23 Aug. 2008" }
     And   { expect(article.startpage).to eq 102 }
     And   { expect(article.endpage).to eq 1190 }
     And   { expect(article.medium).to eq "Print" }
-
     And   { expect(article).to be_valid }
     And   { expect(article).to be_persisted }
   end

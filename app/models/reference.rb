@@ -8,6 +8,7 @@ class Reference
   field   :publication_date, type: DateTime
   field   :tags, type: Array
   field   :author_list, type: String
+  field   :many_authors, type: Boolean
 
   slug    :title   
 
@@ -64,6 +65,7 @@ class Reference
 
   private
     def author(authors)
+      self.many_authors = ReferenceParser.many_authors(authors)
       self.authors << ReferenceParser.parse_authors(authors) 
     end
 

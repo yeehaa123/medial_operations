@@ -39,6 +39,17 @@ describe ReferenceParser do
         And   { expect(reference.medium).to eq "Print" }
       end
 
+      describe "monograph with author with initial as first name" do
+        Given(:quotation) { 'Bolter, J. David. <em>Turing\'s Man: Western Culture in the Computer Age.</em> Chapel Hill: University of North Carolina Press, 1984. Print.' }
+
+        Then  { expect(reference._type).to eq "Monograph" }
+        And   { expect(reference.authors.first.to_s).to eq "Bolter, J. David" }
+        And   { expect(reference.title).to eq "Turing's Man: Western Culture in the Computer Age" } 
+        And   { expect(reference.publisher.to_s).to eq "Chapel Hill: University Of North Carolina Press" }
+        And   { expect(reference.publication_date.strftime("%Y")).to eq "1984" }
+        And   { expect(reference.medium).to eq "Print" }
+      end
+
       describe "monograph with two authors" do
         Given(:quotation) { "Deleuze, Gilles, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
 
@@ -52,13 +63,24 @@ describe ReferenceParser do
       end
 
       describe "monograph with three authors" do
-        Given(:quotation) { "Deleuze, Gilles, and Bull Shit, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
+        Given(:quotation) { "Deleuze, Gilles, Bull Shit, and Félix Guattari. <em>A Thousand Plateaus.</em> Bla: Bla, 1970. Print." }
 
         Then  { expect(reference.title).to eq "A Thousand Plateaus" } 
         And   { expect(reference.authors.first.to_s).to eq "Deleuze, Gilles" }
         And   { expect(reference.authors[1].to_s).to eq "Shit, Bull" }
         And   { expect(reference.authors.last.to_s).to eq "Guattari, Félix" }
+        And   { expect(reference.many_authors?).to eq false }
         And   { expect(reference._type).to eq "Monograph" }
+      end 
+      
+      describe "monograph with more than three authors" do
+        Given(:quotation) { "Chelimsky, David, et al. <em>The RSpec Book: Behaviour-Driven Development with RSpec, Cucumber, and Friends.</em> Sebastopol: O'Reilly, 2010. Print."  }
+
+        Then  { expect(reference._type).to eq "Monograph" }
+        And   { expect(reference.title).to eq "The RSpec Book: Behaviour-Driven Development with RSpec, Cucumber, and Friends" }
+        And   { expect(reference.authors.first.to_s).to eq "Chelimsky, David" }
+        And   { expect(reference.authors.last.to_s).to eq "Chelimsky, David" }
+        And   { expect(reference.many_authors?).to eq true }
       end
     end
 
@@ -170,7 +192,7 @@ describe ReferenceParser do
         Then  { expect(reference._type).to eq "OnlineArticle" }
         And   { expect(reference.authors.first.to_s).to eq "Sample, Mark" }
         And   { expect(reference.title).to eq "Criminal Code: The Procedural Logic of Crime in Videogames" }
-        And   { expect(reference.website).to eq "Sample Reality" }
+        And   { expect(reference.website.to_s).to eq "Sample Reality" }
         And   { expect(reference.publisher).to eq nil }
         And   { expect(reference.publication_date.strftime("%-d %b. %Y")).to eq "14 Jan. 2011" }
         And   { expect(reference.medium).to eq "Web" }

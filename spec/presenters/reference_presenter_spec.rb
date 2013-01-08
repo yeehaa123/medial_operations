@@ -41,6 +41,13 @@ describe ReferencePresenter do
         should == "#{ a1 }, #{ a2.full_name }, and #{ a3.full_name }. "
       end
     end
+
+    describe "with more than three authors" do
+      before { reference.many_authors = true }
+
+      its(:authors) { should == "#{ reference.authors.first }, et al. " }
+
+    end
   end
 
   context "editors" do

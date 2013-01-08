@@ -109,6 +109,11 @@ FactoryGirl.define do
     medium  "print"
   end
 
+  factory :website do
+    name    "Sample Reality"
+    medium  "Web"
+  end
+
   factory :chapter do
     title "New Chapter"
     startpage 100
@@ -168,9 +173,8 @@ FactoryGirl.define do
   factory :online_article do
     title "Criminal Code: The Procedural Logic of Crime in Videogames"
     publication_date  Time.new(2011, 1, 14)
-    website           "Sample Reality"
-    medium            "Web"
     access_date       Time.new(2013, 1, 6)
+    website
     after(:build) do |reference|
       reference.authors = [build(:sample)]
     end

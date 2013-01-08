@@ -44,6 +44,7 @@ class ReferencePresenter < BasePresenter
               al += ", and #{ a.full_name }"
             end
           end
+          al += ", et al" if reference.many_authors?
           al += ". " unless al == ""
         end
       end

@@ -29,7 +29,7 @@ describe CourseParser do
     its(:title)     { should == "Introduction" }
     its(:number)    { should == 1 }
     its(:section)   { should == nil }
-    its(:textbook_readings)  { should == "Olsen, Chapter 1-3 (1-42)" }
+    its(:textbook_readings)  { should == "<p>Olsen, Chapter 1-3 (1-42)</p>" }
 
     it "should have the correct date and time" do
       introduction.datetime.should == "Tue, 05 Feb 2013 14:00:00 CET +01:00"

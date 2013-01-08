@@ -33,10 +33,16 @@ class ReferenceParser
     r
   end
 
+  def self.many_authors(authors)
+    true if authors =~ /,\set\sal\./
+  end
+
   def self.parse_authors(authors)
-    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[\p{word}\s]+)
+    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[A-Z\.]*[\p{word}\s]+)
+                        (,\s([A-Z][\p{word}]+\s[a-zA-Z]+))?
                         (,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?
-                        (,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?\.?/x
+                        (,\set\sal)?\.?/x
+
     if authors
       a = authors.scan(author_list_regex)[0]
       authors = []
@@ -78,23 +84,64 @@ class ReferenceParser
   private
 
     def self.chapter(c)
-      Chapter.reference c
+      Chapter.create_reference do
+        author                c[1]
+        chapter_title         c[2] 
+        book_title            c[3] 
+        editor                c[4]
+        translator            c[5] 
+        publisher_name        c[6]
+        date_of_publication   c[7]
+        pages                 c[8]
+        medium_of_publication c[9]
+      end
     end
 
     def self.monograph(m)
-      Monograph.reference m
+      Monograph.create_reference do
+        author                m[1]
+        book_title            m[2]
+        translator            m[3]
+        publisher_name        m[4]
+        date_of_publication   m[5]
+        medium_of_publication m[6]
+      end
     end
 
     def self.magazine_article(ma)
-      magazine_article = MagazineArticle.reference ma
+      MagazineArticle.create_reference do
+        author                ma[1]
+        article_title         ma[2]
+        magazine_name         ma[3]
+        date_of_publication   ma[4]
+        pages                 ma[5]
+        medium_of_publication ma[6]
+      end
     end
-    
+
     def self.online_article(oa)
-      online_article = OnlineArticle.reference oa
+      OnlineArticle.create_reference do
+        author                oa[1]
+        article_title         oa[2]
+        website_name          oa[3]
+        publisher_name        oa[4]
+        date_of_publication   oa[5]
+        medium_of_publication oa[6]
+        date_of_access        oa[7]
+      end
     end
 
     def self.journal_article(ja)
-      JournalArticle.reference ja
+      JournalArticle.create_reference do
+        author                ja[1]
+        article_title         ja[2]
+        journal_name          ja[3]
+        volume                ja[4]
+        issue                 ja[5]
+        date_of_publication   ja[6]
+        pages                 ja[7]
+        medium_of_publication ja[8]
+      end
     end
 
     def self.set_authors(parsed_authors)

@@ -26,6 +26,6 @@ class MeetingPresenter < BasePresenter
   end
 
   def textbook
-    @object.textbook_readings if @object.textbook_readings
+    @object.textbook_readings.html_safe if @object.textbook_readings
   end
 end

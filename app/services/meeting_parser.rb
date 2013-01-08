@@ -57,6 +57,6 @@ class MeetingParser < BaseParser
   end
 
   def textbook(t)
-    object.textbook_readings = t.css('h4 ~ p').text
+    object.textbook_readings = t.css('h4 ~ p').to_html
   end
 end

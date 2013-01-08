@@ -1,5 +1,4 @@
 class Chapter < IndividualReference 
-
   attr_accessible :monograph, :authors, :translators, :editors, :date,
                   :medium
 
@@ -10,20 +9,6 @@ class Chapter < IndividualReference
   validates_presence_of(:monograph)
   validates_uniqueness_of :title, scope: :monograph
 
-  def self.reference(c)
-    self.create_reference do
-      author                c[1]
-      chapter_title         c[2] 
-      book_title            c[3] 
-      editor                c[4]
-      translator            c[5] 
-      publisher_name        c[6]
-      date_of_publication   c[7]
-      pages                 c[8]
-      medium_of_publication c[9]
-    end
-  end
- 
   private
 
     def author(authors)
