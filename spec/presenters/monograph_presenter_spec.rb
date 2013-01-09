@@ -17,13 +17,12 @@ describe MonographPresenter do
     end
   end
 
-  describe "monograph with editor and translators" do
+  describe "monograph with translators" do
     let(:reference) { build(:the_gay_science) }
 
     its(:to_s) do
       s = "Nietzsche, Friedrich. "
       s += "<em>The Gay Science</em>. "
-      s += "Ed. Bernard Williams. "
       s += "Trans. Josefine Nauckhoff and Adrian Del Caro. "
       s += "Cambridge: Cambridge University Press, 1977. "
       s += "Print."    

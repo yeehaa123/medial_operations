@@ -85,7 +85,7 @@ Black: 4. Modules and program organization (90-114)
 
 #### Readings
 
-Flusser, Vilém. "The Future of Writing." *Writings.* Ed. Andreas Ströhl. Trans. Erik Eisel. Minneapolis: University of Minnesota Press, 2002. 63-69. Print.
+Flusser, Vilém. "The Future of Writing." *Writings.* Trans. Erik Eisel. Minneapolis: University of Minnesota Press, 2002. 63-69. Print.
 
 McLuhan, Marshall. "The Printed Word: Architect of Nationalism." *Understanding Media: The Extensions of Man.* Abingdon: Routledge, 2001. 185-194. Print.
 
@@ -119,7 +119,7 @@ Black: 6. Control-flow techniques (148-182)
 
 #### Readings
 
-Lacan, Jacques. "Psychoanalysis and cybernetics, or on the nature of language." *The Seminar of Jacques Lacan. Book 2: the Ego in Freud's Theory and in the Technique of Psychoanalysis. 1954-1955.* Ed. Jacques-Alain Miller. Trans. Sylvana Tomaselli. Cambridge: Cambridge University Press, 1988. 294-308. Print.
+Lacan, Jacques. "Psychoanalysis and cybernetics, or on the nature of language." *The Ego in Freud's Theory and in the Technique of Psychoanalysis.* Trans. Sylvana Tomaselli. Cambridge: Cambridge University Press, 1988. 294-308. Print.
 
 Nietzsche, Friedrich. "The Future of Science." *Human, All Too Human.* Trans. R.J. Hollingdale. Cambridge: Cambridge University Press, 1996. 119-119. Print.
 
@@ -198,7 +198,7 @@ Black: 12. File, I/O, and system operations (347-374)
 
 #### Readings
 
-Kittler, Friedrich. "There Is No Software." *Literature, Media, Information Systems: Essays.* Ed. John Johnston. Amsterdam: Overseas Publishers Assocation, 1997. 147-155. Print.
+Kittler, Friedrich. "There Is No Software." *Literature, Media, Information Systems: Essays.* Amsterdam: Overseas Publishers Assocation, 1997. 147-155. Print.
 
 
 ### Session 11 - Seminar
@@ -217,7 +217,7 @@ Location:	PCH 6.25
 
 #### Readings
 
-Kittler, Friedrich. "The World of the Symbolic. A World of the Machine." *Literature, Media, Information Systems: Essays.* Ed. John Johnston. Amsterdam: Overseas Publishers Assocation, 1997. 130-146. Print.
+Kittler, Friedrich. "The World of the Symbolic. A World of the Machine." *Literature, Media, Information Systems: Essays.* Amsterdam: Overseas Publishers Assocation, 1997. 130-146. Print.
 
 
 ### Assignment 2

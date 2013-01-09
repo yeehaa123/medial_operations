@@ -14,13 +14,7 @@ class Monograph < CollectionReference
       self.title = title.delete(".")
     end
     alias_method :monograph_title, :book_title
-
-   def editor(editors)
-     if editors
-       self.editors = ReferenceParser.parse_editors(editors)
-     end
-   end    
-   
+  
     def publisher_name(publisher)
       publisher_string = publisher.split(": ")
       publisher_name = publisher_string[1]

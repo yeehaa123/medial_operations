@@ -32,7 +32,6 @@ describe ChapterPresenter do
     its(:to_s) do
       s = "Nietzsche, Friedrich. "
       s += "\"Preface to the Second Edition.\" <em>The Gay Science</em>. "
-      s += "Ed. Bernard Williams. "
       s += "Trans. Josefine Nauckhoff and Adrian Del Caro. "
       s += "Cambridge: Cambridge University Press, 1977. "
       s += "3-9. Print."    

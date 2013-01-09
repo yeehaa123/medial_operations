@@ -67,7 +67,6 @@ FactoryGirl.define do
     after(:build) do |reference|
       reference.authors = [build(:author)]
       reference.translators = build_list(:author, 2)
-      reference.editors = build_list(:author, 3)
       reference.meetings = build_list(:meeting, 4)
     end
 
@@ -90,8 +89,24 @@ FactoryGirl.define do
       after(:build) do |reference|
         reference.authors = [build(:nietzsche)]
         reference.translators = [build(:nauckhoff), build(:del_caro)]
-        reference.editors = [build(:williams)]
         reference.publisher = build(:cambridge_university_press)
+      end
+    end
+  end
+
+  factory :volume do
+    title "New Volume"
+    after(:build) do |reference|
+      reference.editors = [build(:author)]
+    end
+
+    factory :software_studies do
+      title "Software Studies: A Lexicon"
+      publication_date  Time.new(2008)
+      medium "print"
+      after(:build) do |reference|
+        reference.authors = [build(:fuller)]
+        reference.publisher = build(:mit_press)
       end
     end
   end
@@ -112,6 +127,13 @@ FactoryGirl.define do
   factory :website do
     name    "Sample Reality"
     medium  "Web"
+  end
+
+  factory :volume_article do
+    title "New Article"
+    startpage 100
+    endpage 200
+    volume
   end
 
   factory :chapter do
@@ -203,6 +225,11 @@ FactoryGirl.define do
       last_name   "Certeau"
     end
 
+    factory :fuller do
+      first_name  "Matthew"
+      last_name   "Fuller"
+    end
+
     factory :sample  do
       first_name  "Mark"
       last_name   "Sample"
@@ -257,6 +284,11 @@ FactoryGirl.define do
     factory :cambridge_university_press do
       name  "Cambridge University Press"
       location "Cambridge"
+    end
+
+    factory :mit_press do
+      name "The MIT Press"
+      location "Cambridge MA"
     end
 
     factory :minneapolis_university_press do

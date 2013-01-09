@@ -10,7 +10,6 @@ describe Monograph do
   it { should respond_to(:authors) }
   it { should respond_to(:title) }
   it { should respond_to(:translators) }
-  it { should respond_to(:editors) }
   it { should respond_to(:publication_date) }
   it { should respond_to(:medium) }
   it { should respond_to(:chapters) }
@@ -25,7 +24,6 @@ describe Monograph do
     
   it { should have(1).authors }
   it { should have(2).translators }
-  it { should have(3).editors }
   it { should have(4).meetings }  
 
   
@@ -94,12 +92,11 @@ describe Monograph do
       And   { expect(monograph).to be_persisted }
     end
 
-    describe "reference with editor and two translators" do
+    describe "reference with two translators" do
       Given(:monograph) do
         Monograph.create_reference do
           author                "Nietzsche, Friedrich" 
           book_title            "The Gay Science" 
-          editor                "Williams, Bernard"
           translator            "Nauckhoff, Josefine"
           translator            "Del Caro, Adrian"
           publisher_name        "Cambridge: Cambridge University Press"
@@ -110,7 +107,6 @@ describe Monograph do
 
       Then  { expect(monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
       And   { expect(monograph.title).to eq "The Gay Science" }
-      And   { expect(monograph.editors.first.to_s).to eq "Williams, Bernard" }
       And   { expect(monograph.translators.first.to_s).to eq "Nauckhoff, Josefine" }
       And   { expect(monograph.translators.last.to_s).to eq "Del Caro, Adrian" }
       And   { expect(monograph.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
