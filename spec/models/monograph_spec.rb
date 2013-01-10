@@ -54,7 +54,7 @@ describe Monograph do
       Given(:monograph) do
         Monograph.create_reference do
           author                "Benjamin, Walter"
-          book_title            "One-Way-Street." 
+          book_title            "One-Way-Street" 
           publisher_name        "Bla: Cla"
           date_of_publication   "1940"
           medium_of_publication "Print"
@@ -68,7 +68,6 @@ describe Monograph do
       And   { expect(monograph.medium).to eq "Print" }
 
       And   { expect(monograph).to be_valid }
-      And   { expect(monograph).to be_persisted }
     end    
 
     describe "reference with author with particle in name" do
@@ -89,14 +88,14 @@ describe Monograph do
       And   { expect(monograph.medium).to eq "Print" }
 
       And   { expect(monograph).to be_valid }
-      And   { expect(monograph).to be_persisted }
     end
 
-    describe "reference with two translators" do
+    describe "reference with an editor and two translators" do
       Given(:monograph) do
         Monograph.create_reference do
           author                "Nietzsche, Friedrich" 
           book_title            "The Gay Science" 
+          editor                "Williams, Bernard"
           translator            "Nauckhoff, Josefine"
           translator            "Del Caro, Adrian"
           publisher_name        "Cambridge: Cambridge University Press"
@@ -107,6 +106,7 @@ describe Monograph do
 
       Then  { expect(monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
       And   { expect(monograph.title).to eq "The Gay Science" }
+      And   { expect(monograph.editors.first.to_s).to eq "Williams, Bernard" }
       And   { expect(monograph.translators.first.to_s).to eq "Nauckhoff, Josefine" }
       And   { expect(monograph.translators.last.to_s).to eq "Del Caro, Adrian" }
       And   { expect(monograph.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
@@ -114,7 +114,6 @@ describe Monograph do
       And   { expect(monograph.medium).to eq "Print" }
 
       And   { expect(monograph).to be_valid }
-      And   { expect(monograph).to be_persisted }
     end
   end
 
@@ -123,7 +122,7 @@ describe Monograph do
       Monograph.create_reference do
         author                "Deleuze, Gilles"
         author                "Guattari, Félix"
-        book_title            "A Thousand Plateaus."
+        book_title            "A Thousand Plateaus"
         publisher_name        "Bla: Bla"
         date_of_publication   "1984"
         medium_of_publication "Print"
@@ -138,6 +137,5 @@ describe Monograph do
     And   { expect(monograph.medium).to eq "Print" }
 
     And   { expect(monograph).to be_valid }
-    And   { expect(monograph).to be_persisted }
   end
 end

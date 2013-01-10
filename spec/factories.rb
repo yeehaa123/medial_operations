@@ -134,6 +134,14 @@ FactoryGirl.define do
     startpage 100
     endpage 200
     volume
+
+    factory :code do
+      title "Code (or, How You Can Write Something Differently)"
+      after(:build) do |reference|
+        reference.authors = [build(:kittler)]
+        reference.volume = build(:software_studies)
+      end
+    end
   end
 
   factory :chapter do

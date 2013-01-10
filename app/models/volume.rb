@@ -19,7 +19,13 @@ class Volume < CollectionReference
 
   alias_method :editor_list, :author_list
 
- private
+  def contributors
+    c = self.articles.map do |a|
+      a.authors
+    end.flatten
+  end
+ 
+  private
     def book_title(title)
       self.title = title.delete(".")
     end
@@ -36,11 +42,5 @@ class Volume < CollectionReference
     publisher_name = publisher_string[1]
     publisher_location = publisher_string[0]
     self.publisher = Publisher.find_or_create_by(name: publisher_name, location: publisher_location)
-  end
-
-  def contributors
-    self.articles.map do |a|
-      a.authors
-    end
   end
 end

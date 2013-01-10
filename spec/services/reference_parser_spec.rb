@@ -10,13 +10,14 @@ describe ReferenceParser do
   context "monograph" do
 
       describe "monograph with one author" do
-        Given(:quotation) { "Benjamin, Walter. <em>One-Way-Street.</em> Bla: Cla, 1940. Print." }
+        Given(:quotation) { "Benjamin, Walter. <em>One-Way-Street.</em> Ed. Marcus Paul Bullock and Michael William Jennings. Cambridge Ma: Harvard University Press, 1996. Print." }
 
         Then  { expect(reference._type).to eq "Monograph" }
         And   { expect(reference.authors.first.to_s).to eq "Benjamin, Walter" }
+        And   { expect(reference.editors.first.to_s).to eq "Bullock, Marcus Paul" }
         And   { expect(reference.title).to eq "One-Way-Street" } 
-        And   { expect(reference.publisher.to_s).to eq "Bla: Cla" }
-        And   { expect(reference.publication_date.strftime("%Y")).to eq "1940" }
+        And   { expect(reference.publisher.to_s).to eq "Cambridge Ma: Harvard University Press" }
+        And   { expect(reference.publication_date.strftime("%Y")).to eq "1996" }
         And   { expect(reference.medium).to eq "Print" }
 
 
@@ -26,7 +27,7 @@ describe ReferenceParser do
           When  { ReferenceParser.parse(another_quotation) }
           Then  { expect(reference.title).to eq "One-Way-Street" } 
           And   { expect(Reference.count).to eq 2 }
-          And   { expect(Author.count).to eq 1 }
+          And   { expect(Author.count).to eq 3 }
           end
       end
 
@@ -109,12 +110,14 @@ describe ReferenceParser do
       end
 
       describe "chapter with one author, one editor, and two translators" do
-        Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Trans. Josefine Nauckhoff, and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
+        Given(:quotation) { 'Nietzsche, Friedrich. "Preface to the Second Edition." <em>The Gay Science.</em> Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.' }
 
         Then  { expect(reference._type).to eq "Chapter" }
         And   { expect(reference.authors.first.to_s).to eq "Nietzsche, Friedrich" }
         And   { expect(reference.title).to eq "Preface to the Second Edition" }
         And   { expect(reference.monograph.title).to eq "The Gay Science" }
+        And   { expect(reference.monograph.editors.first.to_s).to eq "Williams, Bernard" }
+        And   { expect(reference.monograph.authors.first.to_s).to eq "Nietzsche, Friedrich" }
         And   { expect(reference.translators.first.to_s).to eq "Nauckhoff, Josefine" }
         And   { expect(reference.translators.last.to_s).to eq "Del Caro, Adrian" }
         And   { expect(reference.publisher.to_s).to eq "Cambridge: Cambridge University Press" }
@@ -198,17 +201,34 @@ describe ReferenceParser do
       end
       
       describe "volume article" do
-        Given(:quotation) { 'Kittler, Friedrich. "Code (or, How Can You Write Something Differently)." <em>Software Studies: A Lexicon.</em> Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.' } 
+        Given(:quotation) { 'Kittler, Friedrich. "Code (or, How Can You Write Something Differently)." <em>Software Studies: A Lexicon.</em> Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.~' } 
 
         Then  { expect(reference._type).to eq "VolumeArticle" }
         And   { expect(reference.authors.first.to_s).to eq "Kittler, Friedrich" }
+        And   { expect(reference.editors.first.to_s).to eq "Fuller, Matthew" }
         And   { expect(reference.title).to eq "Code (or, How Can You Write Something Differently)" }
         And   { expect(reference.volume.to_s).to eq "Software Studies: A Lexicon" }
+        And   { expect(reference.volume.authors.first.to_s).to eq "Fuller, Matthew" }
+        And   { expect(reference.volume.contributors.first.to_s).to eq "Kittler, Friedrich" }
         And   { expect(reference.publisher.to_s).to eq "Cambridge MA: The MIT Press" }
         And   { expect(reference.publication_date.strftime("%Y")).to eq "2008" }
         And   { expect(reference.medium).to eq "Print" }
-      end
 
+        describe "another article from the same volume" do
+          Given(:quotation) { 'Mittler, Friedrich. "Mode (or, How Can You Write Something Differently)." <em>Software Studies: A Lexicon.</em> Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.~' } 
+
+          Then  { expect(reference._type).to eq "VolumeArticle" }
+          And   { expect(reference.authors.first.to_s).to eq "Mittler, Friedrich" }
+          And   { expect(reference.editors.first.to_s).to eq "Fuller, Matthew" }
+          And   { expect(reference.title).to eq "Mode (or, How Can You Write Something Differently)" }
+          And   { expect(reference.volume.to_s).to eq "Software Studies: A Lexicon" }
+          And   { expect(reference.volume.authors.first.to_s).to eq "Fuller, Matthew" }
+          And   { expect(reference.volume.contributors.first.to_s).to eq "Mittler, Friedrich" }
+          And   { expect(reference.publisher.to_s).to eq "Cambridge MA: The MIT Press" }
+          And   { expect(reference.publication_date.strftime("%Y")).to eq "2008" }
+          And   { expect(reference.medium).to eq "Print" }
+        end
+      end
     end
   end
 
@@ -233,7 +253,7 @@ describe ReferenceParser do
       And   { expect(MagazineArticle.count).to eq 1 }
       And   { expect(Journal.count).to eq 2 }
       And   { expect(Magazine.count).to eq 1 }
-      And   { expect(Author.count).to eq 13 }
+      And   { expect(Author.count).to eq 14 }
       And   { expect(technology.chapters.count).to eq 2 }
     end
   end

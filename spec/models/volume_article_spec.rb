@@ -40,9 +40,9 @@ describe VolumeArticle do
     Given(:article) do
       VolumeArticle.create_reference do
         author                "Kittler, Friedrich" 
+        editor                "Fuller, Matthew"
         article_title         "Code"
         book_title            "Software Studies" 
-        editor                "Fuller, Matthew"
         publisher_name        "Cambridge: Cambridge University Press"
         date_of_publication   "2001"
         pages                 "3-9"
@@ -61,5 +61,32 @@ describe VolumeArticle do
     And   { expect(article).to be_valid }
     And   { expect(article).to be_persisted }
     And   { expect(article.volume).to be_persisted }
+
+    describe "should not add the same volume twice" do
+      Given(:other_article) do
+        VolumeArticle.create_reference do
+          author                "Kittler, Friedrich" 
+          editor                "Fuller, Matthew"
+          article_title         "Bode"
+          book_title            "Software Studies" 
+          publisher_name        "Cambridge: Cambridge University Press"
+          date_of_publication   "2001"
+          pages                 "41-92"
+          medium_of_publication "Print"
+        end
+      end
+
+      before do
+        article
+        other_article
+      end
+
+      Then  { expect(Volume.count).to eq 1 }
+      And   { expect(VolumeArticle.count).to eq 2 }
+      And   { expect(Author.count).to eq 2 }
+
+      And   { expect(other_article).to be_persisted }
+      And   { expect(other_article.volume).to be_persisted }
+    end
   end
 end

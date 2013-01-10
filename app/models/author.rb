@@ -1,3 +1,4 @@
+# coding: UTF-8
 require 'nokogiri'
 require 'open-uri'
 require 'net/http'
@@ -51,7 +52,7 @@ class Author
   
   private
     def wiki_link
-      "http://en.wikipedia.org/wiki/#{ full_name.tr(" ", "_") }"
+      "http://en.wikipedia.org/wiki/#{ full_name.tr("é", "e").tr(" ", "_") }"
     end
 
     def remote_file_exists?(url)

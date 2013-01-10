@@ -9,73 +9,91 @@ class ReferenceParser
   end
 
   def self.parse(quotation)
+    authors           = /([A-Z\-][^\/"<]+)?/
+    # authors           = /([A-Z].+,\s[A-Z].+\.)?\s?/
+    individual_title  = /"(.+)"\s/ 
+    collection_title  = /<em>(.+)<\/em>\s/
+    volume_number     = /(\d+)\./
+    issue_number      = /(\d+)\s/
+    editors           = /(Ed\.\s[A-Za-z ]+\.\s)?/
+    translators       = /(Trans\.\s.+\.\s)?/
+    publisher         = /(n\.p\.|.+|.+:\s.+),\s/
+    year              = /(\(\d{4}\)|\d{4}).\s/ 
+    date              = /(n\.d\.|\d+\s.+\s\d{4})\.\s?/
+    pages             = /(\d+-\d+)\.\s/
+    medium            = /(Print|Web)\./
+
     monograph_regex = /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      <em>(.+)<\/em>\s              # Title
-                      (Trans\.\s.+\.\s)?            # Translators
-                      (.+:\s.+),\s                  # Publisher
-                      (\d{4}).\s                    # Year
-                      (Print)\.                     # Medium
+                      #{ authors }
+                      #{ collection_title }
+                      #{ editors }
+                      #{ translators }
+                      #{ publisher }
+                      #{ year }
+                      #{ medium }
                       /x
     va_regex =        /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      "(.+)"\s<em>                  # Article Title
-                      (.+)<\/em>\s                  # Volume Title
-                      (Ed\.\s[A-Za-z ]+\.\s)        # Editors
-                      (Trans\.\s.+\.\s)?            # Translators
-                      (.+:\s.+),\s                  # Publisher
-                      (\d{4})\.\s                   # Year
-                      (\d+-\d+)\.\s                 # Pages
-                      (Print)\.                     # Medium
-                      /x
+                      #{ authors }
+                      #{ individual_title }
+                      #{ collection_title }                  
+                      #{ editors }
+                      #{ translators }
+                      #{ publisher }
+                      #{ year }
+                      #{ pages } 
+                      #{ medium }
+                      \~/x
     chapter_regex =   /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      "(.+)"\s                      # Chapter Title
-                      <em>(.+)<\/em>\s              # Monograph Title
-                      (Trans\.\s.+\.\s)?            # Translators
-                      (.+:\s.+),\s                  # Publisher
-                      (\d{4})\.\s                   # Year
-                      (\d+-\d+)\.\s                 # Pages
-                      (Print)\.                     # Medium
+                      #{ authors }
+                      #{ individual_title }
+                      #{ collection_title }
+                      #{ editors }
+                      #{ translators }
+                      #{ publisher }
+                      #{ year }
+                      #{ pages }
+                      #{ medium }
                       /x
     ma_regex =        /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      "(.+)"\s                      # Article Title
-                      <em>(.+)\.<\/em>\s            # Magazine Name
-                      (\d{2}\s.+\s\d{4})\.\s        # Publication Date
-                      (\d+-\d+)?\.\s                # Pages
-                      (Print)\.                     # Medium
+                      #{ authors }
+                      #{ individual_title }
+                      #{ collection_title }
+                      #{ date }
+                      #{ pages }
+                      #{ medium }
                       /x
     ja_regex =        /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      "(.+)"\s                      # Article Title
-                      <em>(.+)<\/em>\s              # Journal Name
-                      (\d+)\.                       # Volume
-                      (\d+)\s                       # Issue
-                      \((\d{4})\):\s                # Year
-                      (\d+-\d+)\.\s                 # Pages
-                      (Print)\.                     # Medium 
+                      #{ authors }
+                      #{ individual_title }
+                      #{ collection_title }
+                      #{ volume_number }
+                      #{ issue_number }
+                      #{ year }
+                      #{ pages }
+                      #{ medium }
                       /x
     oa_regex =        /
-                      ([A-Z].+,\s[A-Z].+\.)?\s?     # Authors
-                      "(.+)"\s                      # Article Title
-                      <em>(.+)<\/em>\s              # Website
-                      (n\.p\.|.+),\s                # Publisher
-                      (n\.d\.|\d{2}\s.+\s\d{4})\.\s # Publication Date
-                      (Web)\.\s                     # Medium
-                      (\d+\s.+\s\d{4})\.            # Access Date
+                      #{ authors }
+                      #{ individual_title }
+                      #{ collection_title }
+                      #{ publisher }
+                      #{ date }
+                      #{ medium }\s
+                      #{ date }
                       /x
 
-    r = case quotation 
+    reference = case quotation 
     when monograph_regex then monograph monograph_regex.match(quotation)
-    when va_regex then volume_article va_regex.match(quotation)
+    when va_regex then
+      binding.pry
+      volume_article va_regex.match(quotation)
     when chapter_regex then chapter chapter_regex.match(quotation)
     when ma_regex then magazine_article ma_regex.match(quotation)
     when ja_regex then journal_article ja_regex.match(quotation)
     when oa_regex then online_article oa_regex.match(quotation)
+    else binding.pry
     end
-    @previous_author = r.authors
-    r
+    reference
   end
 
   def self.many_authors(authors)
@@ -83,10 +101,12 @@ class ReferenceParser
   end
 
   def self.parse_authors(authors)
-    author_list_regex = /([A-Z][a-z]+\s?[A-Za-z]+,\s[A-Z\.]*[\p{word}\s]+)
+    author_list_regex = /
+                        ([A-Z][a-z]+\s?[A-Za-z]+,\s[A-Z\.]*[\p{word}\s]+)
                         (,\s([A-Z][\p{word}]+\s[a-zA-Z]+))?
                         (,\sand\s([\p{word}]+\s[a-zA-Z]+)*)?
-                        (,\set\sal)?\.?/x
+                        (,\set\sal)?\.?
+                        /x
 
     if authors
       a = authors.scan(author_list_regex)[0]
@@ -104,10 +124,8 @@ class ReferenceParser
 
   def self.parse_translators(translators)
     if translators.include?("Trans.")
-      translators.gsub!("Trans. ", "")
-      translators = translators.strip
-      translators = translators.chop
-      translators = translators.split(", and ")
+      translators.gsub!("Trans. ", "").strip!.chop!
+      translators = translators.split(" and ")
     else
       translators = [translators]
     end
@@ -116,10 +134,8 @@ class ReferenceParser
 
   def self.parse_editors(editors)
     if editors.include?("Ed.")
-      editors.gsub!("Ed. ", "")
-      editors = editors.strip
-      editors = editors.chop
-      editors = editors.split(", and ")
+      editors.gsub!("Ed. ", "").strip!.chop!
+      editors = editors.split(" and ")
     else
       editors = [editors]
     end
@@ -133,20 +149,21 @@ class ReferenceParser
         author                c[1]
         chapter_title         c[2] 
         book_title            c[3] 
-        translator            c[4] 
-        publisher_name        c[5]
-        date_of_publication   c[6]
-        pages                 c[7]
-        medium_of_publication c[8]
+        editor                c[4]
+        translator            c[5] 
+        publisher_name        c[6]
+        date_of_publication   c[7]
+        pages                 c[8]
+        medium_of_publication c[9]
       end
     end
     
     def self.volume_article(va)
       VolumeArticle.create_reference do
         author                va[1]
+        editor                va[4]
         chapter_title         va[2] 
         book_title            va[3] 
-        editor                va[4]
         translator            va[5] 
         publisher_name        va[6]
         date_of_publication   va[7]
@@ -159,10 +176,11 @@ class ReferenceParser
       Monograph.create_reference do
         author                m[1]
         book_title            m[2]
-        translator            m[3]
-        publisher_name        m[4]
-        date_of_publication   m[5]
-        medium_of_publication m[6]
+        editor                m[3]
+        translator            m[4]
+        publisher_name        m[5]
+        date_of_publication   m[6]
+        medium_of_publication m[7]
       end
     end
 

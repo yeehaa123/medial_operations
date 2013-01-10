@@ -2,32 +2,27 @@
 
 #### Description
 
-Nowadays, computers are literally everywhere. Through heterogeneous interfaces - such as sensors, transistors, and servo motors - they are inextricably linked to spaces and bodies. As a result, it is difficult to analyse cultural objects independent of their technological apparatus.
+Computers are literally everywhere. Through heterogeneous interfaces - such as sensors, transistors, and servo motors - they are inextricably linked to works of art, bodies, and spaces. As a result, it is difficult to analyse cultural objects independent of their technological apparatus.
 
-Nevertheless, scholars in the humanities are reluctant to learn about the hard-,wet-, and software of art, literature, culture, and politics. In this course we will modestly attempt to compensate for our discipline's technological illiteracy and research the following question:
+Nevertheless, scholars in the humanities are reluctant to learn about the hard-,wet-, and software of art, literature, culture, and politics. In this course we will modestly attempt to compensate for our discipline's digital illiteracy and research the following question:
 
-> What kind of approaches, methods and techniques are needed to analyze the technical dimension of contemporary cultural objects?
+> What kind of approaches, methods and techniques are needed to analyze the technological dimension of contemporary cultural objects?
 
-Rather than approaching this question from a purely theoretical perspective, we will learn to code ourselves. Programming, however, is not a goal in itself but only a means to an end. We treat code as a particular form of knowledge organization. The goal of this course is not to turn you into a professional programmer, but to provide you with an additional tool to pursue your research.
+Rather than approaching this question from a purely theoretical perspective, we will learn to code ourselves. Programming, however, is only a means to an end. We will treat code as a particular form of knowledge organization. The goal of this course is not to turn you into professional programmers, but to gain an additional tool to pursue your research.
 
-#### Textbooks
+#### Textbook
 
 Black, David A. *The Well-Grounded Rubyist.* Stamford: Manning, 2011. Print.
 
 #### Prerequisites
 
-You do not need any experience in coding to follow this course. I do expect you to do some preparatory work, however. Before the first session, you should have completed at least two of the following tutorials:
+You do not need prior experience in coding to follow this course. I do expect you to do some preparatory work, however. Before the first session, you should have completed at least two of the following tutorials:
 
 - Try Ruby: [http://tryruby.org/](http://tryruby.org/)
-- Code Academy's Ruby Track: [http://www.codecademy.com/tracks/ruby/](http://tryruby.org/)
+- Code Academy's Ruby Track: [http://www.codecademy.com/](http://www.codecademy.com/tracks/ruby/)
 - Ruby Monk: [http://rubymonk.com/](http://rubymonk.com/)
 - Ruby Koans: [http://rubykoans.com/](http://rubykoans.com/)
 - Learn Ruby the Hard Way: [http://ruby.learncodethehardway.org/](http://ruby.learncodethehardway.org/)	
-
-In the break, between the two halves of the semester, you should finish the following two tutorials:
-
-- Try R: [http://www.codeschool.com/courses/try-r/](http://www.codeschool.com/courses/try-r/)
-- Test-First Learn Ruby: [http://testfirst.org/learn_ruby/](http://testfirst.org/learn_ruby/)
 
 
 #### Requirements
@@ -64,7 +59,7 @@ Black: 2. Objects, methods, and local variables (32-59)
 
 #### Readings
 
-Kittler, Friedrich. "Code." *Software Studies: A Lexicon.* Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.
+Kittler, Friedrich. "Code (or, How You Can Write Something Differently)." *Software Studies: A Lexicon.* Ed. Matthew Fuller. Cambridge MA: The MIT Press, 2008. 40-47. Print.~
 
 Sample, Mark. "Criminal Code: The Procedural Logic of Crime in Videogames." *Sample Reality.* n.p., 14 Jan. 2011. Web. 6 Jan. 2013.
 
@@ -85,7 +80,7 @@ Black: 4. Modules and program organization (90-114)
 
 #### Readings
 
-Flusser, Vilém. "The Future of Writing." *Writings.* Trans. Erik Eisel. Minneapolis: University of Minnesota Press, 2002. 63-69. Print.
+Flusser, Vilém. "The Future of Writing." *Writings.* Ed. Andreas Ströhl. Trans. Erik Eisel. Minneapolis: University of Minnesota Press, 2002. 63-69. Print.
 
 McLuhan, Marshall. "The Printed Word: Architect of Nationalism." *Understanding Media: The Extensions of Man.* Abingdon: Routledge, 2001. 185-194. Print.
 
@@ -101,9 +96,7 @@ Black: 5. The default object (self), scope, and visibility (115-147)
 
 #### Readings
 
-Bolter, J. David. "Creator and Creation." *Turing's Man: Western Culture in the Computer Age.* Chapel Hill: University of North Carolina Press, 1984. 165-188. Print.
-
-Foucault, Michel. "Las Meninas" *The Order of Things.* New York: Random House, 1994. 3-16. Print. 
+Foucault, Michel. "Las Meninas" *The Order of Things.* New York: Random House, 1994. 3-16. Print.
 
 Kittler, Friedrich. "The Perspective of Print." *Configurations.* 10.1 (2002): 37-50. Print.
 
@@ -119,9 +112,11 @@ Black: 6. Control-flow techniques (148-182)
 
 #### Readings
 
-Lacan, Jacques. "Psychoanalysis and cybernetics, or on the nature of language." *The Ego in Freud's Theory and in the Technique of Psychoanalysis.* Trans. Sylvana Tomaselli. Cambridge: Cambridge University Press, 1988. 294-308. Print.
+Bolter, J. David. "Creator and Creation." *Turing's Man: Western Culture in the Computer Age.* Chapel Hill: University of North Carolina Press, 1984. 165-188. Print.
 
-Nietzsche, Friedrich. "The Future of Science." *Human, All Too Human.* Trans. R.J. Hollingdale. Cambridge: Cambridge University Press, 1996. 119-119. Print.
+Castells, Manuel. "The Space of Flows." *The Rise of the Network Society.* Oxford: Blackwell Publishers, 2000. 407-459. Print.
+
+Koolhaas, Rem. "The New World: 30 Spaces for the 21st Century." *Wired.* 13 Jun 2003. 23-56. Print.
 
 
 ### Session 6 - Seminar
@@ -135,9 +130,9 @@ Black: 7. Built-in essentials (185-212)
 
 #### Readings
 
-Heidegger, Martin. "The Age of the World Picture." *The Question Concerning Technology.* Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
+Lacan, Jacques. "Psychoanalysis and cybernetics, or on the nature of language." *The Ego in Freud's Theory and in the Technique of Psychoanalysis.* Ed. Jacques-Alain Miller. Trans. Sylvana Tomaselli. Cambridge: Cambridge University Press, 1988. 294-308. Print.
 
-Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into Hi-Res Samples." *Wired.* 22 Feb 2010. 111-222. Print.
+Nietzsche, Friedrich. "The Future of Science." *Human, All Too Human.* Trans. R.J. Hollingdale. Cambridge: Cambridge University Press, 1996. 119-119. Print.
 
 
 ### Session 7 - Seminar
@@ -169,6 +164,8 @@ Location:	PCH 6.25
 
 Black: 8. Strings, symbols, and other scalar objects (213-246)
 
+Black: 9. Collection and container objects (247-277)
+
 #### Readings
 
 Derrida, Jacques. "The Book to Come." *Paper Machine.* Trans. Rachel Bowlby. Stanford: Stanford University Press, 2005. 4-18. Print.
@@ -181,11 +178,14 @@ Date:		April 23th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
+#### Textbook
+
+Black: 10. Collections central: Enumerable and Enumerator (278-318)
+
 #### Readings
+Heidegger, Martin. "The Age of the World Picture." *The Question Concerning Technology.* Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
 
-Castells, Manuel. "The Space of Flows." *The Rise of the Network Society.* Oxford: Blackwell Publishers, 2000. 407-459. Print.
-
-Koolhaas, Rem. "The New World: 30 Spaces for the 21st Century." *Wired.* 13 Jun 2003. 23-56. Print.
+Ellenberg, Jordan. "Fill in the Blanks: Using Math to Turn Lo-Res Datasets Into Hi-Res Samples." *Wired.* 22 Feb 2010. 111-222. Print.
 
 
 ### Session 10 - Seminar
@@ -194,6 +194,9 @@ Time: 		14:00-18:00
 Location:	PCH 6.25
 
 #### Textbook
+
+Black: 11. Regular expressions and regexp-based string operations (319-346)
+
 Black: 12. File, I/O, and system operations (347-374)
 
 #### Readings
@@ -206,6 +209,12 @@ Date:		May 14th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
 
+#### Textbook
+
+Black: 13. Object individuation (375-404)
+
+Black: 14. Callable and runnable object (405-440)
+
 #### Readings
 
 
@@ -214,6 +223,10 @@ Location:	PCH 6.25
 Date:		May 21th 2013
 Time: 		14:00-18:00
 Location:	PCH 6.25
+
+#### Textbook
+
+Black: 14. Callbacks, hooks, and runtime introspection(441,470)
 
 #### Readings
 

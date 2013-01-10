@@ -18,7 +18,7 @@ Heidegger, Martin. "The Question Concerning Technology." *The Question Concernin
 
 Heidegger, Martin. "The Age of the World Picture." *The Question Concerning Technology.* Trans. William Lovitt. New York: Harper & Row, 1977. 3-9. Print.
 
-Nietzsche, Friedrich. "Preface to the Second Edition." *The Gay Science.* Trans. Josefine Nauckhoff, and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.
+Nietzsche, Friedrich. "Preface to the Second Edition." *The Gay Science.* Ed. Bernard Williams. Trans. Josefine Nauckhoff and Adrian Del Caro. Cambridge: Cambridge University Press, 2001. 3-9. Print.
 
 Kittler, Friedrich. "Universities: Wet, Hard, Soft, and Harder." *Critical Inquiry* 31.1 (2004): 244-255. Print.
 

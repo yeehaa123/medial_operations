@@ -13,21 +13,21 @@ class VolumeArticle < IndividualReference
 
     def author(authors)
       self.authors = ReferenceParser.parse_authors(authors)
-      # @al = @a.map(&:to_s).join(". ")
     end
-
+    
+    def editor(editors)
+      @e = ReferenceParser.parse_editors(editors)
+      @el = @e.map(&:to_s).join(". ")
+    end
+    
     def chapter_title(title)
       self.title = title.delete(".")
     end
 
     def book_title(title)
       title = title.delete(".")
-      @v = Volume.find_or_initialize_by(author_list: @al, title: title)
-      @v.authors << @a 
-    end
-
-    def editor(editors)
-      @v.editors << ReferenceParser.parse_editors(editors)
+      @v = Volume.find_or_initialize_by(author_list: @el, title: title)
+      @v.editors |= @e 
     end
 
     def translator(translators)
