@@ -84,14 +84,11 @@ class ReferenceParser
 
     reference = case quotation 
     when monograph_regex then monograph monograph_regex.match(quotation)
-    when va_regex then
-      binding.pry
-      volume_article va_regex.match(quotation)
+    when va_regex then volume_article va_regex.match(quotation)
     when chapter_regex then chapter chapter_regex.match(quotation)
     when ma_regex then magazine_article ma_regex.match(quotation)
     when ja_regex then journal_article ja_regex.match(quotation)
     when oa_regex then online_article oa_regex.match(quotation)
-    else binding.pry
     end
     reference
   end
