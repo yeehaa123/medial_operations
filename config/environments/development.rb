@@ -38,4 +38,6 @@ MedialOperations::Application.configure do
   # Pusher.app_id = '30510'
   # Pusher.key    = 'd883123a8693acec1aa4'
   # Pusher.secret = '6602427c2f3939bd7a62'
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

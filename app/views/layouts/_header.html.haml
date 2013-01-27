@@ -4,7 +4,11 @@
       %li= link_to "home", root_path
       %li= link_to "course", course_path("medial-operations")
       %li= link_to "syllabus", syllabus_path
-      %li= link_to "articles", "#"
+      - if !user_signed_in?
+        %li= link_to "sign up", new_user_registration_path
+        %li= link_to "sign in", new_user_session_path
+      - else
+        %li= link_to "sign out", destroy_user_session_path, method: "delete"
   %em#logo
     = link_to "#" do
       %span#medial medial

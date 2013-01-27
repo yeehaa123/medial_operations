@@ -40,6 +40,9 @@ Spork.prefork do
 
     # YEEHAA: using factorygirl implicitly
     config.include FactoryGirl::Syntax::Methods
+    
+    #YEEHAA
+    config.include EmailSpec::Helpers
   end
 end
 
