@@ -43,6 +43,9 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'rb-fsevent', :require => false
   gem 'growl'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 # To use ActiveModel has_secure_password
