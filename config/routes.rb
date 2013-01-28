@@ -1,6 +1,6 @@
 MedialOperations::Application.routes.draw do
   devise_for :users
-
+  resources :users
   # root to: 'courses#show', id: "medial-operations"
   
   root to: 'pages#home'

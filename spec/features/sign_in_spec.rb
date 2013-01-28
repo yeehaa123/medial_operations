@@ -5,7 +5,8 @@ describe 'Signing in' do
 
   describe 'Signing in via confirmation' do
     When do
-      open_email "test@example.com", with_subject: /Confirmation/
+      create(:user, email: "testtoo@example.com")
+      open_email "testtoo@example.com", with_subject: /Confirmation/
       click_first_link_in_email
     end
     

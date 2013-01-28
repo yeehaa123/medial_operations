@@ -5,6 +5,8 @@ describe 'Signing Up' do
     When  do
       visit '/'
       click_link 'sign up'
+      fill_in "First name", with: "test"
+      fill_in "Last name", with: "subject"
       fill_in "Email", with: "test@test.com"
       fill_in "user_password", with: "password"
       fill_in "Password confirmation", with: "password"

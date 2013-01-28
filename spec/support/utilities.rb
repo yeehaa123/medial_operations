@@ -4,6 +4,7 @@ RSpec::Matchers.define :show_menu do
     page.should have_link('home', href: root_path)
     page.should have_link('course', href: course_path("medial-operations"))
     page.should have_link('syllabus', href: syllabus_path)
-    page.should have_link('articles')
+    page.should have_link('sign up', href: new_user_registration_path)
+    page.should have_link('sign in', href: new_user_session_path)
   end
 end

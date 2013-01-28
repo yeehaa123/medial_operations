@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Slug
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -38,4 +39,19 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+  
+  field :first_name,  type: String
+  field :last_name,   type: String
+  field :student_number,  type: Integer
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+                  :first_name, :last_name, :student_number
+
+  slug :name
+
+  validates_presence_of :first_name, :last_name
+
+  def name
+    "#{ first_name } #{ last_name }"
+  end
 end
