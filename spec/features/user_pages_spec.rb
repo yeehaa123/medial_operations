@@ -15,6 +15,14 @@ describe "User Pages" do
     And   { page.should have_selector('input#user_password_confirmation') }
   end
 
+  describe "sign up page" do
+    When { visit new_user_session_path }
+
+    Then  { page.should have_selector('h2', text: "Sign in") }
+    And   { page.should have_selector('input#user_email') }
+    And   { page.should have_selector('input#user_password') }
+  end
+
   describe "profile page" do
     When { visit user_path(user) }
 
